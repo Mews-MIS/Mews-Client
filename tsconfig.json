@@ -34,8 +34,12 @@
 
     "baseUrl": "./", // 모듈이 기본적으로 위치한 디렉토리 설정
     "paths": {
-      "@public/*": ["public/*"]
+      "@public/*": ["public/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@styles/*": ["src/styles/*"]
     },
+    "typeRoots": ["./node_modules/@types", "@types"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

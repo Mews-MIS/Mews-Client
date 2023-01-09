@@ -1,7 +1,10 @@
-import { css, Global } from "@emotion/react";
+import { css, Global, Theme } from "@emotion/react";
+import emotionReset from "emotion-reset";
 import theme from "@styles/Theme";
 
 const style = css`
+  ${emotionReset}
+
   html,
   body {
     padding: 0;
@@ -9,6 +12,7 @@ const style = css`
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
       Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     color: ${theme.COLORS.BLACK};
+    background-color: ${theme.COLORS.BACKGROUND_WHITE};
   }
 
   a {

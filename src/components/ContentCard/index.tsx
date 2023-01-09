@@ -1,8 +1,11 @@
+import * as s from "./styles";
+import React from "react";
 const ContentCard = () => {
   return (
-    <div>
+    <s.Wrapper>
       <p>시운</p>
-    </div>
+      <p>ㅇ</p>
+    </s.Wrapper>
   );
 };
 

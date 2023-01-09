@@ -29,6 +29,7 @@ module.exports = {
     config.resolve.alias["@styles"] = path.resolve(__dirname, "../src/styles");
     config.resolve.alias["@constants"] = path.resolve(__dirname, "../src/constants");
     config.resolve.alias["@api"] = path.resolve(__dirname, "../src/api");
+    config.resolve.alias["@emotion/styled"] = path.resolve("node_modules/@emotion/styled");
     return config;
   },
 };

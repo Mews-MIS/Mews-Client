@@ -1,11 +1,13 @@
-import { css, Global, Theme } from "@emotion/react";
+import { css, Global } from "@emotion/react";
 import emotionReset from "emotion-reset";
 import theme from "@styles/Theme";
 
 const style = css`
   ${emotionReset}
 
-  html,
+  html {
+    font-size: 4px;
+  }
   body {
     padding: 0;
     margin: 0;

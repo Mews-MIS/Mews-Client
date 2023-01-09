@@ -30,6 +30,16 @@ module.exports = {
     config.resolve.alias["@constants"] = path.resolve(__dirname, "../src/constants");
     config.resolve.alias["@api"] = path.resolve(__dirname, "../src/api");
     config.resolve.alias["@emotion/styled"] = path.resolve("node_modules/@emotion/styled");
+
+    //next svg
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test && rule.test.test(".svg"));
+    fileLoaderRule.exclude = /\.svg$/;
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      enforce: "pre",
+      loader: require.resolve("@svgr/webpack"),
+    });
     return config;
   },
 };

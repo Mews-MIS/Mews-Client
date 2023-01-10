@@ -1,5 +1,5 @@
 import * as s from "./styles";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BookmarkBtn from "@public/button/BookmarkBtn.svg";
 import LikeBtn from "@public/button/LikeBtn.svg";
 const ContentCard = () => {

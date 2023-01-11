@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ContentCard from "@components/ContentCard";
+import AuthorIntro from "@components/AuthorIntro";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       </Head>
       <main>
         <ContentCard />
+        <AuthorIntro />
       </main>
     </>
   );

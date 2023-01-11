@@ -1,6 +1,6 @@
 import Head from "next/head";
 import ContentCard from "@components/ContentCard";
-
+import BottomNavbar from "@components/BottomNavbar";
 export default function Home() {
   return (
     <>
@@ -12,6 +12,7 @@ export default function Home() {
       </Head>
       <main>
         <ContentCard />
+        <BottomNavbar />
       </main>
     </>
   );

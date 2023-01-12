@@ -14,7 +14,7 @@ export const TopContainer = styled.div`
 `;
 
 export const EditProfileBtn = styled.button`
-    width: 95vw;
+    width: 85vw;
     display: flex;
     justify-content: center;
     

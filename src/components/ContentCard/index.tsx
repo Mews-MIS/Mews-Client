@@ -1,8 +1,9 @@
-import * as s from "./styles";
 import React, { useState } from "react";
 import BookmarkBtn from "@public/button/BookmarkBtn.svg";
 import LikeBtn from "@public/button/LikeBtn.svg";
-const ContentCard = () => {
+import * as s from "./styles";
+
+function ContentCard() {
   // 더미 데이터
   const category = "경정인을 소개합니다.";
   const title = "대학생편 - 최시운편";
@@ -20,7 +21,7 @@ const ContentCard = () => {
 
   return (
     <s.Wrapper>
-      {/** 해당 부분 이미지 추가 필요 **/}
+      {/** 해당 부분 이미지 추가 필요 * */}
       <s.ImageContainer />
       <s.ContentContainer>
         <s.ContentTopArea>
@@ -50,6 +51,6 @@ const ContentCard = () => {
       </s.ContentContainer>
     </s.Wrapper>
   );
-};
+}
 
 export default ContentCard;

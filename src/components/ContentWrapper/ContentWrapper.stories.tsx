@@ -6,7 +6,7 @@ export default {
   component: ContentWrapper,
 };
 
-export const contentCard = () => (
+export const contentWrapper = () => (
   <>
     <ContentWrapper contentName="테스트">
       <ContentCard />

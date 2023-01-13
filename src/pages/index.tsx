@@ -1,7 +1,9 @@
 import Head from "next/head";
 import ContentCard from "@components/ContentCard";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Home() {
+  const { data } = useSession();
   return (
     <>
       <Head>
@@ -12,6 +14,19 @@ export default function Home() {
       </Head>
       <main>
         <ContentCard />
+
+        {/* 로그인 확인용 */}
+
+        <p>{data?.user?.name}</p>
+        {data?.user ? (
+          <button type="button" onClick={() => signOut()}>
+            Google Logout
+          </button>
+        ) : (
+          <button type="button" onClick={() => signIn("google")}>
+            Google Login
+          </button>
+        )}
       </main>
     </>
   );

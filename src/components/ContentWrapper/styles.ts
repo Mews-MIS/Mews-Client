@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const WrapperName = styled.p`
-  width: 50%;
+  width: 80%;
   text-align: left;
 
   font-size: ${theme.FONT_SIZE.TITLE_SIZE};

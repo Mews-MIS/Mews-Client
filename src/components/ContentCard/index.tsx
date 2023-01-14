@@ -3,20 +3,31 @@ import BookmarkBtn from "@public/button/BookmarkBtn.svg";
 import LikeBtn from "@public/button/LikeBtn.svg";
 import * as s from "./styles";
 
-function ContentCard() {
+export interface ContentCardProps {
+  category: string;
+  title: string;
+  isActive: boolean;
+  isLike: boolean;
+  authorNames: string[];
+  likeNum: number;
+}
+const ContentCard = ({
+  category,
+  title,
+  isActive,
+  isLike,
+  authorNames,
+  likeNum,
+}: ContentCardProps) => {
   // 더미 데이터
-  const category = "경정인을 소개합니다.";
-  const title = "대학생편 - 최시운편";
-  const [isActive, setIsActive] = useState(true);
-  const [isLike, setIsLike] = useState(true);
-  const authorNames = ["이정우", "김현제"];
-  const likeNum = 312;
+  const [active, setActive] = useState(isActive);
+  const [like, setLike] = useState(isLike);
 
   const onBookmark = () => {
-    setIsActive(!isActive);
+    setActive(!active);
   };
   const onClickLike = () => {
-    setIsLike(!isLike);
+    setLike(!like);
   };
 
   return (
@@ -51,6 +62,6 @@ function ContentCard() {
       </s.ContentContainer>
     </s.Wrapper>
   );
-}
+};
 
 export default ContentCard;

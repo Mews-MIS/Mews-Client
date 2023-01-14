@@ -36,10 +36,10 @@ const ContentCard = ({
       <s.ImageContainer />
       <s.ContentContainer>
         <s.ContentTopArea>
-          <div>
+          <s.ContentInfoSummary>
             <s.CategoryLabel>{category}</s.CategoryLabel>
             <s.ContentTitleLabel>{title}</s.ContentTitleLabel>
-          </div>
+          </s.ContentInfoSummary>
           <s.BookmarkButtonContainer onClick={onBookmark}>
             <s.BookmarkButton className={isActive ? "active" : "inactive"}>
               <BookmarkBtn />

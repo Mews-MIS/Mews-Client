@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
+  flex: 0 0 auto;
   width: 200px;
   height: 300px;
 
@@ -32,6 +33,10 @@ export const ContentTopArea = styled.div`
   display: flex;
 `;
 
+export const ContentInfoSummary = styled.div`
+  width: 70%;
+`;
+
 export const CategoryLabel = styled.p`
   color: ${theme.COLORS.FONT_YELLOW};
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
@@ -58,8 +63,9 @@ export const BookmarkButton = styled.div`
 
 export const ContentBottomArea = styled.div`
   display: flex;
-  height: 100%;
-  align-items: center;
+  height: 60%;
+  align-items: end;
+  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
 
 export const AuthorContainer = styled.div`

@@ -1,32 +1,18 @@
 import Head from "next/head";
-import ContentCard, { ContentCardProps } from "@components/ContentCard";
+import ContentCard from "@components/ContentCard";
 import ContentWrapper from "@components/ContentWrapper";
 import React from "react";
 import CardSlider from "@components/CardSlider";
-import { Article } from "../types/article";
+import mySubscribeArticle from "@pages/tmp/mySubscribeArticle";
+
+import topView from "@pages/tmp/topView";
+import ContentRow from "@components/ContentRow";
+import newArticle from "@pages/tmp/newArticle";
+import Curations from "@pages/tmp/Curations";
+import { Article, CurationType } from "../types/article";
 
 export default function Home() {
-  // 더미 데이터
-  const mySubscribeArticle = [
-    {
-      id: 1,
-      category: "경정인을 소개합니다.",
-      title: "재직자편 - 최시운",
-      authorNames: ["이정우", "김현제"],
-      isActive: false,
-      isLike: false,
-      likeNum: 132,
-    },
-    {
-      id: 2,
-      category: "경정인2을 소개합니다.",
-      title: "재직자편 - 최시운2",
-      authorNames: ["이정우2", "김현제2"],
-      isActive: true,
-      isLike: false,
-      likeNum: 1312,
-    },
-  ];
+  const curation: CurationType = Curations[0];
   return (
     <>
       <Head>
@@ -58,6 +44,55 @@ export default function Home() {
           ) : (
             "구독하고 있는 필진이 없습니다."
           )}
+        </ContentWrapper>
+
+        <ContentWrapper contentName="새로운 게시글" viewMoreLink="/newArticle">
+          {newArticle.length ? (
+            <CardSlider>
+              {newArticle.map((element: Article) => {
+                return (
+                  <ContentCard
+                    key={element.id}
+                    category={element.category}
+                    title={element.title}
+                    authorNames={element.authorNames}
+                    isActive={element.isActive}
+                    isLike={element.isLike}
+                    likeNum={element.likeNum}
+                  />
+                );
+              })}
+            </CardSlider>
+          ) : (
+            "새로운 게시글이 없습니다."
+          )}
+        </ContentWrapper>
+
+        <ContentWrapper contentName="조회수 top5">
+          {topView.length
+            ? topView.map((element: Article, index) => {
+                return <ContentRow key={element.id} index={index + 1} contentInfo={element} />;
+              })
+            : "새로운 게시글이 없습니다."}
+        </ContentWrapper>
+
+        <ContentWrapper contentName={curation.title} viewMoreLink={`/curation/${curation.title}`}>
+          <CardSlider>
+            {curation.content.map((element: Article) => {
+              return (
+                <ContentCard
+                  key={element.id}
+                  category={element.category}
+                  title={element.title}
+                  authorNames={element.authorNames}
+                  isActive={element.isActive}
+                  isLike={element.isLike}
+                  likeNum={element.likeNum}
+                />
+              );
+            })}
+          </CardSlider>
+          )
         </ContentWrapper>
       </main>
     </>

@@ -19,11 +19,10 @@ const ContentCard = ({
   authorNames,
   likeNum,
 }: ContentCardProps) => {
-  // 더미 데이터
-  const [active, setActive] = useState(isActive);
-  const [like, setLike] = useState(isLike);
+  const [active, setActive] = useState<Boolean>(isActive);
+  const [like, setLike] = useState<Boolean>(isLike);
 
-  const onBookmark = () => {
+  const onClickBookmark = () => {
     setActive(!active);
   };
   const onClickLike = () => {
@@ -40,8 +39,8 @@ const ContentCard = ({
             <s.CategoryLabel>{category}</s.CategoryLabel>
             <s.ContentTitleLabel>{title}</s.ContentTitleLabel>
           </s.ContentInfoSummary>
-          <s.BookmarkButtonContainer onClick={onBookmark}>
-            <s.BookmarkButton className={isActive ? "active" : "inactive"}>
+          <s.BookmarkButtonContainer onClick={onClickBookmark}>
+            <s.BookmarkButton className={active ? "active" : "inactive"}>
               <BookmarkBtn />
             </s.BookmarkButton>
           </s.BookmarkButtonContainer>
@@ -53,7 +52,7 @@ const ContentCard = ({
             })}
           </s.AuthorContainer>
           <s.LikeContainer onClick={onClickLike}>
-            <s.LikeIconContainer className={isLike ? "active" : "inactive"}>
+            <s.LikeIconContainer className={like ? "active" : "inactive"}>
               <LikeBtn />
             </s.LikeIconContainer>
             <s.InformationLabel>{likeNum}</s.InformationLabel>

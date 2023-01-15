@@ -14,10 +14,8 @@ export default function Home() {
       </Head>
       <main>
         <ContentCard />
-
         {/* 로그인 확인용 */}
-
-        <p>{data?.user?.name}</p>
+        <h2>{data?.user?.name}</h2>
         {data?.user ? (
           <button type="button" onClick={() => signOut()}>
             Google Logout

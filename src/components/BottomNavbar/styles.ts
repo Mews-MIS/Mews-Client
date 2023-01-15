@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import theme from "@styles/Theme";
 
 export const BtmNavContainer = styled.div`
   width: 100%;
@@ -17,9 +18,13 @@ export const BtmNavContainer = styled.div`
 `;
 
 export const BtmNavItem = styled.div`
-  hover :
   display: flex;
   align-items: center;
   width: 45px;
   height: 45px;
+  cursor: pointer;
+  filter: ${theme.COLORS.FILTER_GRAY};
+  &.active {
+    filter: ${theme.COLORS.FILTER_ORANGE};
+  }
 `;

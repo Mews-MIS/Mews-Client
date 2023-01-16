@@ -3,13 +3,14 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 20px;
+  padding: 20px 0;
+  margin-bottom: 23px;
 
   background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 
 export const WrapperName = styled.p`
-  width: 50%;
+  width: 80%;
   text-align: left;
 
   font-size: ${theme.FONT_SIZE.TITLE_SIZE};
@@ -19,6 +20,7 @@ export const WrapperName = styled.p`
 export const TopArea = styled.div`
   display: flex;
   align-items: center;
+  padding: 0 5rem;
   margin-bottom: 20px;
 
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};

@@ -7,4 +7,8 @@ export const Wrapper = styled.div`
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
+
+  flex-wrap: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 `;

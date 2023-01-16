@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import * as s from "./styles";
+import { Article } from "../../types/article";
 
 export interface ContentRowProps {
   index: number;
-  contentInfo: { imageUrl?: string; articleNum: string; contentName: string };
+  contentInfo: Article;
 }
 
 function ContentRow({ index, contentInfo }: ContentRowProps) {
   return (
-    <Link href={`articles/${contentInfo.articleNum}`}>
+    <Link href={`articles/${contentInfo.id}`}>
       <s.Wrapper>
         <p>{index}</p>
         <s.ImageContainer>
@@ -19,7 +20,7 @@ function ContentRow({ index, contentInfo }: ContentRowProps) {
             <s.DefaultImage />
           )}
         </s.ImageContainer>
-        <s.ContentNameLabel>{contentInfo.contentName}</s.ContentNameLabel>
+        <s.ContentNameLabel>{contentInfo.title}</s.ContentNameLabel>
       </s.Wrapper>
     </Link>
   );

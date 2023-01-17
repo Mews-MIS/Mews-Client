@@ -20,7 +20,7 @@ export const WrapperName = styled.p`
 export const TopArea = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 5rem;
+
   margin-bottom: 20px;
 
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};

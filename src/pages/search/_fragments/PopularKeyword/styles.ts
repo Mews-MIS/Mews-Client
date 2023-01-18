@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 
   .Rank {
     color: ${theme.COLORS.MAIN_ORANGE};
+    font-weight: ${theme.FONT_WEIGHT.BOLD};
     text-align: center;
     margin-right: 10px;
     width: 20px;

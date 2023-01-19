@@ -3,7 +3,6 @@ import RecentSearched from "@pages/search/_fragments/RecentSearched";
 import ContentWrapper from "@components/ContentWrapper";
 import { popularKeywords, recentKeywords } from "@pages/search/data";
 import PopularKeyword from "@pages/search/_fragments/PopularKeyword";
-import RecommendKeyword from "@pages/search/_fragments/RecommendKeyword";
 import * as s from "./styles";
 
 const searchPage = () => {
@@ -26,11 +25,6 @@ const searchPage = () => {
               articleId={popularKeyword.articleId}
             />
           );
-        })}
-      </ContentWrapper>
-      <ContentWrapper contentName="인기 검색어">
-        {popularKeywords.map((popularKeyword) => {
-          return <RecommendKeyword keyword="예시" />;
         })}
       </ContentWrapper>
     </s.PageTemplate>

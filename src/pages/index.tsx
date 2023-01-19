@@ -9,6 +9,7 @@ import topView from "@pages/tmp/topView";
 import ContentRow from "@components/ContentRow";
 import newArticle from "@pages/tmp/newArticle";
 import Curations from "@pages/tmp/Curations";
+import { PageTemplate } from "@pages/search/styles";
 import { Article, CurationType } from "../types/article";
 
 export default function Home() {
@@ -24,10 +25,62 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <ContentWrapper contentName="내가 구독하고 있는 게시글" viewMoreLink="/link">
-          {mySubscribeArticle.length ? (
+        <PageTemplate>
+          <ContentWrapper contentName="내가 구독하고 있는 게시글" viewMoreLink="/link">
+            {mySubscribeArticle.length ? (
+              <CardSlider>
+                {mySubscribeArticle.map((element: Article) => {
+                  return (
+                    <ContentCard
+                      key={element.id}
+                      category={element.category}
+                      title={element.title}
+                      authorNames={element.authorNames}
+                      isActive={element.isActive}
+                      isLike={element.isLike}
+                      likeNum={element.likeNum}
+                    />
+                  );
+                })}
+              </CardSlider>
+            ) : (
+              "구독하고 있는 필진이 없습니다."
+            )}
+          </ContentWrapper>
+
+          <ContentWrapper contentName="새로운 게시글" viewMoreLink="/newArticle">
+            {newArticle.length ? (
+              <CardSlider>
+                {newArticle.map((element: Article) => {
+                  return (
+                    <ContentCard
+                      key={element.id}
+                      category={element.category}
+                      title={element.title}
+                      authorNames={element.authorNames}
+                      isActive={element.isActive}
+                      isLike={element.isLike}
+                      likeNum={element.likeNum}
+                    />
+                  );
+                })}
+              </CardSlider>
+            ) : (
+              "새로운 게시글이 없습니다."
+            )}
+          </ContentWrapper>
+
+          <ContentWrapper contentName="조회수 top5">
+            {topView.length
+              ? topView.map((element: Article, index) => {
+                  return <ContentRow key={element.id} index={index + 1} contentInfo={element} />;
+                })
+              : "새로운 게시글이 없습니다."}
+          </ContentWrapper>
+
+          <ContentWrapper contentName={curation.title} viewMoreLink={`/curation/${curation.title}`}>
             <CardSlider>
-              {mySubscribeArticle.map((element: Article) => {
+              {curation.content.map((element: Article) => {
                 return (
                   <ContentCard
                     key={element.id}
@@ -41,59 +94,9 @@ export default function Home() {
                 );
               })}
             </CardSlider>
-          ) : (
-            "구독하고 있는 필진이 없습니다."
-          )}
-        </ContentWrapper>
-
-        <ContentWrapper contentName="새로운 게시글" viewMoreLink="/newArticle">
-          {newArticle.length ? (
-            <CardSlider>
-              {newArticle.map((element: Article) => {
-                return (
-                  <ContentCard
-                    key={element.id}
-                    category={element.category}
-                    title={element.title}
-                    authorNames={element.authorNames}
-                    isActive={element.isActive}
-                    isLike={element.isLike}
-                    likeNum={element.likeNum}
-                  />
-                );
-              })}
-            </CardSlider>
-          ) : (
-            "새로운 게시글이 없습니다."
-          )}
-        </ContentWrapper>
-
-        <ContentWrapper contentName="조회수 top5">
-          {topView.length
-            ? topView.map((element: Article, index) => {
-                return <ContentRow key={element.id} index={index + 1} contentInfo={element} />;
-              })
-            : "새로운 게시글이 없습니다."}
-        </ContentWrapper>
-
-        <ContentWrapper contentName={curation.title} viewMoreLink={`/curation/${curation.title}`}>
-          <CardSlider>
-            {curation.content.map((element: Article) => {
-              return (
-                <ContentCard
-                  key={element.id}
-                  category={element.category}
-                  title={element.title}
-                  authorNames={element.authorNames}
-                  isActive={element.isActive}
-                  isLike={element.isLike}
-                  likeNum={element.likeNum}
-                />
-              );
-            })}
-          </CardSlider>
-          )
-        </ContentWrapper>
+            )
+          </ContentWrapper>
+        </PageTemplate>
       </main>
     </>
   );

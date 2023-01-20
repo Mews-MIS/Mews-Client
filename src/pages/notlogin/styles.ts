@@ -44,8 +44,13 @@ export const Button = styled.button`
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   color: ${theme.COLORS.LINE_GRAY};
+  cursor: pointer;
   padding: 4.5%;
   -webkit-box-shadow: 1px 4px 3px 0px rgba(193, 193, 193, 1);
   -moz-box-shadow: 1px 4px 3px 0px rgba(193, 193, 193, 1);
   box-shadow: 1px 4px 3px 0px rgba(193, 193, 193, 1);
+
+  &:hover {
+    background-color: #edeaea;
+  }
 `;

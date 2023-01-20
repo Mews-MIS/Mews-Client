@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Article } from "src/types/article";
 import * as s from "./styles";
 
-const MyPage = () => {
+const Mypage = () => {
   const bookmarkArticle = "내가 북마크한 글";
   /* 더미 데이터 */
   const [articleNumData, setArticleNumData] = useState([3, 2, 1]);
@@ -75,4 +75,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default Mypage;

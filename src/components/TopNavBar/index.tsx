@@ -1,9 +1,11 @@
-import * as s from "./styles";
 import Logo from "@public/icon/Logo.svg";
 import SearchIcon from "@public/icon/SearchIcon.svg";
 import Hamberger from "@public/icon/Hamberger.svg";
+import * as s from "./styles";
 
-const TopNavBar = () => {
+
+const TobNavBar = () => {
+
   const onClickLogo = () => {
     console.log("메인 페이지로 라우팅");
   };
@@ -37,4 +39,5 @@ const TopNavBar = () => {
   );
 };
 
-export default TopNavBar;
+export default TobNavBar;
+

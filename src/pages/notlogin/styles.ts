@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
+  background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 
 export const NotLoginContainer = styled.div`

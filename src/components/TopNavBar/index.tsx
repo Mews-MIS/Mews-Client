@@ -3,7 +3,9 @@ import SearchIcon from "@public/icon/SearchIcon.svg";
 import Hamberger from "@public/icon/Hamberger.svg";
 import * as s from "./styles";
 
+
 const TobNavBar = () => {
+
   const onClickLogo = () => {
     console.log("메인 페이지로 라우팅");
   };
@@ -38,3 +40,4 @@ const TobNavBar = () => {
 };
 
 export default TobNavBar;
+

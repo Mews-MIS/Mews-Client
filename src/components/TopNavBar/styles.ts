@@ -9,24 +9,27 @@ export const Wrapper = styled.div`
 `;
 
 export const NavContainer = styled.div`
+
   height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background-color: ${theme.COLORS.CONTAINER_WHITE};
+
 `;
 
 export const NavLeftIcon = styled.div`
   cursor: pointer;
   display: flex;
   margin-left: 5%;
+
 `;
 
 export const NavRightIcons = styled.div`
   padding-right: 2%;
   display: flex;
   margin-right: 5%;
+
 `;
 
 export const NavSearch = styled.div`

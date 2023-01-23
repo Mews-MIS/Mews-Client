@@ -43,7 +43,7 @@ const Mypage = () => {
         <s.ArticleNumberContainer>
           {articleNumData.map((d, i) => {
             return (
-              <s.ArticleNumberItem>
+              <s.ArticleNumberItem key={i}>
                 <s.Num>{d}</s.Num>
                 <s.Type>{articleNumType[i]}</s.Type>
               </s.ArticleNumberItem>

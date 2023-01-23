@@ -19,7 +19,7 @@ const EditProfileImage = () => {
 
   return (
     <s.Wrapper>
-      <s.Container>
+      <s.Container> 
         <s.ImageBox>
           <s.Image src={imageURL?.toString()} />
         </s.ImageBox>

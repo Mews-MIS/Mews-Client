@@ -55,18 +55,6 @@ export const Introduce = styled.div`
   margin-top: 1%;
 `;
 
-export const EditProfileBtn = styled.button`
-  width: 85vw;
-  display: flex;
-  justify-content: center;
-
-  color: ${theme.COLORS.CONTAINER_WHITE};
-  background: ${theme.COLORS.BRIGHT_ORANGE};
-  border-radius: 3em;
-  border-color: transparent;
-  cursor: pointer;
-`;
-
 export const ArticleNumberContainer = styled.div`
   width: 60vw;
   display: flex;
@@ -98,4 +86,17 @@ export const BottomContainer = styled.div`
   margin-top: 25px;
   height: 55%;
   background: ${theme.COLORS.CONTAINER_WHITE};
+`;
+
+export const BlindedWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const BlindedContent = styled.div`
+  display: flex;
+  font-size: ${theme.FONT_SIZE.SUB_TITLE_SIZE};
+  color: ${theme.COLORS.LINE_GRAY};
 `;

@@ -25,9 +25,13 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
-export const EditText = styled.div`
+export const EditImageLabel = styled.label`
   font-size: ${theme.FONT_SIZE.SUB_TITLE_SIZE};
   color: ${theme.COLORS.CONFORM_BLUE};
-  margin: 1%;
+  margin-top: 3%;
   cursor: pointer;
+`;
+
+export const EditImage = styled.input`
+  display: none;
 `;

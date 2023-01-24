@@ -1,11 +1,16 @@
 import BackBtn from "@components/BackBtn";
 import MenuItem from "@components/MenuItem";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as s from "./styles";
 
 const Menu = () => {
   const [isLogin, setIsLogin] = useState(true);
+
+  /* 로그인 상태 비동기 처리 예정 */
+  useEffect(()=> {
+    setIsLogin(true);
+  }, []);
 
   return (
     <s.Wrapper>

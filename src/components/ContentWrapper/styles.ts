@@ -2,10 +2,7 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
-  width: 100%;
-  padding: 20px 0;
-  margin-bottom: 23px;
-
+  margin: auto;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 
@@ -21,7 +18,7 @@ export const TopArea = styled.div`
   display: flex;
   align-items: center;
 
-  margin-bottom: 20px;
+  margin: 0 25px;
 
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 

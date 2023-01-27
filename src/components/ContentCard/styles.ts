@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   flex: 0 0 auto;
   width: 200px;
   height: 300px;
+  margin: 10px;
 
   border-radius: 20px;
   outline: ${theme.COLORS.LINE_GRAY} 1px solid;

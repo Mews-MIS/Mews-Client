@@ -3,7 +3,7 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   display: flex;
-  width: 100%;
+  width: 95%;
   height: 50px;
 
   align-items: center;

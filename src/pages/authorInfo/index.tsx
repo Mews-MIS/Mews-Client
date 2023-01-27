@@ -10,7 +10,7 @@ import { Article } from "../../types/article";
 import * as s from "./styles";
 
 // 추후 authorName은 props로 받아오는것으로 수정되어야 함
-interface textSetIf {
+interface textSetInterface {
   latestPost: string;
   allPost: string;
   authorName: string;
@@ -18,13 +18,13 @@ interface textSetIf {
 
 export default function AuthorInfo() {
   const [subscribe, setSubscribe] = useState<Boolean>(false);
-  const [array, setArray] = useState<JSX.Element[]>([]);
+  const [array, setArray] = useState<Article[]>([]);
 
   useEffect(() => {
     getArticleList();
   }, []);
 
-  const textSet: textSetIf = {
+  const textSet: textSetInterface = {
     latestPost: "님이 최근 작성한 글",
     allPost: "님이 작성한 글",
     authorName: "한수정",
@@ -37,17 +37,7 @@ export default function AuthorInfo() {
 
   //임시 데이터 불러옴
   const getArticleList = () => {
-    const data = infiniteArticle.map((e: Article, index: number) => {
-      return (
-        <ContentRow
-          index={index + 1 + array.length}
-          contentInfo={{
-            ...e,
-          }}
-        />
-      );
-    });
-    setArray([...array, ...data]);
+    setArray([...array, ...infiniteArticle]);
   };
 
   return (
@@ -74,7 +64,16 @@ export default function AuthorInfo() {
             </CardSlider>
           </ContentWrapper>
           <ContentWrapper contentName={textSet.authorName + textSet.allPost}>
-            {infiniteArticle.length ? array : "게시글이 없습니다."}
+            {infiniteArticle.length
+              ? array.map((e: Article, index: number) => (
+                  <ContentRow
+                    index={index + 1}
+                    contentInfo={{
+                      ...e,
+                    }}
+                  />
+                ))
+              : "게시글이 없습니다."}
             <button onClick={() => getArticleList()}>더 불러오기</button>
           </ContentWrapper>
         </s.BottomContainer>

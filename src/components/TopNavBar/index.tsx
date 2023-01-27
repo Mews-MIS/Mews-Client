@@ -2,39 +2,42 @@ import Logo from "@public/icon/Logo.svg";
 import SearchIcon from "@public/icon/SearchIcon.svg";
 import Hamberger from "@public/icon/Hamberger.svg";
 import * as s from "./styles";
+import { useState } from "react";
+import MenuList from "@components/MenuList";
+import Link from "next/link";
 
 
 const TobNavBar = () => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const onClickLogo = () => {
-    console.log("메인 페이지로 라우팅");
-  };
-
-  const onClickSearch = () => {
-    console.log("검색 페이지로 라우팅");
-  };
-
+  /* 로그인 상태 비동기 처리 예정 */
   const onClickHamberger = () => {
-    console.log("메뉴 페이지 렌더링");
+    setIsOpen(!isOpen);
   };
 
   return (
     <s.Wrapper>
       <s.NavContainer>
-        <s.NavLeftIcon onClick={onClickLogo}>
-          <Logo />
-        </s.NavLeftIcon>
+        <Link href={"/"}>
+          <s.NavLeftIcon>
+            <Logo />
+          </s.NavLeftIcon>
+        </Link>
 
         <s.NavRightIcons>
-          <s.NavSearch onClick={onClickSearch}>
-            <SearchIcon />
-          </s.NavSearch>
+          <Link href={"/search"}>          
+            <s.NavSearch>
+              <SearchIcon />
+            </s.NavSearch>
+          </Link>
 
           <s.NavHamberger onClick={onClickHamberger}>
             <Hamberger />
           </s.NavHamberger>
         </s.NavRightIcons>
       </s.NavContainer>
+      <MenuList isOpen={isOpen} setIsOpen={setIsOpen} isLogin={isLogin} />
     </s.Wrapper>
   );
 };

@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const newsviewContainer = styled.div`
+export const newsviewContainer = styled.section`
   height: 100vh;
 `;
 
@@ -20,12 +20,7 @@ export const newsContainer = styled.div`
   jusstity-content: space-evenly;
 `;
 
-export const newsImageBox = styled.div`
-  height: 30vh;
-  margin: 4% 0 4% 0;
-  background-color: ${theme.COLORS.LINE_GRAY};
-`;
-export const detail = styled.div`
+export const newsTitleBox = styled.section`
   margin-left: 4%;
 `;
 export const category = styled.div`
@@ -33,22 +28,27 @@ export const category = styled.div`
   margin: 1.5% 0 1.5% 0;
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
+export const title = styled.div`
+  font-size: ${theme.FONT_SIZE.TITLE_SIZE};
+  font-weight: ${theme.FONT_WEIGHT.BOLD};
+  white-space: pre-wrap;
+`;
 export const date = styled.div`
   margin: 1% 0 1% 0;
   color: #808080;
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
 
-export const title = styled.div`
-  font-size: ${theme.FONT_SIZE.TITLE_SIZE};
-  font-weight: ${theme.FONT_WEIGHT.BOLD};
-  white-space: pre-wrap;
+export const newsImageBox = styled.div`
+  height: 30vh;
+  margin: 4% 0 4% 0;
+  background-color: ${theme.COLORS.LINE_GRAY};
 `;
-export const contentBox = styled.div`
+export const contentBox = styled.section`
   display: flex;
   justify-content: center;
 `;
-export const content = styled.div`
+export const content = styled.article`
   display: flex;
   width: 90vw;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};

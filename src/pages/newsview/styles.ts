@@ -16,7 +16,7 @@ export const newsContainer = styled.div`
   dispaly: flex;
   align-content: space-between;
   margin-bottom: 7px;
-  border-bottom: 1px solid ${theme.COLORS.MAIN_ORANGE};
+
   jusstity-content: space-evenly;
 `;
 
@@ -54,19 +54,31 @@ export const content = styled.article`
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.DEFAULT};
 `;
+export const AuthorIntroContainer = styled.div``;
 
-export const BtnContainer = styled.div`
+export const BottomContainer = styled.div`
   display: flex;
-  flex-direction: end-start;
+  justify-content: center;
+`;
+export const BtnContainer = styled.div`
+  padding: 4% 0 4% 0;
+  border-top: 1px solid ${theme.COLORS.MAIN_ORANGE};
+  display: flex;
+  width: 90vw;
+  justify-content: flex-end;
 `;
 export const LikeIconContainer = styled.div`
+margin-right: 2%;
 filter: ${theme.COLORS.FILTER_GRAY};
   &.active {
     filter: ${theme.COLORS.FILTER_RED};`;
 
 export const BookmarkIconContainer = styled.div`
+margin-right: 2%;
 filter: ${theme.COLORS.FILTER_GRAY};
   &.active {
     filter: ${theme.COLORS.FILTER_ORANGE};`;
 
-export const LinkIconContainer = styled.div``;
+export const LinkIconContainer = styled.div`
+  filter: #737373;
+`;

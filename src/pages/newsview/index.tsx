@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import AuthorIntro from "@components/AuthorIntro";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
@@ -51,21 +52,29 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
           <s.contentBox>
             <s.content>{news?.content}</s.content>
           </s.contentBox>
-          <AuthorIntro />
-          <s.BtnContainer>
-            <s.LikeIconContainer onClick={onClickLike} className={like ? "active" : "inactive"}>
-              <NewsViewLikeBtn />
-            </s.LikeIconContainer>
-            <s.BookmarkIconContainer
-              onClick={onClickBookmark}
-              className={active ? "active" : "inactive"}
-            >
-              <NewsViewBookmarkBtn />
-            </s.BookmarkIconContainer>
-            <s.LinkIconContainer>
-              <LinkBtn />
-            </s.LinkIconContainer>
-          </s.BtnContainer>
+
+          <s.AuthorIntroContainer>
+            <Link href="/">
+              <AuthorIntro />
+            </Link>
+          </s.AuthorIntroContainer>
+
+          <s.BottomContainer>
+            <s.BtnContainer>
+              <s.LikeIconContainer onClick={onClickLike} className={like ? "active" : "inactive"}>
+                <NewsViewLikeBtn />
+              </s.LikeIconContainer>
+              <s.BookmarkIconContainer
+                onClick={onClickBookmark}
+                className={active ? "active" : "inactive"}
+              >
+                <NewsViewBookmarkBtn />
+              </s.BookmarkIconContainer>
+              <s.LinkIconContainer>
+                <LinkBtn />
+              </s.LinkIconContainer>
+            </s.BtnContainer>
+          </s.BottomContainer>
         </s.newsContainer>
         {/* 댓글 */}
       </s.newsviewContainer>

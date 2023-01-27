@@ -28,7 +28,7 @@ export const category = styled.div`
   margin: 1.5% 0 1.5% 0;
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
-export const title = styled.div`
+export const title = styled.p`
   font-size: ${theme.FONT_SIZE.TITLE_SIZE};
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   white-space: pre-wrap;

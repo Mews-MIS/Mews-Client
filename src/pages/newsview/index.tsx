@@ -5,6 +5,8 @@ import AuthorIntro from "@components/AuthorIntro";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
+import Comment from "@components/Comment";
+import CommentList from "@components/CommentList";
 import * as s from "./styles";
 export interface NewsViewProps {
   category: string;
@@ -77,6 +79,8 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
           </s.BottomContainer>
         </s.newsContainer>
         {/* 댓글 */}
+        <Comment />
+        <CommentList commentArray={undefined} />
       </s.newsviewContainer>
     </s.Wrapper>
   );

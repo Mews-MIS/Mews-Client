@@ -58,8 +58,8 @@ export default function AuthorInfo() {
         <s.BottomContainer>
           <ContentWrapper contentName={textSet.authorName + textSet.latestPost}>
             <CardSlider>
-              {infiniteArticle.slice(0, 3).map((e: Article) => {
-                return <ContentCard {...e} />;
+              {infiniteArticle.slice(0, 3).map((e: Article, index: number) => {
+                return <ContentCard {...e} key={index + 1} />;
               })}
             </CardSlider>
           </ContentWrapper>
@@ -68,6 +68,7 @@ export default function AuthorInfo() {
               ? array.map((e: Article, index: number) => (
                   <ContentRow
                     index={index + 1}
+                    key={index + 1}
                     contentInfo={{
                       ...e,
                     }}

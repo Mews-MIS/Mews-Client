@@ -54,3 +54,19 @@ export const content = styled.article`
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.DEFAULT};
 `;
+
+export const BtnContainer = styled.div`
+  display: flex;
+  flex-direction: end-start;
+`;
+export const LikeIconContainer = styled.div`
+filter: ${theme.COLORS.FILTER_GRAY};
+  &.active {
+    filter: ${theme.COLORS.FILTER_RED};`;
+
+export const BookmarkIconContainer = styled.div`
+filter: ${theme.COLORS.FILTER_GRAY};
+  &.active {
+    filter: ${theme.COLORS.FILTER_ORANGE};`;
+
+export const LinkIconContainer = styled.div``;

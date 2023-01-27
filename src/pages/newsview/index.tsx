@@ -29,11 +29,11 @@ const NewsView = () => {
     <s.Wrapper>
       <s.newsviewContainer>
         <s.newsContainer>
-          <s.detail>
+          <s.newsTitleBox>
             <s.category>{news?.category}</s.category>
             <s.title>{news?.title}</s.title>
             <s.date>{news?.created_at}</s.date>
-          </s.detail>
+          </s.newsTitleBox>
           {/* 뉴스 이미지 들어갈 자리 */}
           <s.newsImageBox />
           <s.contentBox>

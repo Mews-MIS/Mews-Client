@@ -45,7 +45,7 @@ export const AllPostContainer = styled.div`
   align-items: left;
   font-size: ${theme.FONT_SIZE.SUB_TITLE_SIZE};
   background: ${theme.COLORS.CONTAINER_WHITE};
-  padding-bottom: 15px;
+  padding-bottom: 2vh;
   border-bottom: 1px solid ${theme.COLORS.BRIGHT_ORANGE};
 `;
 export const AllPost = styled.div`

@@ -1,16 +1,21 @@
+import { NextPage } from "next";
 import React from "react";
 import * as s from "./styles";
 
-function AuthorIntro() {
-  // 더미 데이터
-  const authorName = "이정우";
-  const intro = "꿈은 없고, 계속 놀고만 싶습니다.";
+export interface IAuthorProps {
+  authorName: string;
+  intro: string;
+  imageURL: string;
+}
+
+const AuthorIntro: NextPage<IAuthorProps> = ({authorName, intro, imageURL}) => {
 
   return (
     <s.ProfileContainer>
       <s.ProfileBox>
-        <s.ProfileImage />
-        {/** 해당 부분 프로필 이미지 * */}
+        <s.ProfileImage>
+          <s.Image src={imageURL} />
+        </s.ProfileImage>
         <s.ProfileTextLabel>
           <s.ProfileAuthorName>{authorName}</s.ProfileAuthorName>
           <s.ProfileIntro>{intro}</s.ProfileIntro>

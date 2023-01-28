@@ -20,6 +20,11 @@ export const ProfileImage = styled.div`
   height: 80px;
   background-color: ${theme.COLORS.LINE_GRAY};
   border-radius: 50px;
+  overflow: hidden;
+`;
+export const Image = styled.img`
+  width: 80px;
+  height: 80px;
 `;
 export const ProfileTextLabel = styled.div`
   display: flex;

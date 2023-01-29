@@ -38,12 +38,12 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
   };
   const copyURL = () => {
     const currentUrl = window.document.location.href;
-    const t = document.createElement("textarea");
-    document.body.appendChild(t);
-    t.value = currentUrl;
-    t.select();
+    const url = document.createElement("textarea");
+    document.body.appendChild(url);
+    url.value = currentUrl;
+    url.select();
     document.execCommand("copy");
-    document.body.removeChild(t);
+    document.body.removeChild(url);
 
     alert("링크가 복사되었습니다.");
   };

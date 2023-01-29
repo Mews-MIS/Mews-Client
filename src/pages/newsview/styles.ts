@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
 
 export const newsviewContainer = styled.section`
@@ -54,7 +55,9 @@ export const content = styled.article`
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.DEFAULT};
 `;
-export const AuthorIntroContainer = styled.div``;
+export const AuthorIntroContainer = styled.div`
+  margin-top: 4%;
+`;
 
 export const BottomContainer = styled.div`
   display: flex;

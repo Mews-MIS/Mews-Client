@@ -3,6 +3,7 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   display: flex;
+  background-color: ${theme.COLORS.CONTAINER_WHITE};
   justify-content: center;
   width: 100vw;
 `;
@@ -52,7 +53,7 @@ export const span = styled.span`
   margin-right: 2vw;
   font-size: h2;
   font-weight: ${theme.FONT_WEIGHT.BOLD};
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
+  font-size: ${theme.FONT_SIZE.MAIN_SIZE};
 `;
 export const ul = styled.ul`
   margin: 1px;

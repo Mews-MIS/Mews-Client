@@ -1,24 +1,19 @@
-/* eslint-disable no-alert */
-import axios from "axios";
 import Link from "next/link";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import AuthorIntro from "@components/AuthorIntro";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Comment from "@components/Comment";
 import * as s from "./styles";
-import { useRouter } from "next/router";
+
 export interface NewsViewProps {
-  category: string;
-  title: string;
-  created_at: Date;
-  content: string;
   isLike: boolean;
   isActive: boolean;
 }
 const NewsView = ({ isLike, isActive }: NewsViewProps) => {
   /* 더미데이터 */
+  // 추후에 사진도 추가되어야 함
   const [news, setNews] = useState<News>({
     category: "경정인을 소개합니다.",
     title: "뮤즈의 제작기 들어보실래요? \n -프론트엔드 최시운 편",
@@ -93,7 +88,6 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
             </s.BtnContainer>
           </s.BottomContainer>
         </s.newsContainer>
-        {/* 댓글 */}
         <Comment commentArray={undefined} />
       </s.newsviewContainer>
     </s.Wrapper>

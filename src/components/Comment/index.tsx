@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as s from "./styles";
 
+// 현재 댓글 받아오는것만 구현되어 있음 추후에 이름 & 사진 받아오는 것도 추가해야함
+
 function Comment(props: { commentArray: any }) {
   const [comment, setComment] = useState("");
   const onChange = (event) => setComment(event.target.value);

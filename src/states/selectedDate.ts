@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 
-const selectedDateAtom = atom<Date>({
+export const selectedDateAtom = atom<Date>({
   key: "selectedDate",
   default: new Date()
 });

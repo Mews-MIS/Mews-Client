@@ -1,13 +1,14 @@
+/* eslint-disable no-alert */
 import axios from "axios";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import AuthorIntro from "@components/AuthorIntro";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Comment from "@components/Comment";
-import CommentList from "@components/CommentList";
 import * as s from "./styles";
+import { useRouter } from "next/router";
 export interface NewsViewProps {
   category: string;
   title: string;
@@ -34,6 +35,17 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
   };
   const onClickBookmark = () => {
     setActive(!active);
+  };
+  const copyURL = () => {
+    const currentUrl = window.document.location.href;
+    const t = document.createElement("textarea");
+    document.body.appendChild(t);
+    t.value = currentUrl;
+    t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+
+    alert("링크가 복사되었습니다.");
   };
 
   useEffect(() => {
@@ -73,14 +85,16 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
                 <NewsViewBookmarkBtn />
               </s.BookmarkIconContainer>
               <s.LinkIconContainer>
-                <LinkBtn />
+                <LinkBtn onClick={copyURL} />
+                <form>
+                  <s.TextArea />
+                </form>
               </s.LinkIconContainer>
             </s.BtnContainer>
           </s.BottomContainer>
         </s.newsContainer>
         {/* 댓글 */}
-        <Comment />
-        <CommentList commentArray={undefined} />
+        <Comment commentArray={undefined} />
       </s.newsviewContainer>
     </s.Wrapper>
   );

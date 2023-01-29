@@ -82,3 +82,12 @@ filter: ${theme.COLORS.FILTER_GRAY};
 export const LinkIconContainer = styled.div`
   filter: #737373;
 `;
+
+export const TextArea = styled.div`
+  position: absolute;
+  width: 0vw;
+  height: 0vh;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+`;

@@ -17,7 +17,6 @@ export const newsContainer = styled.div`
   dispaly: flex;
   align-content: space-between;
   margin-bottom: 7px;
-
   jusstity-content: space-evenly;
 `;
 
@@ -54,6 +53,7 @@ export const content = styled.article`
   width: 90vw;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.DEFAULT};
+  line-height: 3vh;
 `;
 export const AuthorIntroContainer = styled.div`
   margin-top: 4%;
@@ -70,6 +70,7 @@ export const BtnContainer = styled.div`
   width: 90vw;
   justify-content: flex-end;
 `;
+
 export const LikeIconContainer = styled.div`
 margin-right: 2%;
 filter: ${theme.COLORS.FILTER_GRAY};
@@ -84,13 +85,4 @@ filter: ${theme.COLORS.FILTER_GRAY};
 
 export const LinkIconContainer = styled.div`
   filter: #737373;
-`;
-
-export const TextArea = styled.div`
-  position: absolute;
-  width: 0vw;
-  height: 0vh;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
 `;

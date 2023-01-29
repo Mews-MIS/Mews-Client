@@ -94,7 +94,6 @@ export default function Home() {
                 );
               })}
             </CardSlider>
-            )
           </ContentWrapper>
         </PageTemplate>
       </main>

@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   margin-bottom: 23px;
 
   background-color: ${theme.COLORS.CONTAINER_WHITE};
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const WrapperName = styled.p`

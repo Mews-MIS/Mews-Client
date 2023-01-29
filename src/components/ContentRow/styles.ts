@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   height: 70px;
 
   display: flex;
-  padding: 25px 10px;
+  padding: 25px;
 
   color: ${theme.COLORS.FONT_YELLOW};
   background-color: ${theme.COLORS.CONTAINER_WHITE};

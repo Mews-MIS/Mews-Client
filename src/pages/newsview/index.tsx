@@ -81,9 +81,6 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
               </s.BookmarkIconContainer>
               <s.LinkIconContainer>
                 <LinkBtn onClick={copyURL} />
-                <form>
-                  <s.TextArea />
-                </form>
               </s.LinkIconContainer>
             </s.BtnContainer>
           </s.BottomContainer>

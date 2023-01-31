@@ -2,16 +2,19 @@ import React from "react";
 import * as s from "./styles";
 import {useRecoilValue} from "recoil";
 import selectedDate from "src/states/selectedDate";
+import MoveMonth from "@components/MoveMonth";
+import CalendarLayout from "@components/CalendarLayout";
+import PageTemplate from "@components/PageTemplate";
 
 const Calendar = () => {
-  const currentDate = useRecoilValue(selectedDate);
 
   return (
-    <s.Wrapper>
-      {currentDate.year + " "}
-      {currentDate.month+1 + " "}
-      {currentDate.day}
-    </s.Wrapper>
+    <PageTemplate>
+      <s.Wrapper>
+        <MoveMonth />
+        <CalendarLayout />
+      </s.Wrapper>
+    </PageTemplate>
   )
 };
 

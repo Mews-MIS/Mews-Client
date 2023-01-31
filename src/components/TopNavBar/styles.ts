@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const NavContainer = styled.div`
+  padding: 0 5vw;
   height: 70px;
   display: flex;
   justify-content: space-between;
@@ -20,13 +21,10 @@ export const NavContainer = styled.div`
 export const NavLeftIcon = styled.div`
   cursor: pointer;
   display: flex;
-  margin-left: 5%;
 `;
 
 export const NavRightIcons = styled.div`
-  padding-right: 2%;
   display: flex;
-  margin-right: 5%;
 `;
 
 export const NavSearch = styled.div`

@@ -14,6 +14,10 @@ export const Wrapper = styled.div`
   font-weight: ${theme.FONT_WEIGHT.BOLD};
 
   align-items: center;
+
+  label {
+    width: 10px;
+  }
 `;
 
 export const ImageContainer = styled.div`

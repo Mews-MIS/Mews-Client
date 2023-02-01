@@ -24,7 +24,11 @@ const NewsListItem = ({
       <s.NewsItemContainer>
         <s.LeftItems>
           <s.NewsTitle>{NewsTitle}</s.NewsTitle>
-          <s.Author>{authorNames}</s.Author>
+          <s.AuthorContainer>
+            {authorNames.map((name) => {
+              return <s.Author key={name}>{name}</s.Author>;
+            })}
+          </s.AuthorContainer>
           <s.CountItems>
             <s.Views>조회수 {views}</s.Views>
             <s.LikeNum>좋아요 {likeNum}</s.LikeNum>

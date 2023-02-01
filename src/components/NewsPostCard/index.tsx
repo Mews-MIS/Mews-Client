@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import * as s from "./styles";
 
 export interface NewsPostCardProps {

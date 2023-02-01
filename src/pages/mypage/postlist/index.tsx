@@ -20,8 +20,8 @@ export default function PostList() {
   const [array, setArray] = useState<Article[]>([]);
 
   //api로 받아오는 로그인 유저 정보,페이지 정보(더미데이터)
-  const userId = "박상준";
-  const isBookmark = true;
+  const userId = "한수정";
+  const isBookmark = false;
 
   useEffect(() => {
     getArticleList();

@@ -27,10 +27,15 @@ export const NewsTitle = styled.div`
   font-size: ${theme.FONT_SIZE.SUB_TITLE_SIZE};
   margin-bottom: 2vh;
 `;
+export const AuthorContainer = styled.div`
+  display: flex;
+`;
+
 export const Author = styled.div`
   color: ${theme.COLORS.LINE_GRAY};
   font-size: ${theme.FONT_SIZE.EXTRA_SMALL_SIZE};
   margin-bottom: 1vh;
+  margin-right: 0.5vw;
 `;
 export const CountItems = styled.div`
   color: ${theme.COLORS.LINE_GRAY};

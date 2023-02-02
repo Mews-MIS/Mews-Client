@@ -19,6 +19,7 @@ export const NewsItemContainer = styled.div`
 `;
 export const LeftItems = styled.div`
   display: flex;
+  width: 60vw;
   margin-right: 2vw;
   flex-direction: column;
 `;
@@ -51,6 +52,7 @@ export const LikeNum = styled.div`
 `;
 export const BookmarkNum = styled.div``;
 export const RightItems = styled.div`
+  width: 30vw;
   display: flex;
 `;
 export const Thumbnail = styled.img`

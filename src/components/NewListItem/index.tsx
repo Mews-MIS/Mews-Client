@@ -1,50 +1,41 @@
 import React from "react";
+import Link from "next/link";
 import * as s from "./styles";
+import { NewsListIcon } from "../../types/article";
 
 export interface NewsListItemProps {
-  NewsTitle: string;
-  authorNames: string[];
-  views: number;
-  likeNum: number;
-  bookmarkNum: number;
-  thumbnailURL: string;
-  commentNum: number;
+  contentInfo: NewsListIcon;
 }
-const NewsListItem = ({
-  NewsTitle,
-  authorNames,
-  views,
-  likeNum,
-  bookmarkNum,
-  thumbnailURL,
-  commentNum,
-}: NewsListItemProps) => {
+
+function NewsListItem({ contentInfo }: NewsListItemProps) {
   return (
-    <s.Wrapper>
-      <s.NewsItemContainer>
-        <s.LeftItems>
-          <s.NewsTitle>{NewsTitle}</s.NewsTitle>
-          <s.AuthorContainer>
-            {authorNames.map((name) => {
-              return <s.Author key={name}>{name}</s.Author>;
-            })}
-          </s.AuthorContainer>
-          <s.CountItems>
-            <s.Views>조회수 {views}</s.Views>
-            <s.LikeNum>좋아요 {likeNum}</s.LikeNum>
-            <s.BookmarkNum>북마크 {bookmarkNum}</s.BookmarkNum>
-          </s.CountItems>
-        </s.LeftItems>
-        <s.RightItems>
-          <s.Thumbnail src={thumbnailURL} />
-          <s.CommentNumBox>
-            <s.CommentNum>{commentNum}</s.CommentNum>
-            <s.CommentCountLabel>댓글</s.CommentCountLabel>
-          </s.CommentNumBox>
-        </s.RightItems>
-      </s.NewsItemContainer>
-    </s.Wrapper>
+    <Link href={`articles/${contentInfo.id}`}>
+      <s.Wrapper>
+        <s.NewsItemContainer>
+          <s.LeftItems>
+            <s.NewsTitle>{contentInfo.title}</s.NewsTitle>
+            <s.AuthorContainer>
+              {contentInfo.authorNames.map((name) => {
+                return <s.Author key={name}>{name}</s.Author>;
+              })}
+            </s.AuthorContainer>
+            <s.CountItems>
+              <s.Views>조회수 {contentInfo.views}</s.Views>
+              <s.LikeNum>좋아요 {contentInfo.likeNum}</s.LikeNum>
+              <s.BookmarkNum>북마크 {contentInfo.bookmarkNum}</s.BookmarkNum>
+            </s.CountItems>
+          </s.LeftItems>
+          <s.RightItems>
+            <s.Thumbnail src={contentInfo.thumbnailURL} />
+            <s.CommentNumBox>
+              <s.CommentNum>{contentInfo.commentNum}</s.CommentNum>
+              <s.CommentCountLabel>댓글</s.CommentCountLabel>
+            </s.CommentNumBox>
+          </s.RightItems>
+        </s.NewsItemContainer>
+      </s.Wrapper>
+    </Link>
   );
-};
+}
 
 export default NewsListItem;

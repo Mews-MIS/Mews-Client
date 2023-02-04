@@ -4,11 +4,12 @@ import theme from "@styles/Theme";
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 328px;
+  width: 100vw;
+  height: 300px;
   overflow: hidden;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   margin-bottom: 0;
+  scroll-snap-align: center;
 `;
 
 export const ContentContainer = styled.div`
@@ -20,7 +21,7 @@ export const ContentContainer = styled.div`
 
 export const ImageContainer = styled.div`
   margin: 0 auto;
-  height: 60%;
+  height: 65%;
   width: 100%;
   background-color: ${theme.COLORS.LINE_GRAY};
   border-radius: 20px;

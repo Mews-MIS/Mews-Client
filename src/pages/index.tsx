@@ -11,7 +11,6 @@ import newArticle from "@pages/tmp/newArticle";
 import Curations from "@pages/tmp/Curations";
 import PageTemplate from "@components/PageTemplate";
 import { Article, CurationType } from "../types/article";
-import NewsPostCard from "@components/NewsPostCard";
 
 export default function Home() {
   const curation: CurationType = Curations[0];
@@ -96,7 +95,6 @@ export default function Home() {
               })}
             </CardSlider>
           </ContentWrapper>
-          <NewsPostCard />
         </PageTemplate>
       </main>
     </>

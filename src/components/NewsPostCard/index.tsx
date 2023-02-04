@@ -7,12 +7,10 @@ export interface NewsPostCardProps {
 }
 
 const NewsPostCard = ({ category, title, imgUrl }: NewsPostCardProps) => {
-  category = "경정인을 소개합니다";
-  title = "경정인을 소개합니다 - 재직자편";
-
   return (
     <s.Wrapper>
       <s.ContentContainer>
+        {/* 이미지 추가해야 함 */}
         <s.ImageContainer />
         <s.NewsInfoSummary>
           <s.NewsTitleLabel>{title}</s.NewsTitleLabel>

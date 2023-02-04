@@ -16,6 +16,7 @@ export const NewsItemContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid ${theme.COLORS.LINE_GRAY};
 `;
 export const LeftItems = styled.div`
   display: flex;

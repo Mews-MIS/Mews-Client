@@ -5,4 +5,4 @@ export default {
     component: DayItem,
 };
 
-export const dayItem = () => <DayItem />;
+export const dayItem = () => <DayItem year={0} month={0} day={0} isToday={false} isSelected={false} categories={[]} />;

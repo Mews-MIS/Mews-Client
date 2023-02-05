@@ -3,6 +3,7 @@ import * as s from "./styles";
 import MoveMonth from "@components/MoveMonth";
 import CalendarLayout from "@components/CalendarLayout";
 import PageTemplate from "@components/PageTemplate";
+import ScheduleLayout from "@components/ScheduleLayout";
 
 const Calendar = () => {
 
@@ -11,6 +12,7 @@ const Calendar = () => {
       <s.Wrapper>
         <MoveMonth />
         <CalendarLayout />
+        <ScheduleLayout />
       </s.Wrapper>
     </PageTemplate>
   )

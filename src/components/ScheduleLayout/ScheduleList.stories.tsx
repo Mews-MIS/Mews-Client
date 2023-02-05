@@ -1,4 +1,4 @@
-import ScheduleList from "@components/ScheduleList";
+import ScheduleList from "@components/ScheduleLayout";
 
 export default {
     title: "component/ScheduleList",

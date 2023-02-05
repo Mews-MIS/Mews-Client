@@ -1,65 +1,11 @@
 import styled from "@emotion/styled";
-import theme from "@styles/Theme";
 
+// eslint-disable-next-line import/prefer-default-export
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
+  display: block;
   width: 100vw;
+  flex-direction: row;
+  float: left;
 `;
-export const PaginationContainer = styled.div`
-  width: 90vw;
-  justify-content: space-evenly;
-  align-items: center;
-  display: flex;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-`;
-export const moveToFirstPage = styled.button`
-  border: none;
-  padding: 2%;
-  cursor: pointer;
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
-  font-weight: ${theme.FONT_WEIGHT.BOLD};
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
-`;
-export const moveToPreviousPage = styled.button`
-  border: none;
-  padding: 2%;
-  cursor: pointer;
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
-  font-weight: ${theme.FONT_WEIGHT.BOLD};
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
-`;
-export const pageBtnWrapper = styled.div`
-  display: flex;
-`;
-export const pageBtn = styled.button`
-  border: none;
-  border-radius: 50%;
-  margin: 2%;
-  padding: 8px;
-  cursor: pointer;
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
-  &:hover {
-    background-color: #e8e8e8;
-  }
-  font-weight: ${theme.FONT_WEIGHT.BOLD};
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
-`;
-export const moveToNextPage = styled.button`
-  border: none;
-  padding: 2%;
-  cursor: pointer;
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
-  font-weight: ${theme.FONT_WEIGHT.BOLD};
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
-`;
-export const moveToLastPage = styled.button`
-  border: none;
-  padding: 2%;
-  cursor: pointer;
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
-  font-weight: ${theme.FONT_WEIGHT.BOLD};
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
-`;
+
+export const Pagination = styled.ul``;

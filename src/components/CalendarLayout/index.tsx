@@ -1,6 +1,6 @@
 import CalendarDays from '@components/CalendarDays';
 import DayItem from '@components/DayItem';
-import { addDays, endOfMonth, endOfWeek, format, startOfDay, startOfMonth, startOfWeek } from 'date-fns';
+import { addDays, endOfMonth, format, startOfDay, startOfMonth, startOfWeek } from 'date-fns';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import selectedDate from 'src/states/selectedDate';
 import * as s from "./styles";

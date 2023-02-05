@@ -6,13 +6,10 @@ const calendarInfoMonthYearSelector = selector({
   key: "calendarInfoMonthYearSelector",
   get: async ({get}) => {
     const selectedDate = get(selectedDateAtom);
-    const dateInfo = {
-      year: selectedDate.getFullYear(),
-      month: selectedDate.getMonth(),
-      day: selectedDate.getDate()
-    };
 
-    const res = await axios.get(`http://13.209.163.188:8080/${dateInfo.year}_${dateInfo.month}`);
+    const res = await axios.get(
+      `http://13.209.163.188:8080/${selectedDate.getFullYear()}_${selectedDate.getMonth()}`
+    );
     return res.data;
   }
 });

@@ -5,16 +5,19 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-`;
-
-export const Container = styled.div`
-  display: flex;
-  /* justify-content: space-between; */
+  margin-top: 20px;
 `;
 
 export const DayWrapper = styled.div`
-  display: flex;
-  
+  width: 100%; 
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 `;
 
-export const Day = styled.div``;
+export const Day = styled.div`
+  display: flex;
+  justify-content: center;
+  color: ${theme.COLORS.CONTAINER_WHITE};
+  font-size: 5.5rem;
+  font-weight: ${theme.FONT_WEIGHT.BOLD};
+`;

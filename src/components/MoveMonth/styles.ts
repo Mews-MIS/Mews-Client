@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 50%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,4 +19,7 @@ export const BtnWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const CurrentMonthText = styled.div``;
+export const CurrentMonthText = styled.div`
+  font-size: 6rem;
+  font-weight: ${theme.FONT_WEIGHT.BOLD};
+`;

@@ -6,13 +6,13 @@ const CalendarDays = () => {
 
   return (
     <s.Wrapper>
-      <s.Container>
-        <s.DayWrapper>  
-          {days.map((data, index) => {
-            return <s.Day key={index}>{data}</s.Day>
-          })}
-        </s.DayWrapper>
-      </s.Container>
+      <s.DayWrapper>  
+        {
+          days.map((data, index) => 
+            <s.Day key={index}>{data}</s.Day>
+          )
+        }
+      </s.DayWrapper>
     </s.Wrapper>
   )
 };

@@ -10,8 +10,8 @@ const selectedDateSelector = selector({
   get: ({get}) => {
     return get(selectedDateAtom);
   },
-  set: ({set}, newSelectedMonth) => {
-    set(selectedDateAtom, newSelectedMonth);
+  set: ({set}, newSelectedDate) => {
+    set(selectedDateAtom, newSelectedDate);
   },
 });
 

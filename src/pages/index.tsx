@@ -9,7 +9,7 @@ import topView from "@pages/tmp/topView";
 import ContentRow from "@components/ContentRow";
 import newArticle from "@pages/tmp/newArticle";
 import Curations from "@pages/tmp/Curations";
-import { PageTemplate } from "@pages/search/styles";
+import PageTemplate from "@components/PageTemplate";
 import { Article, CurationType } from "../types/article";
 
 export default function Home() {

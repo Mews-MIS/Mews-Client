@@ -17,33 +17,28 @@ export const PaginationContainer = styled.div`
 `;
 export const moveToFirstPage = styled.button`
   border: none;
-  border-radius: 50%;
   padding: 2%;
   cursor: pointer;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
-  &:hover {
-    background-color: #e8e8e8;
-  }
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
 export const moveToPreviousPage = styled.button`
   border: none;
-  border-radius: 50%;
   padding: 2%;
   cursor: pointer;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
-  &:hover {
-    background-color: #e8e8e8;
-  }
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
-export const pageBtnWrapper = styled.div``;
+export const pageBtnWrapper = styled.div`
+  display: flex;
+`;
 export const pageBtn = styled.button`
   border: none;
   border-radius: 50%;
-  padding: 2%;
+  margin: 2%;
+  padding: 8px;
   cursor: pointer;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   &:hover {
@@ -54,25 +49,17 @@ export const pageBtn = styled.button`
 `;
 export const moveToNextPage = styled.button`
   border: none;
-  border-radius: 50%;
   padding: 2%;
   cursor: pointer;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
-  &:hover {
-    background-color: #e8e8e8;
-  }
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
 export const moveToLastPage = styled.button`
   border: none;
-  border-radius: 50%;
   padding: 2%;
   cursor: pointer;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
-  &:hover {
-    background-color: #e8e8e8;
-  }
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;

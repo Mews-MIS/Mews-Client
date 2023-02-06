@@ -12,7 +12,6 @@ export const ProfileContainer = styled.div`
 export const ProfileBox = styled.div`
   display: flex;
   width: 80%;
-  justify-content: space-evenly;
   align-items: center;
 `;
 export const ProfileImage = styled.div`

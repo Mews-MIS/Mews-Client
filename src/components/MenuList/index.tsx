@@ -29,19 +29,19 @@ const MenuList = ({isOpen, setIsOpen, isLogin}: {isOpen: boolean; setIsOpen: (a:
       <s.Text>
         <s.MenuText>Menu</s.MenuText>
         {isLogin ?
-          <Link href={"/mypage"}>
+          <Link onClick={toggleSide} href={"/mypage"}>
             <MenuItem name="마이 페이지" />
           </Link> :
-          <Link href={"/notlogin"}>
+          <Link onClick={toggleSide} href={"/notlogin"}>
             <MenuItem name="로그인" />
           </Link>
         }
 
-        <Link href={"/introduce/mews"}>
+        <Link onClick={toggleSide} href={"/introduce/mews"}>
           <MenuItem name="뮤즈 소개" />
         </Link>
 
-        <Link href={"/introduce/author"}>
+        <Link onClick={toggleSide} href={"/introduce/author"}>
           <MenuItem name="필진 소개" />
         </Link>
       </s.Text>

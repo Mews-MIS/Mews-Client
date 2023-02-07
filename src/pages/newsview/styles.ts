@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
+  margin-top: 70px;
+  margin-bottom: 60px;
   width: 100vw;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   display: flex;

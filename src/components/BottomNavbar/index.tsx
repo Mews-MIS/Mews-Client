@@ -10,7 +10,6 @@ import MyPageIcon from "@public/icon/MyPageIcon.svg";
 const BottomNavBar = () => {
   const router = useRouter();
 
-  //각 페이지에 맞는 라우팅 연결 필요. 현재 상태는 아이콘 모두 active되어있는 상태
   return (
     <s.BtmNavContainer>
       <Link href="/">
@@ -18,18 +17,18 @@ const BottomNavBar = () => {
           <MainIcon />
         </s.BtmNavItem>
       </Link>
-      <Link href="/">
-        <s.BtmNavItem className={router.pathname === "/" ? "active" : ""}>
+      <Link href="/newspage">
+        <s.BtmNavItem className={router.pathname === "/newspage" ? "active" : ""}>
           <NewsIcon />
         </s.BtmNavItem>
       </Link>
-      <Link href="/">
-        <s.BtmNavItem className={router.pathname === "/" ? "active" : ""}>
+      <Link href="/calendar">
+        <s.BtmNavItem className={router.pathname === "/calendar" ? "active" : ""}>
           <CalendarIcon />
         </s.BtmNavItem>
       </Link>
-      <Link href="/">
-        <s.BtmNavItem className={router.pathname === "/" ? "active" : ""}>
+      <Link href="/mypage">
+        <s.BtmNavItem className={router.pathname === "/mypage" ? "active" : ""}>
           <MyPageIcon />
         </s.BtmNavItem>
       </Link>

@@ -3,7 +3,7 @@ import ContentWrapper from "@components/ContentWrapper";
 import CardsSlider from "@components/CardSlider";
 import myBookmarkArticle from "@pages/tmp/myBookmarkArticle";
 import ContentCard from "@components/ContentCard";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Article } from "src/types/article";
 import * as s from "./styles";
 import { tmpImageURL } from "@pages/tmp/tmpImageURL";
@@ -24,6 +24,10 @@ const Mypage = () => {
     setArticleNumData([3, 2, 1]);
   }, []);
 
+  const onClickProfileEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    location.href='/mypage/edit';
+  };
+
   return (
     <PageTemplate>
       <s.Wrapper>
@@ -38,9 +42,7 @@ const Mypage = () => {
               <s.Introduce>{introduce}</s.Introduce>
             </s.TextBox>
           </s.ProfileContainer>
-          <Link href={"/mypage/edit"}>
-            <s.EditProfileBtn>프로필 편집</s.EditProfileBtn>
-          </Link>
+          <s.EditProfileBtn onClick={onClickProfileEdit}>프로필 편집</s.EditProfileBtn>
 
           <s.ArticleNumberContainer>
             

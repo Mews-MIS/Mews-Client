@@ -53,15 +53,15 @@ export const Introduce = styled.div`
 `;
 
 export const EditProfileBtn = styled.button`
-  width: 85vw;
-  height: 35px;
+  width: 85%;
+  height: 40px;
   margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${theme.COLORS.CONTAINER_WHITE};
   background: ${theme.COLORS.BRIGHT_ORANGE};
-  border-radius: 15px;
+  border-radius: 10px;
   border-color: transparent;
   cursor: pointer;
 `;

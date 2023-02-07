@@ -2,15 +2,22 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Container = styled.div`
+  margin-top: 40px;
+  border-radius: 20px;
+  width: 90%;
+  background-color: ${theme.COLORS.CONTAINER_WHITE};
+`;
+
+export const EditContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
 `;
 
 export const EditImageContainer = styled.div`
@@ -71,14 +78,14 @@ export const NicknameContainer = styled.div`
 `;
 
 export const Nickname = styled.div`
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
+  font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.BOLD};
 `;
 
 export const NicknameInput = styled.input`
   margin-top: 3%;
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
-  border: solid 2px ${theme.COLORS.BRIGHT_ORANGE};
+  font-size: ${theme.FONT_SIZE.MAIN_SIZE};
+  /* border: solid 2px ${theme.COLORS.BRIGHT_ORANGE}; */
   border-radius: 8px;
   background: ${theme.COLORS.BACKGROUND_WHITE};
   height: 40px;
@@ -90,7 +97,7 @@ export const IntroduceContainer = styled.div`
 `;
 
 export const Introduce = styled.div`
-  font-size: ${theme.FONT_SIZE.SMALL_SIZE};
+  font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.BOLD};
 `;
 
@@ -100,7 +107,6 @@ export const IntroduceTextarea = styled.textarea`
   margin-top: 3%;
   padding: 3%;
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
-  border: solid 2px ${theme.COLORS.BRIGHT_ORANGE};
   border-radius: 8px;
   background: ${theme.COLORS.BACKGROUND_WHITE};
   resize: none;
@@ -108,4 +114,5 @@ export const IntroduceTextarea = styled.textarea`
 
 export const EditBtnContainer = styled.div`
   margin-top: 70px;
+  margin-bottom: 70px;
 `;

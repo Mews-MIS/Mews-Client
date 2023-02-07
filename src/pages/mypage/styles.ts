@@ -1,16 +1,13 @@
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
-export const Wrapper = styled.div`
-  height: 100vh;
-`;
+export const Wrapper = styled.div``;
 
 export const TopContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 70px;
   background: ${theme.COLORS.CONTAINER_WHITE};
 `;
 
@@ -57,18 +54,21 @@ export const Introduce = styled.div`
 
 export const EditProfileBtn = styled.button`
   width: 85vw;
+  height: 35px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
-
+  align-items: center;
   color: ${theme.COLORS.CONTAINER_WHITE};
   background: ${theme.COLORS.BRIGHT_ORANGE};
-  border-radius: 3em;
+  border-radius: 15px;
   border-color: transparent;
   cursor: pointer;
 `;
 
 export const ArticleNumberContainer = styled.div`
   width: 60vw;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
 `;
@@ -77,8 +77,6 @@ export const ArticleNumberItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-top: 8%;
   cursor: pointer;
 `;
 

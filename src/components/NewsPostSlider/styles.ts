@@ -4,6 +4,7 @@ import theme from "@styles/Theme";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 export const ContentWrapper = styled.div`
   width: 100%;

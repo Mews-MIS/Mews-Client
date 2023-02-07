@@ -12,6 +12,7 @@ export const Paging = ({ page, count, setPage }) => {
       margin-top: 15px;
       margin-bottom: 15px;
       font-weight: ${theme.FONT_WEIGHT.BOLD};
+      background-color: ${theme.COLORS.CONTAINER_WHITE};
     }
     ul {
       list-style: none;

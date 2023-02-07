@@ -1,11 +1,10 @@
 import Logo from "@public/icon/Logo.svg";
 import SearchIcon from "@public/icon/SearchIcon.svg";
 import Hamberger from "@public/icon/Hamberger.svg";
-import * as s from "./styles";
 import { useState } from "react";
 import MenuList from "@components/MenuList";
 import Link from "next/link";
-
+import * as s from "./styles";
 
 const TobNavBar = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -19,14 +18,14 @@ const TobNavBar = () => {
   return (
     <s.Wrapper>
       <s.NavContainer>
-        <Link href={"/"}>
+        <Link href="/">
           <s.NavLeftIcon>
             <Logo />
           </s.NavLeftIcon>
         </Link>
 
         <s.NavRightIcons>
-          <Link href={"/search"}>          
+          <Link href="/search">
             <s.NavSearch>
               <SearchIcon />
             </s.NavSearch>
@@ -43,4 +42,3 @@ const TobNavBar = () => {
 };
 
 export default TobNavBar;
-

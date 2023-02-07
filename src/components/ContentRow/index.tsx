@@ -12,7 +12,7 @@ function ContentRow({ index, contentInfo }: ContentRowProps) {
   return (
     <Link href={`articles/${contentInfo.id}`}>
       <s.Wrapper>
-        <p>{index}</p>
+        <label>{index}</label>
         <s.ImageContainer>
           {contentInfo.imageUrl ? (
             <Image src={contentInfo.imageUrl} alt="콘텐츠 이미지" width={70} height={50} />

@@ -17,7 +17,7 @@ export const DayWrapper = styled.div`
 export const Day = styled.div`
   display: flex;
   justify-content: center;
-  color: ${theme.COLORS.CONTAINER_WHITE};
+  color: ${theme.COLORS.BLACK};
   font-size: 5.5rem;
   font-weight: ${theme.FONT_WEIGHT.BOLD};
 `;

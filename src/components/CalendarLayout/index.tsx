@@ -11,6 +11,7 @@ export interface IPropsDayItem {
   day: number,
   isToday: boolean,
   isSelected: boolean,
+  isCurrentMonth: boolean,
   categories: string[]
 }
 
@@ -86,6 +87,10 @@ const CalendarLayout = () => {
                             day.getMonth() === selectedDateState.getMonth() &&
                             day.getFullYear() === selectedDateState.getFullYear()) 
                             ?  true : false
+                          }
+                          isCurrentMonth={
+                            day.getMonth() === selectedDateState.getMonth()
+                            ? true : false
                           }
                           categories={["동국대학교", "Mews"]} 
                         />

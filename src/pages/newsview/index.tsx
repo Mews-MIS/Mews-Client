@@ -5,6 +5,7 @@ import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Comment from "@components/Comment";
+import Swal from "sweetalert2";
 import * as s from "./styles";
 
 export interface NewsViewProps {
@@ -40,7 +41,15 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
     document.execCommand("copy");
     document.body.removeChild(url);
 
-    alert("링크가 복사되었습니다.");
+    Swal.fire({
+      customClass: "swal",
+      title: "링크가 복사되었습니다.",
+      icon: "success",
+      showConfirmButton: false,
+      heightAuto: false,
+      timer: 1500,
+      width: 200,
+    });
   };
 
   useEffect(() => {
@@ -64,7 +73,7 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
 
           <s.AuthorIntroContainer>
             <Link href="/">
-              <AuthorIntro />
+              <AuthorIntro authorName="이정우" intro="꿈은 없고 놀고만 싶습니다." imageURL="" />
             </Link>
           </s.AuthorIntroContainer>
 

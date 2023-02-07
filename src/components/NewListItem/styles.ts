@@ -5,25 +5,27 @@ export const Wrapper = styled.div`
   width: 100vw;
   height: 15vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 export const NewsItemContainer = styled.div`
   padding: 2vh 0 2vh 0;
-  width: 95vw;
+  justify-content: center;
+  width: 80vw;
   height: 15vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   border-bottom: 1px solid ${theme.COLORS.LINE_GRAY};
+  align-items: center;
 `;
 export const LeftItems = styled.div`
   display: flex;
   width: 60vw;
   margin-right: 2vw;
   flex-direction: column;
+  justify-content: center;
 `;
+
 export const NewsTitle = styled.div`
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   font-size: ${theme.FONT_SIZE.SUB_TITLE_SIZE};
@@ -53,8 +55,9 @@ export const LikeNum = styled.div`
 `;
 export const BookmarkNum = styled.div``;
 export const RightItems = styled.div`
-  width: 30vw;
   display: flex;
+  width: 33vw;
+  justify-content: flex-end;
 `;
 export const Thumbnail = styled.img`
   border-radius: 10px;

@@ -28,7 +28,7 @@ const NewsPostSlider = ({ children }: { children: React.ReactNode }) => {
       </s.ContentWrapper>
       <s.DotsWrapper>
         {React.Children.toArray(children).map((value, index) => (
-          <s.Dot className={index == dotActive ? "active" : ""} onClick={() => onClickDot(index)} />
+          <s.Dot className={index === dotActive ? "active" : ""} onClick={() => onClickDot(index)} />
         ))}
       </s.DotsWrapper>
     </s.Wrapper>

@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
+type ColorDisplay = {
+  textColor: boolean,
+  backgroundColor: boolean
+};
+
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -19,7 +24,7 @@ export const CircleContainer = styled.button`
   cursor: pointer;
 `;
 
-export const DayText = styled.div`
+export const DayText = styled.div<ColorDisplay>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,10 +32,10 @@ export const DayText = styled.div`
   height: 37px;
   border-radius: 50%;
   margin-top: 10%;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.backgroundColor ? `rgb(255, 194, 102)` : undefined};
   font-size: ${theme.FONT_SIZE.TITLE_SIZE};
   font-weight: ${theme.FONT_WEIGHT.BOLD};
-  color: ${theme.COLORS.CONTAINER_WHITE};
+  color: ${props => !props.textColor ? theme.COLORS.LINE_GRAY : undefined};
 `;
 
 export const CategoryCircles = styled.div`

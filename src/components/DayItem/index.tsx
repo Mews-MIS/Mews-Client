@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import selectedDate from 'src/states/selectedDate';
 import * as s from "./styles";
 
-const DayItem = ({year, month, day, isToday, isSelected, categories}: IPropsDayItem) => {
+const DayItem = ({year, month, day, isToday, isSelected, isCurrentMonth, categories}: IPropsDayItem) => {
   const hasCategoryDGUniv = categories.includes("동국대학교");
   const hasCategoryMIS = categories.includes("경영정보학과");
   const hasCategoryMews = categories.includes("Mews");
@@ -24,10 +24,11 @@ const DayItem = ({year, month, day, isToday, isSelected, categories}: IPropsDayI
     <s.Wrapper>
       <s.CircleContainer 
         value={`${year}-${month}-${day}`}
-        color={isSelected ? theme.COLORS.BLACK : 'transparent'}
+        color={isSelected ? theme.COLORS.WARNING_RED : 'transparent'}
         onClick={onClickDayItemHandler}
       >
-        <s.DayText color={isToday ? `rgb(255, 194, 102)` : undefined}>{day}</s.DayText>
+        <s.DayText textColor={isCurrentMonth} backgroundColor={isToday}>{day}</s.DayText>
+
         <s.CategoryCircles>
           {
             categoryBoolInfo.map((category, index) => {

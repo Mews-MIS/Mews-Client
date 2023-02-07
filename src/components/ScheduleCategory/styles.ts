@@ -7,10 +7,10 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid;
+  border-radius: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-
+  background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 
 export const Title = styled.div`

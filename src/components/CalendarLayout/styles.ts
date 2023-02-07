@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const LayoutWrapper = styled.div`
   width: 95%;
-  background-color: rgba(255, 194, 102, 0.4);
+  background-color: ${theme.COLORS.CONTAINER_WHITE};
   border-radius: 5%;
   margin-top: 20px;
 `;

@@ -10,8 +10,10 @@ const Calendar = () => {
   return (
     <PageTemplate>
       <s.Wrapper>
-        <MoveMonth />
-        <CalendarLayout />
+        <s.TopContainer>
+          <MoveMonth />
+          <CalendarLayout />
+        </s.TopContainer>
         <ScheduleLayout />
       </s.Wrapper>
     </PageTemplate>

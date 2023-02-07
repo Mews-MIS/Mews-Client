@@ -8,8 +8,6 @@ type ColorDisplay = {
 
 export const Wrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
 `;
 
 export const CircleContainer = styled.button`
@@ -22,14 +20,15 @@ export const CircleContainer = styled.button`
   background-color: transparent;
   appearance: none;
   cursor: pointer;
+  margin: auto;
 `;
 
 export const DayText = styled.div<ColorDisplay>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 37px;
-  height: 37px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   margin-top: 10%;
   background-color: ${(props) => props.backgroundColor ? `rgb(255, 194, 102)` : undefined};

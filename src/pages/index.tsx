@@ -32,7 +32,7 @@ export default function Home() {
                 {mySubscribeArticle.map((element: Article) => {
                   return (
                     <ContentCard
-                      key={element.id}
+                      key={`Subscribe ${element.id}${element.title}`}
                       category={element.category}
                       title={element.title}
                       authorNames={element.authorNames}
@@ -54,7 +54,7 @@ export default function Home() {
                 {newArticle.map((element: Article) => {
                   return (
                     <ContentCard
-                      key={element.id}
+                      key={`new Article${element.id}${element.title}`}
                       category={element.category}
                       title={element.title}
                       authorNames={element.authorNames}
@@ -73,7 +73,7 @@ export default function Home() {
           <ContentWrapper contentName="조회수 top5">
             {topView.length
               ? topView.map((element: Article, index) => {
-                  return <ContentRow key={element.id} index={index + 1} contentInfo={element} />;
+                  return <ContentRow key={`rank${element.id}${element.title}`} index={index + 1} contentInfo={element} />;
                 })
               : "새로운 게시글이 없습니다."}
           </ContentWrapper>
@@ -83,7 +83,7 @@ export default function Home() {
               {curation.content.map((element: Article) => {
                 return (
                   <ContentCard
-                    key={element.id}
+                    key={`curation ${element.id}${element.title}`}
                     category={element.category}
                     title={element.title}
                     authorNames={element.authorNames}

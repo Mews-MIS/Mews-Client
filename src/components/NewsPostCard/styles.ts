@@ -33,6 +33,9 @@ export const ImageContainer = styled.div`
 `;
 
 export const NewsInfoSummary = styled.div`
+  margin: 0 auto;
+  width: 80vw;
+  min-width: 340px;
   padding: 0 2vw;
 `;
 

@@ -1,5 +1,6 @@
 import EditFinishBtn from "@components/EditFinishBtn";
 import EditProfileImage from "@components/EditProfileImage";
+import PageTemplate from "@components/PageTemplate";
 import TobNavBar from "@components/TopNavBar";
 import React, { useState } from "react";
 import * as s from "./styles";
@@ -26,38 +27,42 @@ const EditMypage = () => {
   };
 
   return (
-    <s.Wrapper>
-      <TobNavBar />
-      <s.Container>
-        <s.EditImageContainer>
-          <EditProfileImage />
-        </s.EditImageContainer>
+    <PageTemplate>
+      <s.Wrapper>
+        <s.Container>
+          <TobNavBar />
+          <s.EditContainer>
+            <s.EditImageContainer>
+              <EditProfileImage />
+            </s.EditImageContainer>
 
-        <s.EditInfoContainer>
-          <s.ToggleContainer>
-            <s.ToggleText>정보 공개 여부</s.ToggleText>
-            <s.ToggleBtn onClick={toggleHandler}>
-              <div className={`toggle-container ${isOn ? "toggle--checked" : ""}`} />
-              <div className={`toggle-circle ${isOn ? "toggle--checked" : ""}`} />
-            </s.ToggleBtn>
-          </s.ToggleContainer>
+            <s.EditInfoContainer>
+              <s.ToggleContainer>
+                <s.ToggleText>정보 공개 여부</s.ToggleText>
+                <s.ToggleBtn onClick={toggleHandler}>
+                  <div className={`toggle-container ${isOn ? "toggle--checked" : ""}`} />
+                  <div className={`toggle-circle ${isOn ? "toggle--checked" : ""}`} />
+                </s.ToggleBtn>
+              </s.ToggleContainer>
 
-          <s.NicknameContainer>
-            <s.Nickname>닉네임</s.Nickname>
-            <s.NicknameInput onChange={onChangeNickname} value={nickname} />
-          </s.NicknameContainer>
+              <s.NicknameContainer>
+                <s.Nickname>닉네임</s.Nickname>
+                <s.NicknameInput onChange={onChangeNickname} value={nickname} />
+              </s.NicknameContainer>
 
-          <s.IntroduceContainer>
-            <s.Introduce>자기 소개</s.Introduce>
-            <s.IntroduceTextarea onChange={onChangeIntroduce} value={introduce} />
-          </s.IntroduceContainer>
-        </s.EditInfoContainer>
+              <s.IntroduceContainer>
+                <s.Introduce>자기 소개</s.Introduce>
+                <s.IntroduceTextarea onChange={onChangeIntroduce} value={introduce} />
+              </s.IntroduceContainer>
+            </s.EditInfoContainer>
 
-        <s.EditBtnContainer>
-          <EditFinishBtn isFirstState={isFirstState} />
-        </s.EditBtnContainer>
-      </s.Container>
-    </s.Wrapper>
+            <s.EditBtnContainer>
+              <EditFinishBtn isFirstState={isFirstState} />
+            </s.EditBtnContainer>
+          </s.EditContainer>
+        </s.Container>
+      </s.Wrapper>
+    </PageTemplate>
   );
 };
 

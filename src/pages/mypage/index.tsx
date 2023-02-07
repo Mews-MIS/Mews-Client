@@ -7,12 +7,13 @@ import { useEffect, useState } from "react";
 import { Article } from "src/types/article";
 import * as s from "./styles";
 import { tmpImageURL } from "@pages/tmp/tmpImageURL";
+import Link from "next/link";
+import PageTemplate from "@components/PageTemplate";
 
 const Mypage = () => {
   const bookmarkArticle = "내가 북마크한 글";
   /* 더미 데이터 */
   const [articleNumData, setArticleNumData] = useState([3, 2, 1]);
-  const [articleNumType, setArticleNumType] = useState(["좋아요", "북마크", "구독"]);
   const [name, setName] = useState("박상준");
   const [introduce, setIntroduce] = useState("테스트 자기소개");
 
@@ -21,56 +22,74 @@ const Mypage = () => {
     setName("박상준");
     setIntroduce("테스트 자기소개");
     setArticleNumData([3, 2, 1]);
-    setArticleNumType(["좋아요", "북마크", "구독"]);
   }, []);
 
   return (
-    <s.Wrapper>
-      <TobNavBar />
-      <s.TopContainer>
-        <s.ProfileContainer>
-          <s.ImageBox>
-            <s.Image src={tmpImageURL} />
-          </s.ImageBox>
-          <s.TextBox>
-            <s.Name>{name}</s.Name>
-            <s.Introduce>{introduce}</s.Introduce>
-          </s.TextBox>
-        </s.ProfileContainer>
-        <s.EditProfileBtn>프로필 편집</s.EditProfileBtn>
+    <PageTemplate>
+      <s.Wrapper>
+        <TobNavBar />
+        <s.TopContainer>
+          <s.ProfileContainer>
+            <s.ImageBox>
+              <s.Image src={tmpImageURL} />
+            </s.ImageBox>
+            <s.TextBox>
+              <s.Name>{name}</s.Name>
+              <s.Introduce>{introduce}</s.Introduce>
+            </s.TextBox>
+          </s.ProfileContainer>
+          <Link href={"/mypage/edit"}>
+            <s.EditProfileBtn>프로필 편집</s.EditProfileBtn>
+          </Link>
 
-        <s.ArticleNumberContainer>
-          {articleNumData.map((d, i) => {
-            return (
-              <s.ArticleNumberItem key={i}>
-                <s.Num>{d}</s.Num>
-                <s.Type>{articleNumType[i]}</s.Type>
+          <s.ArticleNumberContainer>
+            
+            <Link href={"/mypage/postlist"}>
+              <s.ArticleNumberItem>
+                <s.Num>{articleNumData[0]}</s.Num>
+                <s.Type>좋아요</s.Type>
               </s.ArticleNumberItem>
-            );
-          })}
-        </s.ArticleNumberContainer>
-      </s.TopContainer>
+            </Link>
 
-      <s.BottomContainer>
-        <ContentWrapper contentName={bookmarkArticle}>
-          <CardsSlider>
-            {myBookmarkArticle.map((e: Article) => {
-              return (
-                <ContentCard
-                  key={e.id}
-                  category={e.category}
-                  title={e.title}
-                  authorNames={e.authorNames}
-                  isActive={e.isActive}
-                  isLike={e.isLike}
-                  likeNum={e.likeNum}
-                />
-              );
-            })}
-          </CardsSlider>
-        </ContentWrapper>
-      </s.BottomContainer>
-    </s.Wrapper>
+            <Link href={"/mypage/postlist"}>
+              <s.ArticleNumberItem>
+                <s.Num>{articleNumData[1]}</s.Num>
+                <s.Type>북마크</s.Type>
+              </s.ArticleNumberItem>
+            </Link>
+
+            
+            <Link href={"/"}>
+              <s.ArticleNumberItem>
+                <s.Num>{articleNumData[2]}</s.Num>
+                <s.Type>구독</s.Type>
+              </s.ArticleNumberItem>
+            </Link>
+
+          </s.ArticleNumberContainer>
+        </s.TopContainer>
+
+        <s.BottomContainer>
+          <ContentWrapper contentName={bookmarkArticle}>
+            <CardsSlider>
+              {myBookmarkArticle.map((e: Article) => {
+                return (
+                  <ContentCard
+                    key={e.id}
+                    category={e.category}
+                    title={e.title}
+                    authorNames={e.authorNames}
+                    isActive={e.isActive}
+                    isLike={e.isLike}
+                    likeNum={e.likeNum}
+                  />
+                );
+              })}
+            </CardsSlider>
+          </ContentWrapper>
+        </s.BottomContainer>
+      </s.Wrapper>
+    </PageTemplate>
   );
 };
 

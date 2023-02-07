@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  padding: 0 5vw;
+`;
 
 export const Container = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -26,4 +29,6 @@ export const WeekWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
-export const DayWrapper = styled.div``;
+export const DayWrapper = styled.div`
+    
+`;

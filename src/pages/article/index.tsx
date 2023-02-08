@@ -1,5 +1,5 @@
 import NewsListItem from "@components/NewListItem";
-import NewsPostCard from "@components/NewsPostCard";
+import NewsPostCard, { NewsPostCardProps } from "@components/NewsPostCard";
 import NewsPostSlider from "@components/NewsPostSlider";
 import NewsList from "@pages/tmp/newslist";
 import newsPost from "@pages/tmp/newsPostCards";
@@ -9,7 +9,6 @@ import { NewsListIcon } from "src/types/article";
 import Paging from "@components/Pagination";
 
 import * as s from "./styles";
-import { NewsPostCardProps } from "@components/NewsPostCard";
 
 const NewsPage = () => {
   const [items, setItems] = useState<NewsListIcon[]>([] as any); // 리스트에 나타낼 아이템

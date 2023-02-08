@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import * as s from "./styles";
 import MainIcon from "@public/icon/MainIcon.svg";
 import NewsIcon from "@public/icon/NewsIcon.svg";
 import CalendarIcon from "@public/icon/CalendarIcon.svg";
 import MyPageIcon from "@public/icon/MyPageIcon.svg";
+import * as s from "./styles";
 
 const BottomNavBar = () => {
   const router = useRouter();
@@ -17,8 +17,8 @@ const BottomNavBar = () => {
           <MainIcon />
         </s.BtmNavItem>
       </Link>
-      <Link href="/newspage">
-        <s.BtmNavItem className={router.pathname === "/newspage" ? "active" : ""}>
+      <Link href="/article">
+        <s.BtmNavItem className={router.pathname === "/article" ? "active" : ""}>
           <NewsIcon />
         </s.BtmNavItem>
       </Link>

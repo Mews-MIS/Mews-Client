@@ -4,14 +4,14 @@ import { selectedDateAtom } from "./selectedDate";
 
 const calendarInfoMonthYearSelector = selector({
   key: "calendarInfoMonthYearSelector",
-  get: async ({get}) => {
+  get: async ({ get }) => {
     const selectedDate = get(selectedDateAtom);
 
     const res = await axios.get(
-      `http://13.209.163.188:8080/${selectedDate.getFullYear()}_${selectedDate.getMonth()}`
+      `${process.env.SERVER_BASE_URL}/${selectedDate.getFullYear()}_${selectedDate.getMonth()}`
     );
     return res.data;
-  }
+  },
 });
 
 export default calendarInfoMonthYearSelector;

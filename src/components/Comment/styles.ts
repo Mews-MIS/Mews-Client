@@ -23,7 +23,6 @@ export const CommentForm = styled.form`
 `;
 export const CommentInput = styled.input`
   width: 80vw;
-
   padding: 15px;
   border-radius: 100px;
   border: 1px solid ${theme.COLORS.BRIGHT_ORANGE};
@@ -35,7 +34,6 @@ export const CommentInput = styled.input`
 `;
 export const CommentBtn = styled.button`
   width: 10vw;
-
   margin: 0 7px 0 7px;
   padding: 5px;
   display: flex;

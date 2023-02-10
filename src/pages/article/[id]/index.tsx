@@ -42,12 +42,12 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
     document.body.removeChild(url);
 
     Swal.fire({
-      customClass: "swal",
-      title: "링크가 복사되었습니다.",
+      title: "Mews",
+      text: "링크가 복사되었습니다",
       icon: "success",
       showConfirmButton: false,
-      heightAuto: false,
       timer: 1500,
+      width: 200,
     });
   };
 

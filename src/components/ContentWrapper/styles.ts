@@ -3,7 +3,9 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   background-color: ${theme.COLORS.CONTAINER_WHITE};
-  margin-bottom: 40px;
+  padding: 20px 0;
+  margin: 20px 0;
+  border-radius: 20px;
 
   &:last-child {
     margin-bottom: 0;
@@ -11,7 +13,7 @@ export const Wrapper = styled.div`
 `;
 
 export const WrapperName = styled.p`
-  width: 80%;
+  width: 90%;
   text-align: left;
 
   font-size: ${theme.FONT_SIZE.TITLE_SIZE};

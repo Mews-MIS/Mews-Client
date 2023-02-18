@@ -22,16 +22,20 @@ export const CommentForm = styled.form`
   display: flex;
 `;
 export const CommentInput = styled.input`
-  width: 70vw;
-  padding: 5%;
+  width: 80vw;
+  padding: 15px;
   border-radius: 100px;
   border: 1px solid ${theme.COLORS.BRIGHT_ORANGE};
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
+  :focus {
+    outline: none;
+  }
 `;
 export const CommentBtn = styled.button`
-  width: 20vw;
-  padding: 5%;
+  width: 10vw;
+  margin: 0 7px 0 7px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   font-weight: ${theme.FONT_WEIGHT.BOLD};
@@ -50,9 +54,15 @@ export const CommentBox = styled.div`
   margin: 1vh 0 1vh 0;
 `;
 export const span = styled.span`
+  display: flex;
+  margin: 10px 0 10px 0;
+`;
+export const CommentName = styled.h2`
   margin-right: 2vw;
-  font-size: h2;
   font-weight: ${theme.FONT_WEIGHT.BOLD};
+  font-size: ${theme.FONT_SIZE.MAIN_SIZE};
+`;
+export const Commentcontent = styled.div`
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
 `;
 export const ul = styled.ul`

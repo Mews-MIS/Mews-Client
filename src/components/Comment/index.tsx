@@ -38,8 +38,10 @@ function Comment(props: { commentArray: any }) {
               commentArray.map((value, index) => (
                 <s.li key={index}>
                   <s.CommentBox>
-                    <s.span>이정우</s.span>
-                    {value}
+                    <s.span>
+                      <s.CommentName>이정우</s.CommentName>
+                      <s.Commentcontent>{value}</s.Commentcontent>
+                    </s.span>
                   </s.CommentBox>
                 </s.li>
               ))}

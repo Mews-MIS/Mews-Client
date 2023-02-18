@@ -42,11 +42,10 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
     document.body.removeChild(url);
 
     Swal.fire({
-      customClass: "swal",
-      title: "링크가 복사되었습니다.",
+      title: "Mews",
+      text: "링크가 복사되었습니다",
       icon: "success",
       showConfirmButton: false,
-      heightAuto: false,
       timer: 1500,
       width: 200,
     });
@@ -60,13 +59,17 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
     <s.Wrapper>
       <s.newsviewContainer>
         <s.newsContainer>
-          <s.newsTitleBox>
-            <s.category>{news?.category}</s.category>
-            <s.title>{news?.title}</s.title>
-            <s.date>{news?.created_at}</s.date>
-          </s.newsTitleBox>
-          {/* 뉴스 이미지 들어갈 자리 */}
-          <s.newsImageBox />
+          <s.newsTitleContainer>
+            <s.newsTitleBox>
+              <s.category>{news?.category}</s.category>
+              <s.title>{news?.title}</s.title>
+              <s.date>{news?.created_at}</s.date>
+            </s.newsTitleBox>
+          </s.newsTitleContainer>
+          <s.newsImageContainer>
+            {/* 뉴스 이미지 들어갈 자리 */}
+            <s.newsImageBox />
+          </s.newsImageContainer>
           <s.contentBox>
             <s.content>{news?.content}</s.content>
           </s.contentBox>

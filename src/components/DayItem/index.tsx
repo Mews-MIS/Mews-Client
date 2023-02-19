@@ -32,9 +32,9 @@ const DayItem = ({year, month, day, isToday, isSelected, isCurrentMonth, categor
         <s.CategoryCircles>
           {
             categoryBoolInfo.map((category, index) => {
-              if(category && index === 0) return <s.Circle color={theme.COLORS.WARNING_RED}/>
-              if(category && index === 1) return <s.Circle color={theme.COLORS.HIGHLIGHT_ORANGE}/>
-              if(category && index === 2) return <s.Circle color={theme.COLORS.BRIGHT_ORANGE}/>
+              if(category && index === 0) return <s.Circle key={index} color={theme.COLORS.WARNING_RED}/>
+              if(category && index === 1) return <s.Circle key={index} color={theme.COLORS.HIGHLIGHT_ORANGE}/>
+              if(category && index === 2) return <s.Circle key={index} color={theme.COLORS.BRIGHT_ORANGE}/>
               return;
             })
           }

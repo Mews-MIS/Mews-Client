@@ -1,12 +1,12 @@
 export interface Article {
   id: number;
-  imageUrl?: string;
-  category: string;
+  fileUrls: string[];
+  type: string;
   title: string;
   isActive: boolean;
   isLike: boolean;
   authorNames: string[];
-  likeNum: number;
+  like_count: number;
 }
 
 export interface CurationType {

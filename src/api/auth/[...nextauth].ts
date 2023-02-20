@@ -1,7 +1,7 @@
-import NextAuth from "next-auth";
+import Nextauth from "@pages/api/auth/[...nextauth]";
 import GoogleProvider from "next-auth/providers/google";
 
-export default NextAuth({
+export default Nextauth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,

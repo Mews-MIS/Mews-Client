@@ -32,12 +32,18 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
 
-    "baseUrl": ".", // 모듈이 기본적으로 위치한 디렉토리 설정
+    "baseUrl": ".",
     "paths": {
-      "@public/*": ["public/*"],
+      "@api/*": ["src/api/*"],
+      "@common/*": ["src/common/*"],
       "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@utils/*": ["src/utils/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
-      "@styles/*": ["src/styles/*"]
+      "@stores/*": ["src/stores/*"],
+      "@styles/*": ["src/styles/*"],
+      "@public/*": ["public/*"]
     },
     "typeRoots": ["./node_modules/@types", "@types"]
   },

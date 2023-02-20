@@ -32,10 +32,18 @@ const ContentCard = ({
     setLike(!like);
   };
 
+  if (fileUrls) {
+    // console.log(Object.values(fileUrls)[0]);
+    // console.log(Object.keys(fileUrls));
+    console.log(fileUrls["0"]);
+  }
+
   return (
     <s.Wrapper>
       {/** 해당 부분 이미지 추가 필요 * */}
-      <s.ImageContainer>{/* <img src={fileUrls[0]} alt="메인 이미지" /> */}</s.ImageContainer>
+      <s.ImageContainer>
+        {fileUrls && <img src={fileUrls["0"]} alt="메인 이미지" />}
+      </s.ImageContainer>
       <s.ContentContainer>
         <s.ContentTopArea>
           <s.ContentInfoSummary>

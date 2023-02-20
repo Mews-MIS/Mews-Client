@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   align-items: center;
   border-bottom: 1px solid ${theme.COLORS.MAIN_ORANGE};
 
-  margin: 0 auto 30px auto;
+  margin: 20px auto 30px auto;
   padding: 0 1vw;
 
   svg {

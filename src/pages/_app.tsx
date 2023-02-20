@@ -12,14 +12,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          <SessionProvider session={pageProps.session}>
+        <SessionProvider session={pageProps.session}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyles />
             <Layout>
               <Component {...pageProps} />
             </Layout>
-          </SessionProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </SessionProvider>
       </RecoilRoot>
     </QueryClientProvider>
   );

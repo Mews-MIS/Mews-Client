@@ -1,17 +1,9 @@
 import Wrapper from "@pages/search/_fragments/PopularKeyword/styles";
 import Link from "next/link";
 
-const PopularKeyword = ({
-  rank,
-  keyword,
-  articleId,
-}: {
-  rank: number;
-  keyword: string;
-  articleId: number;
-}) => {
+const PopularKeyword = ({ rank, keyword }: { rank: number; keyword: string }) => {
   return (
-    <Link href={`/articles/${articleId}`}>
+    <Link href={`/search/${keyword}`}>
       <Wrapper>
         <p className="Rank">{rank}</p>
         <p>{keyword}</p>

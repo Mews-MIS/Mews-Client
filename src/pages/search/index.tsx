@@ -1,11 +1,23 @@
 import SearchBar from "@pages/search/_fragments/SearchBar";
 import RecentSearched from "@pages/search/_fragments/RecentSearched";
 import ContentWrapper from "@components/ContentWrapper";
-import { popularKeywords, recentKeywords } from "@pages/search/data";
+import { recentKeywords } from "@pages/search/data";
 import PopularKeyword from "@pages/search/_fragments/PopularKeyword";
-import { PageTemplate, SearchedContainer } from "./styles";
+import PageTemplate from "@components/PageTemplate";
+import SearchAPI from "@api/SearchAPI";
+import { SearchedContainer } from "./styles";
 
-const searchPage = () => {
+export async function getServerSideProps() {
+  const response = await SearchAPI.getPopularResult();
+  return {
+    props: {
+      popularKeywords: response,
+    },
+  };
+}
+const searchPage = (props: any) => {
+  const { popularKeywords } = props;
+  console.log(popularKeywords);
   return (
     <PageTemplate>
       <SearchBar />
@@ -20,14 +32,8 @@ const searchPage = () => {
       </ContentWrapper>
       <ContentWrapper contentName="인기 검색어">
         <SearchedContainer>
-          {popularKeywords.map((popularKeyword) => {
-            return (
-              <PopularKeyword
-                rank={popularKeyword.rank}
-                keyword={popularKeyword.keyword}
-                articleId={popularKeyword.articleId}
-              />
-            );
+          {popularKeywords.map((popularKeyword: string, index: number) => {
+            return <PopularKeyword rank={index + 1} keyword={popularKeyword} />;
           })}
         </SearchedContainer>
       </ContentWrapper>

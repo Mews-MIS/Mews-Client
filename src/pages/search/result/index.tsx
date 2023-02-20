@@ -1,13 +1,20 @@
-// import fetch from "node-fetch";
-//
-// export async function getServerSideProps(context) {
-//   const page = (parseInt(context.query.page, 10) || "").toString();
-//
-//   const res = await fetch("주소");
-//   const product = await res.json();
-//   return { props: { searchResult: product.results } };
-// }
+import SearchAPI from "@api/SearchAPI";
+
+export async function getServerSideProps({ query }: { query: any }) {
+  const { keyword } = query;
+
+  const response = await SearchAPI.getSearchResult({ keyword });
+  console.log(response);
+  return {
+    props: {
+      getArticleRes: response.getArticleRes,
+      getEditorRes: response.getEditorRes,
+    },
+  };
+}
+
 const SearchedResultPage = (props: any) => {
+  console.log(props);
   return <h1>검색 결과 페이지</h1>;
 };
 

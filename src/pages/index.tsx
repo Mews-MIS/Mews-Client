@@ -11,11 +11,23 @@ import Curations from "@pages/tmp/Curations";
 import PageTemplate from "@components/PageTemplate";
 
 import ArticleAPI from "@api/ArticleAPI";
+import styled from "@emotion/styled";
+import theme from "@styles/Theme";
 import { Article, CurationType } from "../types/article";
+
+const NoneContentWrapper = styled.div`
+  width: 100%;
+  height: 120px;
+
+  text-align: center;
+  padding-top: 50px;
+
+  font-size: 14px;
+  color: ${theme.COLORS.LINE_GRAY};
+`;
 
 export const getServerSideProps = async () => {
   const response = await ArticleAPI.getPageArticles({ page: 1 });
-  console.log(response);
   return {
     props: {
       newArticleList: response,
@@ -59,7 +71,7 @@ export default function Home(props: any) {
                 })}
               </CardSlider>
             ) : (
-              "구독하고 있는 필진이 없습니다."
+              <NoneContentWrapper>구독하고 있는 필진이 없습니다.</NoneContentWrapper>
             )}
           </ContentWrapper>
 
@@ -82,7 +94,7 @@ export default function Home(props: any) {
                 })}
               </CardSlider>
             ) : (
-              "새로운 게시글이 없습니다."
+              <NoneContentWrapper>새로운 게시글이 없습니다.</NoneContentWrapper>
             )}
           </ContentWrapper>
 

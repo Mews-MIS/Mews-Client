@@ -31,12 +31,10 @@ const ScheduleCategory = ({category, titles}: IScheduleCategory) => {
       if(parentRef.current === null && childRef.current === null) return;
 
       if(childRef.current!.clientHeight > 0) {
-        console.log(+childRef.current!.clientHeight);
         setChildRefHeight(+childRef.current!.clientHeight);
         childRef.current!.style.height = "0";
       }
       else {
-        console.log(childRefHeight);
         childRef.current!.style.height = `${childRefHeight}px`;
       }
       setIsCollpase(!isCollapse);
@@ -59,8 +57,8 @@ const ScheduleCategory = ({category, titles}: IScheduleCategory) => {
         <s.ScheduleItems ref={childRef}>
           {
             titles.map((title, idx) => 
-              <s.ItemWrapper >
-                <ScheduleItem key={idx} title={title} Color={Color}/>
+              <s.ItemWrapper key={idx}>
+                <ScheduleItem title={title} Color={Color}/>
               </s.ItemWrapper>
             )
           }

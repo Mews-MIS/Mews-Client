@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import * as s from "./styles";
 import MoveMonth from "@components/MoveMonth";
 import CalendarLayout from "@components/CalendarLayout";
@@ -14,7 +14,9 @@ const Calendar = () => {
           <MoveMonth />
           <CalendarLayout />
         </s.TopContainer>
-        <ScheduleLayout />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ScheduleLayout />
+        </Suspense>
       </s.Wrapper>
     </PageTemplate>
   )

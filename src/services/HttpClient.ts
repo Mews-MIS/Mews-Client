@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://13.209.163.188:8080/",
+  baseURL: process.env.NEXT_SERVER_BASE_URL,
   withCredentials: true,
   headers: {
-    Authorization:
-      "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHJpbmd0ZXN0QGdtYWlsLmNvbSIsImF1dGgiOiJST0xFX1VTRVIiLCJpYXQiOjE2NzY5MTIyMDYsImV4cCI6MTY3NjkxNTgwNn0.-2eehBKVdPNo1UuZYV0s40pMKwfwJowlVAjo91CuYa0IGm1vacWuUm8vf_HrezNyubl25j497VG2epxS12RRhQ",
+    Authorization: process.env.NEXT_TMP_ACCESS_TOKEN,
   },
 });
 

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import ContentCard from "@components/ContentCard";
 import ContentWrapper from "@components/ContentWrapper";
-import React from "react";
+import React, { useEffect } from "react";
 import CardSlider from "@components/CardSlider";
 import mySubscribeArticle from "@pages/tmp/mySubscribeArticle";
 
@@ -40,6 +40,10 @@ export default function Home(props: any) {
   const { newArticleList } = props;
 
   console.log(newArticleList);
+
+  useEffect(() => {
+    // api 호출 .
+  }, []);
 
   return (
     <>

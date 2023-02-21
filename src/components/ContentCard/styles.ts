@@ -19,7 +19,15 @@ export const ImageContainer = styled.div`
   height: 60%;
   width: 100%;
 
+  overflow: hidden;
+
   background-color: ${theme.COLORS.LINE_GRAY};
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -32,10 +40,12 @@ export const ContentContainer = styled.div`
 
 export const ContentTopArea = styled.div`
   display: flex;
+  height: 40%;
 `;
 
 export const ContentInfoSummary = styled.div`
   width: 70%;
+  height: 100%;
 `;
 
 export const CategoryLabel = styled.p`

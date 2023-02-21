@@ -9,7 +9,9 @@ export interface ContentCardProps {
   isActive: boolean;
   isLike: boolean;
   authorNames: string[];
-  likeNum: number;
+  like_count: number;
+
+  fileUrls?: string[];
 }
 const ContentCard = ({
   category,
@@ -17,7 +19,8 @@ const ContentCard = ({
   isActive,
   isLike,
   authorNames,
-  likeNum,
+  like_count,
+  fileUrls,
 }: ContentCardProps) => {
   const [active, setActive] = useState<Boolean>(isActive);
   const [like, setLike] = useState<Boolean>(isLike);
@@ -29,10 +32,18 @@ const ContentCard = ({
     setLike(!like);
   };
 
+  if (fileUrls) {
+    // console.log(Object.values(fileUrls)[0]);
+    // console.log(Object.keys(fileUrls));
+    console.log(fileUrls["0"]);
+  }
+
   return (
     <s.Wrapper>
       {/** 해당 부분 이미지 추가 필요 * */}
-      <s.ImageContainer />
+      <s.ImageContainer>
+        {fileUrls && <img src={fileUrls["0"]} alt="메인 이미지" />}
+      </s.ImageContainer>
       <s.ContentContainer>
         <s.ContentTopArea>
           <s.ContentInfoSummary>
@@ -55,7 +66,7 @@ const ContentCard = ({
             <s.LikeIconContainer className={like ? "active" : "inactive"}>
               <LikeBtn />
             </s.LikeIconContainer>
-            <s.InformationLabel>{likeNum}</s.InformationLabel>
+            <s.InformationLabel>{like_count}</s.InformationLabel>
           </s.LikeContainer>
         </s.ContentBottomArea>
       </s.ContentContainer>

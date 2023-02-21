@@ -6,7 +6,7 @@ const SearchBar = () => {
     <form action="/search/result" method="get">
       <s.Wrapper>
         <SearchIcon />
-        <s.SearchInput type="text" name="search" placeholder="검색어를 입력해주세요." required />
+        <s.SearchInput type="text" name="keyword" placeholder="검색어를 입력해주세요." required />
       </s.Wrapper>
     </form>
   );

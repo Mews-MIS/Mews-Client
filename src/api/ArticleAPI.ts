@@ -34,6 +34,18 @@ const ArticleAPI = {
       return null;
     }
   },
+
+  getPopularArticles: async () => {
+    try {
+      const path = "article/top";
+      const response = await HttpClient.get(path);
+
+      return response;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  },
 };
 
 export default ArticleAPI;

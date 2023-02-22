@@ -5,14 +5,13 @@ import React, { useEffect } from "react";
 import CardSlider from "@components/CardSlider";
 import mySubscribeArticle from "@pages/tmp/mySubscribeArticle";
 
-import topView from "@pages/tmp/topView";
-import ContentRow from "@components/ContentRow";
 import Curations from "@pages/tmp/Curations";
 import PageTemplate from "@components/PageTemplate";
 
 import ArticleAPI from "@api/ArticleAPI";
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
+import ContentRow from "@components/ContentRow";
 import { Article, CurationType } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -27,23 +26,20 @@ const NoneContentWrapper = styled.div`
 `;
 
 export const getServerSideProps = async () => {
-  const response = await ArticleAPI.getPageArticles({ page: 1 });
+  const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
+  const popularArticleList = await ArticleAPI.getPopularArticles();
+
   return {
     props: {
-      newArticleList: response,
+      newArticleList,
+      popularArticleList,
     },
   };
 };
 
 export default function Home(props: any) {
   const curation: CurationType = Curations[0];
-  const { newArticleList } = props;
-
-  console.log(newArticleList);
-
-  useEffect(() => {
-    // api 호출 .
-  }, []);
+  const { newArticleList, popularArticleList } = props;
 
   return (
     <>
@@ -103,17 +99,17 @@ export default function Home(props: any) {
           </ContentWrapper>
 
           <ContentWrapper contentName="조회수 top5">
-            {/* {topView.length */}
-            {/*  ? topView.map((element: Article, index) => { */}
-            {/*      return ( */}
-            {/*        <ContentRow */}
-            {/*          key={`rank${index}${element.title}`} */}
-            {/*          index={index + 1} */}
-            {/*          contentInfo={element} */}
-            {/*        /> */}
-            {/*      ); */}
-            {/*    }) */}
-            {/*  : "새로운 게시글이 없습니다."} */}
+            {popularArticleList.length
+              ? popularArticleList.map((element: any, index: number) => {
+                  return (
+                    <ContentRow
+                      key={`rank${element.id}${element.title}`}
+                      index={index + 1}
+                      contentInfo={element}
+                    />
+                  );
+                })
+              : "새로운 게시글이 없습니다."}
           </ContentWrapper>
 
           <ContentWrapper contentName={curation.title} viewMoreLink={`/curation/${curation.title}`}>

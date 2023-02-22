@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import * as s from "./styles";
 import { Article } from "../../types/article";
@@ -14,8 +13,8 @@ function ContentRow({ index, contentInfo }: ContentRowProps) {
       <s.Wrapper>
         <label>{index}</label>
         <s.ImageContainer>
-          {contentInfo.imageUrl ? (
-            <Image src={contentInfo.imageUrl} alt="콘텐츠 이미지" width={70} height={50} />
+          {contentInfo.fileUrls ? (
+            <img src={contentInfo.fileUrls[0]} alt="콘텐츠 이미지" width={70} height={50} />
           ) : (
             <s.DefaultImage />
           )}

@@ -32,12 +32,6 @@ const ContentCard = ({
     setLike(!like);
   };
 
-  if (fileUrls) {
-    // console.log(Object.values(fileUrls)[0]);
-    // console.log(Object.keys(fileUrls));
-    console.log(fileUrls["0"]);
-  }
-
   return (
     <s.Wrapper>
       {/** 해당 부분 이미지 추가 필요 * */}

@@ -37,9 +37,9 @@ const searchPage = (props: any) => {
       </ContentWrapper>
       <ContentWrapper contentName="인기 검색어">
         <SearchedContainer>
-          {/* {popularKeywords.map((popularKeyword: string, index: number) => { */}
-          {/*  return <PopularKeyword rank={index + 1} keyword={popularKeyword} />; */}
-          {/* })} */}
+          {popularKeywords.map((popularKeyword: string, index: number) => {
+            return <PopularKeyword rank={index + 1} keyword={popularKeyword} />;
+          })}
         </SearchedContainer>
       </ContentWrapper>
     </PageTemplate>

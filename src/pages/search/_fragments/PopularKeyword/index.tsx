@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const PopularKeyword = ({ rank, keyword }: { rank: number; keyword: string }) => {
   return (
-    <Link href={`/search/${keyword}`}>
+    <Link href={`/search/result?keyword=${keyword}`}>
       <Wrapper>
         <p className="Rank">{rank}</p>
         <p>{keyword}</p>

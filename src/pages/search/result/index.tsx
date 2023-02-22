@@ -1,7 +1,6 @@
 import SearchAPI from "@api/SearchAPI";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { router } from "next/client";
+import { useEffect } from "react";
+import PageTemplate from "@components/PageTemplate";
 
 export async function getServerSideProps({ query }: { query: any }) {
   const { keyword } = query;
@@ -28,7 +27,11 @@ const SearchedResultPage = (props: any) => {
     localStorage.setItem("recentKeywords", JSON.stringify(recentKeywords));
   });
 
-  return <h1>검색 결과 페이지</h1>;
+  return (
+    <PageTemplate>
+      <h1>d</h1>
+    </PageTemplate>
+  );
 };
 
 export default SearchedResultPage;

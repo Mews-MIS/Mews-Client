@@ -3,7 +3,7 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 70px;
+  height: 90px;
 
   display: flex;
   padding: 25px;
@@ -29,7 +29,7 @@ export const ImageContainer = styled.div`
 
 export const ContentNameLabel = styled.p`
   color: ${theme.COLORS.BLACK};
-  overflow: hidden;
+
   text-overflow: ellipsis;
   white-space: nowrap;
 

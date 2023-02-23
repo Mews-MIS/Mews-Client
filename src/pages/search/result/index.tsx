@@ -37,34 +37,38 @@ const SearchedResultPage = (props: SearchedResultPageProps) => {
 
   return (
     <PageTemplate>
-      <div>
+      <s.ResultHeader>
         <h1>{keyword}에 대한 검색결과</h1>
-      </div>
-      <div>
+      </s.ResultHeader>
+      <s.EditorResultContainer>
         <h1>에디터 검색 결과</h1>
-        {getEditorRes.length > 0 ? (
-          getEditorRes.map((editor: any) => {
-            return <h1>에디터 정보</h1>;
-          })
-        ) : (
-          <h1> 에디터 검색 결과가 없습니다.</h1>
-        )}
-      </div>
-      <div>
+        <s.EditorProfileContainer>
+          {getEditorRes.length > 0 ? (
+            getEditorRes.map((editor: any) => {
+              return <s.EditorProfile>에디터 정보</s.EditorProfile>;
+            })
+          ) : (
+            <h1> 에디터 검색 결과가 없습니다.</h1>
+          )}
+        </s.EditorProfileContainer>
+      </s.EditorResultContainer>
+      <s.ArticleResultContainer>
         <h1>아티클 검색 결과</h1>
-        {getArticleRes.length > 0 ? (
-          getArticleRes.map((article: ArticleSearchedResult) => {
-            return (
-              <div>
-                <img src={article.imgUrl} />
-                <h1>{article.title}</h1>
-              </div>
-            );
-          })
-        ) : (
-          <h1> 검색 결과가 없습니다..</h1>
-        )}
-      </div>
+        <s.ArticleInfoContainer>
+          {getArticleRes.length > 0 ? (
+            getArticleRes.map((article: ArticleSearchedResult) => {
+              return (
+                <s.ArticleInfo>
+                  <img src={article.imgUrl} />
+                  <h1>{article.title}</h1>
+                </s.ArticleInfo>
+              );
+            })
+          ) : (
+            <h1> 검색 결과가 없습니다..</h1>
+          )}
+        </s.ArticleInfoContainer>
+      </s.ArticleResultContainer>
     </PageTemplate>
   );
 };

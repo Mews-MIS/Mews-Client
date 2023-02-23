@@ -1,7 +1,7 @@
 import Head from "next/head";
 import ContentCard from "@components/ContentCard";
 import ContentWrapper from "@components/ContentWrapper";
-import React, { useEffect } from "react";
+import React from "react";
 import CardSlider from "@components/CardSlider";
 import mySubscribeArticle from "@pages/tmp/mySubscribeArticle";
 
@@ -55,7 +55,7 @@ export default function Home(props: any) {
           <ContentWrapper contentName="내가 구독하고 있는 게시글" viewMoreLink="/link">
             {mySubscribeArticle.length ? (
               <CardSlider>
-                {mySubscribeArticle.map((element: Article, index: number) => {
+                {mySubscribeArticle.map((element: any) => {
                   return (
                     <ContentCard
                       key={`Subscribe ${element.id}${element.title}`}

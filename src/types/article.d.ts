@@ -9,6 +9,12 @@ export interface Article {
   like_count: number;
 }
 
+export interface ArticleSearchedResult {
+  id: number;
+  imgUrl: string;
+  title: string;
+}
+
 export interface CurationType {
   title: string;
   content: Article[];

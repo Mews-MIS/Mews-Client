@@ -29,7 +29,7 @@ export const ImageContainer = styled.div`
 
 export const ContentNameLabel = styled.p`
   color: ${theme.COLORS.BLACK};
-  overflow: hidden;
+
   text-overflow: ellipsis;
   white-space: nowrap;
 

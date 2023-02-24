@@ -4,6 +4,7 @@ import PageTemplate from "@components/PageTemplate";
 import SearchBar from "@pages/search/_fragments/SearchBar";
 import EditorProfile from "@pages/search/result/_fragments/EditorProfile";
 import Link from "next/link";
+import CardSlider from "@components/CardSlider";
 import { ArticleSearchedResult } from "../../../types/article";
 import * as s from "./styles";
 import { Editor } from "../../../types/editor";
@@ -55,13 +56,17 @@ const SearchedResultPage = (props: SearchedResultPageProps) => {
           <s.EditorResultContainer>
             <h1>에디터 검색 결과</h1>
             <s.EditorProfileContainer>
-              {getEditorRes.length > 0 ? (
-                getEditorRes.map((editor: Editor) => {
-                  return <EditorProfile id={editor.id} name={editor.name} imgUrl={editor.imgUrl} />;
-                })
-              ) : (
-                <span> 에디터 검색 결과가 없습니다.</span>
-              )}
+              <CardSlider>
+                {getEditorRes.length > 0 ? (
+                  getEditorRes.map((editor: Editor) => {
+                    return (
+                      <EditorProfile id={editor.id} name={editor.name} imgUrl={editor.imgUrl} />
+                    );
+                  })
+                ) : (
+                  <span> 에디터 검색 결과가 없습니다.</span>
+                )}
+              </CardSlider>
             </s.EditorProfileContainer>
           </s.EditorResultContainer>
           <s.ArticleResultContainer>

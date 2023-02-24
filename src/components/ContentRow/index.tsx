@@ -9,7 +9,7 @@ export interface ContentRowProps {
 
 function ContentRow({ index, contentInfo }: ContentRowProps) {
   return (
-    <Link href={`articles/${contentInfo.id}`}>
+    <Link href={`article/${contentInfo.id}`}>
       <s.Wrapper>
         <label>{index}</label>
         <s.ImageContainer>

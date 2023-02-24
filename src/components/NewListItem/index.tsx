@@ -11,7 +11,7 @@ export interface NewsListItemProps {
 
 function NewsListItem({ contentInfo }: NewsListItemProps) {
   return (
-    <Link href={`articles/${contentInfo.id}`}>
+    <Link href={`article/${contentInfo.id}`}>
       <s.Wrapper>
         <s.NewsItemContainer>
           <s.LeftItems>

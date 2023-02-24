@@ -99,7 +99,7 @@ export default function Home(props: any) {
           </ContentWrapper>
 
           <ContentWrapper contentName="조회수 top5">
-            {popularArticleList.length
+            {popularArticleList?.length
               ? popularArticleList.map((element: any, index: number) => {
                   return (
                     <ContentRow

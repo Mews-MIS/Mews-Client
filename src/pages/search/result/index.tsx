@@ -1,8 +1,12 @@
 import SearchAPI from "@api/SearchAPI";
 import { useEffect } from "react";
 import PageTemplate from "@components/PageTemplate";
+import SearchBar from "@pages/search/_fragments/SearchBar";
+import EditorProfile from "@pages/search/result/_fragments/EditorProfile";
+import Link from "next/link";
 import { ArticleSearchedResult } from "../../../types/article";
 import * as s from "./styles";
+import { Editor } from "../../../types/editor";
 
 export async function getServerSideProps({ query }: { query: any }) {
   const { keyword } = query;
@@ -25,10 +29,12 @@ interface SearchedResultPageProps {
 
 const SearchedResultPage = (props: SearchedResultPageProps) => {
   const { keyword, getEditorRes, getArticleRes } = props;
+  console.log(getEditorRes);
   useEffect(() => {
     const searchKeyword = keyword;
     let recentKeywords = JSON.parse(localStorage.getItem("recentKeywords")) || [];
 
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     recentKeywords = recentKeywords.filter((keyword: any) => keyword !== searchKeyword);
     recentKeywords.unshift(searchKeyword);
     recentKeywords = recentKeywords.slice(0, 5);
@@ -37,38 +43,48 @@ const SearchedResultPage = (props: SearchedResultPageProps) => {
 
   return (
     <PageTemplate>
-      <s.ResultHeader>
-        <h1>{keyword}에 대한 검색결과</h1>
-      </s.ResultHeader>
-      <s.EditorResultContainer>
-        <h1>에디터 검색 결과</h1>
-        <s.EditorProfileContainer>
-          {getEditorRes.length > 0 ? (
-            getEditorRes.map((editor: any) => {
-              return <s.EditorProfile>에디터 정보</s.EditorProfile>;
-            })
-          ) : (
-            <h1> 에디터 검색 결과가 없습니다.</h1>
-          )}
-        </s.EditorProfileContainer>
-      </s.EditorResultContainer>
-      <s.ArticleResultContainer>
-        <h1>아티클 검색 결과</h1>
-        <s.ArticleInfoContainer>
-          {getArticleRes.length > 0 ? (
-            getArticleRes.map((article: ArticleSearchedResult) => {
-              return (
-                <s.ArticleInfo>
-                  <img src={article.imgUrl} />
-                  <h1>{article.title}</h1>
-                </s.ArticleInfo>
-              );
-            })
-          ) : (
-            <h1> 검색 결과가 없습니다..</h1>
-          )}
-        </s.ArticleInfoContainer>
-      </s.ArticleResultContainer>
+      <s.Wrapper>
+        <SearchBar />
+      </s.Wrapper>
+      <s.Wrapper>
+        <s.ResultContainer>
+          <s.ResultHeader>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
+            <span>'{keyword}' </span>에 대한 검색결과
+          </s.ResultHeader>
+          <s.EditorResultContainer>
+            <h1>에디터 검색 결과</h1>
+            <s.EditorProfileContainer>
+              {getEditorRes.length > 0 ? (
+                getEditorRes.map((editor: Editor) => {
+                  return <EditorProfile id={editor.id} name={editor.name} imgUrl={editor.imgUrl} />;
+                })
+              ) : (
+                <span> 에디터 검색 결과가 없습니다.</span>
+              )}
+            </s.EditorProfileContainer>
+          </s.EditorResultContainer>
+          <s.ArticleResultContainer>
+            <h1>아티클 검색 결과</h1>
+            <s.ArticleInfoContainer>
+              {getArticleRes.length > 0 ? (
+                getArticleRes.map((article: ArticleSearchedResult) => {
+                  return (
+                    <Link href={`/article/${article.id}`}>
+                      <s.ArticleInfo>
+                        <img src={article.imgUrl} alt="기사 썸네일" />
+                        <s.ArticleTitle>{article.title}</s.ArticleTitle>
+                      </s.ArticleInfo>
+                    </Link>
+                  );
+                })
+              ) : (
+                <span> 검색 결과가 없습니다.</span>
+              )}
+            </s.ArticleInfoContainer>
+          </s.ArticleResultContainer>
+        </s.ResultContainer>
+      </s.Wrapper>
     </PageTemplate>
   );
 };

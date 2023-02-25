@@ -103,8 +103,8 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
               </s.BottomContainer>
             </s.ArticleBottomBox>
           </s.ArticleBottomContainer>
+          <Comment commentArray={undefined} />
         </s.newsContainer>
-        <Comment commentArray={undefined} />
       </s.newsviewContainer>
     </s.Wrapper>
   );

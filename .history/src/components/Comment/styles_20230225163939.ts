@@ -73,7 +73,7 @@ export const CommentBox = styled.div`
   margin: 1vh 0 1vh 0;
 `;
 export const span = styled.span`
-  margin: 0 0 2vh 0;
+  margin: 2vh 0 2vh 0;
   display: flex;
 `;
 export const CommentName = styled.h2`
@@ -86,7 +86,7 @@ export const CommentName = styled.h2`
 `;
 export const Commentcontent = styled.div`
   width: 48vw;
-  min-width: 290px;
+  min-width: 300px;
   max-width: 1000px;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
 `;

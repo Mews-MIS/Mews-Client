@@ -73,38 +73,34 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
           <s.contentBox>
             <s.content>{news?.content}</s.content>
           </s.contentBox>
+<s.AricleBottom>
 
-          <s.ArticleBottomContainer>
-            <s.ArticleBottomBox>
-              <s.AuthorIntroContainer>
-                <Link href="/">
-                  <AuthorIntro authorName="이정우" intro="꿈은 없고 놀고만 싶습니다." imageURL="" />
-                </Link>
-              </s.AuthorIntroContainer>
 
-              <s.BottomContainer>
-                <s.BtnContainer>
-                  <s.LikeIconContainer
-                    onClick={onClickLike}
-                    className={like ? "active" : "inactive"}
-                  >
-                    <NewsViewLikeBtn />
-                  </s.LikeIconContainer>
-                  <s.BookmarkIconContainer
-                    onClick={onClickBookmark}
-                    className={active ? "active" : "inactive"}
-                  >
-                    <NewsViewBookmarkBtn />
-                  </s.BookmarkIconContainer>
-                  <s.LinkIconContainer>
-                    <LinkBtn onClick={copyURL} />
-                  </s.LinkIconContainer>
-                </s.BtnContainer>
-              </s.BottomContainer>
-            </s.ArticleBottomBox>
-          </s.ArticleBottomContainer>
+          <s.AuthorIntroContainer>
+            <Link href="/">
+              <AuthorIntro authorName="이정우" intro="꿈은 없고 놀고만 싶습니다." imageURL="" />
+            </Link>
+          </s.AuthorIntroContainer>
+
+          <s.BottomContainer>
+            <s.BtnContainer>
+              <s.LikeIconContainer onClick={onClickLike} className={like ? "active" : "inactive"}>
+                <NewsViewLikeBtn />
+              </s.LikeIconContainer>
+              <s.BookmarkIconContainer
+                onClick={onClickBookmark}
+                className={active ? "active" : "inactive"}
+              >
+                <NewsViewBookmarkBtn />
+              </s.BookmarkIconContainer>
+              <s.LinkIconContainer>
+                <LinkBtn onClick={copyURL} />
+              </s.LinkIconContainer>
+            </s.BtnContainer>
+          </s.BottomContainer>
         </s.newsContainer>
         <Comment commentArray={undefined} />
+        </s.ArticleBottom>
       </s.newsviewContainer>
     </s.Wrapper>
   );

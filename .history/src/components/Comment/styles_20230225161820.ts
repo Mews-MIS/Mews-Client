@@ -18,6 +18,7 @@ export const CommentWrapper = styled.div`
 `;
 
 export const CommentContainer = styled.div`
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,21 +74,14 @@ export const CommentBox = styled.div`
   margin: 1vh 0 1vh 0;
 `;
 export const span = styled.span`
-  margin: 0 0 2vh 0;
   display: flex;
 `;
 export const CommentName = styled.h2`
-  width: 7vw;
-  min-width: 50px;
-  max-width: 100px;
-  margin-right: 10px;
+  margin-right: 2px;
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
 `;
 export const Commentcontent = styled.div`
-  width: 48vw;
-  min-width: 290px;
-  max-width: 1000px;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
 `;
 export const ul = styled.ul`

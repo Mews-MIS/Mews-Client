@@ -74,6 +74,7 @@ export default function Home(props: any) {
               <NoneContentWrapper>구독하고 있는 필진이 없습니다.</NoneContentWrapper>
             )}
           </ContentWrapper>
+
           <ContentWrapper contentName="새로운 게시글" viewMoreLink="/newArticle">
             {newArticleList ? (
               <CardSlider>
@@ -96,7 +97,7 @@ export default function Home(props: any) {
               <NoneContentWrapper>새로운 게시글이 없습니다.</NoneContentWrapper>
             )}
           </ContentWrapper>
-          console.log(popularArticleList.length)
+
           <ContentWrapper contentName="조회수 top5">
             {popularArticleList.length
               ? popularArticleList.map((element: any, index: number) => {
@@ -110,6 +111,7 @@ export default function Home(props: any) {
                 })
               : "새로운 게시글이 없습니다."}
           </ContentWrapper>
+
           <ContentWrapper contentName={curation.title} viewMoreLink={`/curation/${curation.title}`}>
             <CardSlider>
               {curation.content.map((element: Article) => {

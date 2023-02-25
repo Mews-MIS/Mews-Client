@@ -31,24 +31,22 @@ function Comment(props: { commentArray: any }) {
           </s.CommentForm>
         </s.CommentContainer>
 
-        <s.CommentListContainer>
-          <s.CommentListBox>
-            <s.CommentLabel>댓글</s.CommentLabel>
-            <s.ul>
-              {commentArray &&
-                commentArray.map((value, index) => (
-                  <s.li key={index}>
-                    <s.CommentBox>
-                      <s.span>
-                        <s.CommentName>이정우</s.CommentName>
-                        <s.Commentcontent>{value}</s.Commentcontent>
-                      </s.span>
-                    </s.CommentBox>
-                  </s.li>
-                ))}
-            </s.ul>
-          </s.CommentListBox>
-        </s.CommentListContainer>
+        <s.CommentList>
+          <s.CommentLabel>댓글</s.CommentLabel>
+          <s.ul>
+            {commentArray &&
+              commentArray.map((value, index) => (
+                <s.li key={index}>
+                  <s.CommentBox>
+                    <s.span>
+                      <s.CommentName>이정우</s.CommentName>
+                      <s.Commentcontent>{value}</s.Commentcontent>
+                    </s.span>
+                  </s.CommentBox>
+                </s.li>
+              ))}
+          </s.ul>
+        </s.CommentList>
       </s.CommentWrapper>
     </s.Wrapper>
   );

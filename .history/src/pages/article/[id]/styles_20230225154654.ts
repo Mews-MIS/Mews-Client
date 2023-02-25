@@ -115,8 +115,4 @@ export const ArticleBottomContainer = styled.div`
   flex-direction: column;
 `;
 
-export const ArticleBottomBox = styled.div`
-  width: 56vw;
-  min-width: 400px;
-  max-width: 1200px;
-`;
+export const ArticleBottomBox = styled.div``;

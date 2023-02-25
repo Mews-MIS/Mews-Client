@@ -109,7 +109,6 @@ export const LinkIconContainer = styled.div`
 
 export const ArticleBottomContainer = styled.div`
   display: flex;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -117,6 +116,4 @@ export const ArticleBottomContainer = styled.div`
 
 export const ArticleBottomBox = styled.div`
   width: 56vw;
-  min-width: 400px;
-  max-width: 1200px;
 `;

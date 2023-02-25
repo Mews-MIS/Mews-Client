@@ -73,7 +73,7 @@ export const CommentBox = styled.div`
   margin: 1vh 0 1vh 0;
 `;
 export const span = styled.span`
-  margin: 0 0 2vh 0;
+  margin: 2vh 0 2vh 0;
   display: flex;
 `;
 export const CommentName = styled.h2`

@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   width: 100vw;
 `;
 export const CommentWrapper = styled.div`
-  justify-content: center;
   display: flex;
   flex-direction: column;
   width: 56vw;
@@ -19,7 +18,6 @@ export const CommentWrapper = styled.div`
 
 export const CommentContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
 `;
 export const CommentForm = styled.form`
@@ -29,7 +27,7 @@ export const CommentForm = styled.form`
 export const CommentInput = styled.input`
   width: 50vw;
   min-width: 300px;
-  max-width: 1000px;
+  max-width: 1100px;
   padding: 15px;
   border-radius: 100px;
   border: 1px solid ${theme.COLORS.BRIGHT_ORANGE};
@@ -40,11 +38,8 @@ export const CommentInput = styled.input`
   }
 `;
 export const CommentBtn = styled.button`
-  width: 5vw;
-  min-width: 50px;
-  max-width: 100px;
-  margin-left: 1vw;
-  padding: 1px;
+  margin: 0 7px 0 7px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   font-weight: ${theme.FONT_WEIGHT.BOLD};
@@ -52,17 +47,7 @@ export const CommentBtn = styled.button`
   border: none;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
-export const CommentListContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-export const CommentListBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 56vw;
-  min-width: 350px;
-  max-width: 1200px;
-`;
+export const CommentList = styled.div``;
 export const CommentLabel = styled.div`
   margin-top: 2vh;
   margin-bottom: 2vh;
@@ -73,21 +58,15 @@ export const CommentBox = styled.div`
   margin: 1vh 0 1vh 0;
 `;
 export const span = styled.span`
-  margin: 0 0 2vh 0;
   display: flex;
+  margin: 10px 0 10px 0;
 `;
 export const CommentName = styled.h2`
-  width: 7vw;
-  min-width: 50px;
-  max-width: 100px;
-  margin-right: 10px;
+  margin-right: 2vw;
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
 `;
 export const Commentcontent = styled.div`
-  width: 48vw;
-  min-width: 290px;
-  max-width: 1000px;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
 `;
 export const ul = styled.ul`

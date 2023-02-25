@@ -5,7 +5,7 @@ const SearchAPI = {
     try {
       const path = `search/${keyword}`;
       const response = await HttpClient.get(path);
-      return response.response;
+      return response;
     } catch (e) {
       console.log(e);
       return null;

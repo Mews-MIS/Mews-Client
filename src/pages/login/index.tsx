@@ -1,12 +1,22 @@
-import * as s from "./styles";
 import React from "react";
 import LargeLogo from "@public/icon/LargeLogo.svg";
 import TopNavBar from "@components/TopNavBar";
 import BottomNavBar from "@components/BottomNavbar";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import GLogo from "@public/icon/GLogo.svg";
+import UserAPI from "@api/UserAPI";
+import * as s from "./styles";
 
 const NotLoginPage = () => {
+  const { data, status } = useSession();
+  console.log(data, status);
+  const handleClick = async () => {
+    const response = await UserAPI.googleLogin();
+    console.log(response);
+
+    return response;
+  };
+
   return (
     <s.Wrapper>
       <s.NotLoginContainer>

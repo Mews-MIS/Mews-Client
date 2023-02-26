@@ -1,11 +1,11 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AuthorIntro from "@components/AuthorIntro";
 import ContentCard from "@components/ContentCard";
 import ContentWrapper from "@components/ContentWrapper";
 import CardSlider from "@components/CardSlider";
 import ContentRow from "@components/ContentRow";
 import infiniteArticle from "@pages/tmp/infiniteArticle";
+import PageTemplate from "@components/PageTemplate";
 import { Article } from "../../types/article";
 import * as s from "./styles";
 
@@ -30,18 +30,18 @@ export default function AuthorInfo() {
     authorName: "한수정",
   };
 
-  //추후 구독유무 넘겨주는 코드 추가되어야 함
+  // 추후 구독유무 넘겨주는 코드 추가되어야 함
   const onClickSubscribe = () => {
     setSubscribe(!subscribe);
   };
 
-  //임시 데이터 불러옴
+  // 임시 데이터 불러옴
   const getArticleList = () => {
     setArray([...array, ...infiniteArticle]);
   };
 
   return (
-    <div>
+    <PageTemplate>
       <s.Wrapper>
         <s.TopContainer>
           <AuthorIntro />
@@ -79,6 +79,6 @@ export default function AuthorInfo() {
           </ContentWrapper>
         </s.BottomContainer>
       </s.Wrapper>
-    </div>
+    </PageTemplate>
   );
 }

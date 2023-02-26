@@ -1,16 +1,16 @@
 import { NextPage } from "next";
 import React from "react";
-import * as s from "./styles";
 import Link from "next/link";
+import * as s from "./styles";
 
 export interface IAuthorProps {
   id: number;
   name: string;
   imgUrl: string;
-  introduce: string;
+  introduction: string;
 }
 
-const AuthorIntro: NextPage<IAuthorProps> = ({ id, name, imgUrl, introduce }: IAuthorProps) => {
+const AuthorIntro: NextPage<IAuthorProps> = ({ id, name, imgUrl, introduction }: IAuthorProps) => {
   return (
     <Link href={`/author/${id}`}>
       <s.ProfileContainer>
@@ -20,7 +20,7 @@ const AuthorIntro: NextPage<IAuthorProps> = ({ id, name, imgUrl, introduce }: IA
           </s.ProfileImage>
           <s.ProfileTextLabel>
             <s.ProfileAuthorName>{name}</s.ProfileAuthorName>
-            <s.ProfileIntro>{introduce}</s.ProfileIntro>
+            <s.ProfileIntro>{introduction}</s.ProfileIntro>
           </s.ProfileTextLabel>
         </s.ProfileBox>
       </s.ProfileContainer>

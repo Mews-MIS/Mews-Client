@@ -6,16 +6,30 @@ import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Comment from "@components/Comment";
 import Swal from "sweetalert2";
+import ArticleAPI from "@api/ArticleAPI";
 import * as s from "./styles";
 
 export interface NewsViewProps {
   isLike: boolean;
   isActive: boolean;
 }
+
+export const getServerSideProps = async () => {
+  const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
+  const popularArticleList = await ArticleAPI.getPopularArticles();
+
+  return {
+    props: {
+      newArticleList,
+      popularArticleList,
+    },
+  };
+};
+
 const NewsView = ({ isLike, isActive }: NewsViewProps) => {
   /* 더미데이터 */
   // 추후에 사진도 추가되어야 함
-  const [news, setNews] = useState<News>({
+  const [news, setNews] = useState<any>({
     category: "경정인을 소개합니다.",
     title: "뮤즈의 제작기 들어보실래요? \n -프론트엔드 최시운 편",
     created_at: "2023-01-25",

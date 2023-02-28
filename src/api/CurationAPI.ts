@@ -1,9 +1,9 @@
 import HttpClient from "../services/HttpClient";
 
-const EditorAPI = {
-  getAllEditors: async () => {
+const CurationAPI = {
+  getCheckedCuration: async () => {
     try {
-      const path = `editor/getall`;
+      const path = `curation/checked`;
       const response = await HttpClient.get(path);
       return response;
     } catch (e) {
@@ -12,9 +12,9 @@ const EditorAPI = {
     }
   },
 
-  getEditorInfo: async (editorId: number) => {
+  getCurationInfo: async (id: number) => {
     try {
-      const path = `editor/getone/${editorId}`;
+      const path = `curation/${id}`;
       const response = await HttpClient.get(path);
       return response;
     } catch (e) {
@@ -24,4 +24,4 @@ const EditorAPI = {
   },
 };
 
-export default EditorAPI;
+export default CurationAPI;

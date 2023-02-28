@@ -6,7 +6,7 @@ import EditorAPI from "@api/EditorAPI";
 import * as s from "./styles";
 
 export const getServerSideProps = async () => {
-  const editorList = await EditorAPI.getEditors();
+  const editorList = await EditorAPI.getAllEditors();
 
   return {
     props: {

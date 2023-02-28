@@ -42,17 +42,6 @@ export interface ILike {
   category: string;
 }
 
-export interface ISubscribe {
-  id: number;
-  title: string;
-  likeCount: number;
-  editors: string[];
-  img: string[];
-  bookmarked: boolean;
-  liked: boolean;
-  category: string;
-}
-
 const Mypage = () => {
   const [likeNum, setLikeNum] = useState(0);
   const [bookmarkNum, setBookmarkNum] = useState(0);
@@ -63,7 +52,6 @@ const Mypage = () => {
 
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
   const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
-  const [subscribeList, setSubscribeList] = useState<ISubscribe[]>(myBookmarkArticle);
 
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles();
@@ -92,14 +80,6 @@ const Mypage = () => {
       setLikeNum(likeList.length);
     });
   }, [likeList]);
-
-  useEffect(() => {
-    const subscribes: Promise<any> = MyLikeAPI.getLikes();
-    subscribes.then((data: ISubscribe[]) => {
-      setSubscribeList([...data]);
-      setSubscribeNum(subscribeList.length);
-    });
-  }, [subscribeList]);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals

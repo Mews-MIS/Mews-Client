@@ -52,9 +52,10 @@ const ContentCard = ({
         </s.ContentTopArea>
         <s.ContentBottomArea>
           <s.AuthorContainer>
-            {authorNames.map((name) => {
-              return <s.InformationLabel key={name}>{name}</s.InformationLabel>;
-            })}
+            {authorNames &&
+              authorNames.map((name) => {
+                return <s.InformationLabel key={name}>{name}</s.InformationLabel>;
+              })}
           </s.AuthorContainer>
           <s.LikeContainer onClick={onClickLike}>
             <s.LikeIconContainer className={like ? "active" : "inactive"}>

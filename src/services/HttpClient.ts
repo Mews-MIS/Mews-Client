@@ -24,6 +24,11 @@ const HttpClient = {
     return response.data;
   },
 
+  patch: async (path: string, body: unknown, headers = {}) => {
+    const response = await axiosInstance.patch(path, body, { headers });
+    return response.data;
+  },
+
   delete: async (path: string, headers = {}) => {
     const response = await axiosInstance.delete(path, { headers });
     return response.data;

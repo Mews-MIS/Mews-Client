@@ -12,6 +12,7 @@ import ArticleAPI from "@api/ArticleAPI";
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
+import CurationAPI from "@api/CurationAPI";
 import { Article, CurationType } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -28,18 +29,23 @@ const NoneContentWrapper = styled.div`
 export const getServerSideProps = async () => {
   const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
   const popularArticleList = await ArticleAPI.getPopularArticles();
+  const checkedCuration = await CurationAPI.getCheckedCuration();
+  const firstCurationInfo = await CurationAPI.getCurationInfo(checkedCuration[0].id);
 
   return {
     props: {
       newArticleList,
       popularArticleList,
+      checkedCuration,
+      firstCurationInfo,
     },
   };
 };
 
 export default function Home(props: any) {
   const curation: CurationType = Curations[0];
-  const { newArticleList, popularArticleList } = props;
+  const { newArticleList, popularArticleList, checkedCuration, firstCurationInfo } = props;
+  console.log(firstCurationInfo);
 
   return (
     <>
@@ -52,7 +58,7 @@ export default function Home(props: any) {
       </Head>
       <main>
         <PageTemplate>
-          <ContentWrapper contentName="내가 구독하고 있는 게시글" viewMoreLink="/link">
+          <ContentWrapper contentName="내가 구독하고 있는 게시글">
             {mySubscribeArticle.length ? (
               <CardSlider>
                 {mySubscribeArticle.map((element: any) => {
@@ -74,7 +80,7 @@ export default function Home(props: any) {
               <NoneContentWrapper>구독하고 있는 필진이 없습니다.</NoneContentWrapper>
             )}
           </ContentWrapper>
-          <ContentWrapper contentName="새로운 게시글" viewMoreLink="/newArticle">
+          <ContentWrapper contentName="새로운 게시글" viewMoreLink="/article">
             {newArticleList ? (
               <CardSlider>
                 {newArticleList.map((element: Article) => {
@@ -96,7 +102,6 @@ export default function Home(props: any) {
               <NoneContentWrapper>새로운 게시글이 없습니다.</NoneContentWrapper>
             )}
           </ContentWrapper>
-          console.log(popularArticleList.length)
           <ContentWrapper contentName="조회수 top5">
             {popularArticleList?.length
               ? popularArticleList.map((element: any, index: number) => {
@@ -110,21 +115,21 @@ export default function Home(props: any) {
                 })
               : "새로운 게시글이 없습니다."}
           </ContentWrapper>
-          <ContentWrapper contentName={curation.title} viewMoreLink={`/curation/${curation.title}`}>
+          <ContentWrapper contentName={firstCurationInfo.title}>
             <CardSlider>
-              {curation.content.map((element: Article) => {
-                return (
-                  <ContentCard
-                    key={`curation ${element.id}${element.title}`}
-                    category={element.type}
-                    title={element.title}
-                    authorNames={element.authorNames}
-                    isActive={element.isActive}
-                    isLike={element.isLike}
-                    like_count={element.like_count}
-                  />
-                );
-              })}
+              {/* {firstCurationInfo.list.map((article: Article) => { */}
+              {/*  return ( */}
+              {/*    <ContentCard */}
+              {/*      key={`curation ${element.id}${element.title}`} */}
+              {/*      category={element.type} */}
+              {/*      title={element.title} */}
+              {/*      authorNames={element.authorNames} */}
+              {/*      isActive={element.isActive} */}
+              {/*      isLike={element.isLike} */}
+              {/*      like_count={element.like_count} */}
+              {/*    /> */}
+              {/*  ); */}
+              {/* })} */}
             </CardSlider>
           </ContentWrapper>
         </PageTemplate>

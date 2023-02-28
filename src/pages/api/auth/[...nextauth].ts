@@ -8,4 +8,16 @@ export default NextAuth({
       clientSecret: "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",
     }),
   ],
+
+  callbacks: {
+    jwt: async ({ token, user, account }) => {
+      user && (token.user = user);
+      console.log(account);
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user = token.user;
+      return session;
+    },
+  },
 });

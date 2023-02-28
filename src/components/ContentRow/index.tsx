@@ -11,9 +11,11 @@ function ContentRow({ index, contentInfo }: ContentRowProps) {
   return (
     <Link href={`article/${contentInfo.id}`}>
       <s.Wrapper>
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label>{index}</label>
         <s.ImageContainer>
           {contentInfo.fileUrls ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img src={contentInfo.fileUrls[0]} alt="콘텐츠 이미지" width={70} height={50} />
           ) : (
             <s.DefaultImage />

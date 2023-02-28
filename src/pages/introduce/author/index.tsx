@@ -1,20 +1,32 @@
-import AuthorIntro, { IAuthorProps } from '@components/AuthorIntro';
-import BackBtn from '@components/BackBtn';
-import authors from '@pages/tmp/authors';
-import React from 'react';
+import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
+import BackBtn from "@components/BackBtn";
+import authors from "@pages/tmp/authors";
+import React from "react";
+import EditorAPI from "@api/EditorAPI";
 import * as s from "./styles";
 
-const AuthorIntroduce = () => {
+export const getServerSideProps = async () => {
+  const editorList = await EditorAPI.getAllEditors();
+
+  return {
+    props: {
+      editorList,
+    },
+  };
+};
+
+const AuthorIntroduce = (props: any) => {
+  const { editorList } = props;
   return (
     <s.Wrapper>
       <BackBtn />
       <s.AuthorList>
-        {
-          authors.map((data: IAuthorProps, index: number) => <AuthorIntro key={index} {...data}/>)
-        }
+        {editorList.map((data: IAuthorProps) => (
+          <AuthorIntro key={data.id} {...data} />
+        ))}
       </s.AuthorList>
     </s.Wrapper>
-  )
+  );
 };
 
 export default AuthorIntroduce;

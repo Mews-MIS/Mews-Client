@@ -13,7 +13,7 @@ import * as s from "./styles";
 const NewsPage = () => {
   const [items, setItems] = useState<NewsListIcon[]>([] as any); // 리스트에 나타낼 아이템
   const [count, setCount] = useState(0); // 아이템 총 개수
-  const [currentpage, setCurrentpage] = useState(1); // 현재페이지
+  const [currentPage, setcurrentPage] = useState(1); // 현재페이지
   const [postPerPage] = useState(10); // 페이지당 아이템 개수
 
   const [indexOfLastPost, setIndexOfLastPost] = useState(0);
@@ -23,13 +23,13 @@ const NewsPage = () => {
   useEffect(() => {
     setItems(NewsList);
     setCount(NewsList.length);
-    setIndexOfLastPost(currentpage * postPerPage);
+    setIndexOfLastPost(currentPage * postPerPage);
     setIndexOfFirstPost(indexOfLastPost - postPerPage);
     setCurrentPosts(NewsList.slice(indexOfFirstPost, indexOfLastPost));
-  }, [currentpage, indexOfFirstPost, indexOfLastPost, items, postPerPage]);
+  }, [currentPage, indexOfFirstPost, indexOfLastPost, items, postPerPage]);
 
   const setPage = (e: number) => {
-    setCurrentpage(e);
+    setcurrentPage(e);
   };
 
   return (
@@ -50,7 +50,7 @@ const NewsPage = () => {
             : "등록된 게시물이 없습니다"}
         </s.NewsListBox>
 
-        <Paging page={currentpage} count={count} setPage={setPage} />
+        <Paging page={currentPage} count={count} setPage={setPage} />
       </s.NewsbottomContainer>
     </s.Wrapper>
   );

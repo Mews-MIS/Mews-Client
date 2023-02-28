@@ -1,12 +1,11 @@
 import React, { Suspense } from "react";
-import * as s from "./styles";
 import MoveMonth from "@components/MoveMonth";
 import CalendarLayout from "@components/CalendarLayout";
 import PageTemplate from "@components/PageTemplate";
 import ScheduleLayout from "@components/ScheduleLayout";
+import * as s from "./styles";
 
 const Calendar = () => {
-
   return (
     <PageTemplate>
       <s.Wrapper>
@@ -19,7 +18,7 @@ const Calendar = () => {
         </Suspense>
       </s.Wrapper>
     </PageTemplate>
-  )
+  );
 };
 
 export default Calendar;

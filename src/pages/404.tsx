@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { PageTemplate } from "@pages/search/styles";
 import LargeLogo from "@public/icon/LargeLogo.svg";
 import theme from "@styles/Theme";
 import Link from "next/link";
+import PageTemplate from "../components/PageTemplate/index";
 
 const NotfoundPage = () => {
   return (

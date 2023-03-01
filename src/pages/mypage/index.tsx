@@ -47,7 +47,7 @@ const Mypage = () => {
   const [bookmarkNum, setBookmarkNum] = useState(0);
   const [subscribeNum, setSubscribeNum] = useState(0);
   const [name, setName] = useState("박상준");
-  const [introduce, setIntroduce] = useState("테스트 자기소개");
+  const [introduce, setIntroduce] = useState("테스트 자기소개입니다.");
   const [imgURL, setImgURL] = useState("/");
 
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);

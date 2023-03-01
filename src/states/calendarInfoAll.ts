@@ -1,16 +1,14 @@
 import axios from "axios";
 import { selector } from "recoil";
-import HttpClient from "src/services/HttpClient";
 
 const calendarInfoAllSelector = selector({
   key: "calendarInfoAllSelector",
-  get: async ({ get }) => {
-    const {data} = await axios.get(
-      `${process.env.SERVER_BASE_URL}calendar/getall`, 
-      {headers: {
-        Authorization: process.env.ACCESS_TOKEN
-      }}
-    );
+  get: async () => {
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}calendar/getall`, {
+      headers: {
+        Authorization: process.env.NEXT_TMP_ACCESS_TOKEN,
+      },
+    });
     return data;
   },
 });

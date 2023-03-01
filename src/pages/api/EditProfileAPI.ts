@@ -21,11 +21,9 @@ const EditProfileAPI = {
     try {
       /* User ID 는 전역 process.env에서 관리 */
       const path = `mypage/profile/${process.env.NEXT_PUBLIC_USERID}`;
-      const response: [] | undefined = await HttpClient.patch(
-        path,
-        { data },
-        { Authorization: process.env.NEXT_PUBLIC_TMP_ACCESS_TOKEN }
-      );
+      const response: [] | undefined = await HttpClient.patch(path, data, {
+        Authorization: process.env.NEXT_PUBLIC_TMP_ACCESS_TOKEN,
+      });
       console.log(response);
       return response;
     } catch (e) {

@@ -30,7 +30,8 @@ export const getServerSideProps = async () => {
   const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
   const popularArticleList = await ArticleAPI.getPopularArticles();
   const checkedCuration = await CurationAPI.getCheckedCuration();
-  const firstCurationInfo = await CurationAPI.getCurationInfo(checkedCuration[0].id);
+  const firstCurationInfo =
+    checkedCuration.length > 0 ? await CurationAPI.getCurationInfo(checkedCuration[0]) : [];
 
   return {
     props: {
@@ -45,7 +46,7 @@ export const getServerSideProps = async () => {
 export default function Home(props: any) {
   const curation: CurationType = Curations[0];
   const { newArticleList, popularArticleList, checkedCuration, firstCurationInfo } = props;
-  console.log(firstCurationInfo);
+  console.log(checkedCuration);
 
   return (
     <>
@@ -115,23 +116,25 @@ export default function Home(props: any) {
                 })
               : "새로운 게시글이 없습니다."}
           </ContentWrapper>
-          <ContentWrapper contentName={firstCurationInfo.title}>
-            <CardSlider>
-              {/* {firstCurationInfo.list.map((article: Article) => { */}
-              {/*  return ( */}
-              {/*    <ContentCard */}
-              {/*      key={`curation ${element.id}${element.title}`} */}
-              {/*      category={element.type} */}
-              {/*      title={element.title} */}
-              {/*      authorNames={element.authorNames} */}
-              {/*      isActive={element.isActive} */}
-              {/*      isLike={element.isLike} */}
-              {/*      like_count={element.like_count} */}
-              {/*    /> */}
-              {/*  ); */}
-              {/* })} */}
-            </CardSlider>
-          </ContentWrapper>
+          {firstCurationInfo.length > 0 ? (
+            <ContentWrapper contentName={firstCurationInfo.title}>
+              <CardSlider>
+                {firstCurationInfo.list.map((article: Article) => {
+                  return (
+                    <ContentCard
+                      key={`curation ${article.id}${article.title}`}
+                      category={article.type}
+                      title={article.title}
+                      authorNames={article.authorNames}
+                      isActive={article.isActive}
+                      isLike={article.isLike}
+                      like_count={article.like_count}
+                    />
+                  );
+                })}
+              </CardSlider>
+            </ContentWrapper>
+          ) : null}
         </PageTemplate>
       </main>
     </>

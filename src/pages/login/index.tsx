@@ -9,10 +9,8 @@ import * as s from "./styles";
 
 const NotLoginPage = () => {
   const { data, status } = useSession();
-  console.log(data, status);
   const handleClick = async () => {
     const response = await UserAPI.googleLogin();
-    console.log(response);
 
     return response;
   };

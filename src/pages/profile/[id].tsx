@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import * as s from "./styles";
+import React, { useEffect, useState } from "react";
 import { tmpImageURL } from "@pages/tmp/tmpImageURL";
-import TopNavBar from '@components/TopNavBar';
-import ContentWrapper from '@components/ContentWrapper';
-import CardsSlider from '@components/CardSlider';
-import myBookmarkArticle from '@pages/tmp/myBookmarkArticle';
-import { Article } from 'src/types/article';
-import ContentCard from '@components/ContentCard';
+import TopNavBar from "@components/TopNavBar";
+import ContentWrapper from "@components/ContentWrapper";
+import CardsSlider from "@components/CardSlider";
+import myBookmarkArticle from "@pages/tmp/myBookmarkArticle";
+import { Article } from "src/types/article";
+import ContentCard from "@components/ContentCard";
+import * as s from "./styles";
 
 const ProfilePage = () => {
   /* 비공개 여부 */
@@ -18,7 +18,7 @@ const ProfilePage = () => {
   const [name, setName] = useState("박상준");
   const [introduce, setIntroduce] = useState("테스트 자기소개");
   const blindedText = "해당 유저는 비공개 상태입니다.";
-  
+
   /* 비동기 처리 필요 */
   useEffect(() => {
     setName("박상준");
@@ -54,11 +54,11 @@ const ProfilePage = () => {
       </s.TopContainer>
 
       <s.BottomContainer>
-        {isPrivate ? 
+        {isPrivate ? (
           <s.BlindedWrapper>
             <s.BlindedContent>{blindedText}</s.BlindedContent>
-          </s.BlindedWrapper> 
-            :
+          </s.BlindedWrapper>
+        ) : (
           <ContentWrapper contentName={`${name}님이 북마크 한 글`}>
             <CardsSlider>
               {myBookmarkArticle.map((e: Article) => {
@@ -76,7 +76,7 @@ const ProfilePage = () => {
               })}
             </CardsSlider>
           </ContentWrapper>
-        }
+        )}
       </s.BottomContainer>
     </s.Wrapper>
   );

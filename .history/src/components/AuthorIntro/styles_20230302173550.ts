@@ -11,7 +11,6 @@ export const ProfileContainer = styled.div`
 `;
 export const ProfileBox = styled.div`
   padding-left: 5px;
-  width: 100%;
   display: flex;
   align-items: center;
 `;

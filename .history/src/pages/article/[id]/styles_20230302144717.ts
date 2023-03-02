@@ -3,6 +3,7 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   width: 100vw;
+  height: 100vh;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   display: flex;
   flex-direction: column;
@@ -58,17 +59,18 @@ export const content = styled.article`
   line-height: 3vh;
 `;
 export const AuthorIntroContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 4%;
 `;
 
 export const BottomContainer = styled.div`
   display: flex;
+  justify-content: center;
 `;
 export const BtnContainer = styled.div`
   padding: 10px 0 10px 0;
   border-top: 1px solid ${theme.COLORS.MAIN_ORANGE};
-  width: 100vmin;
   display: flex;
+  width: 90vw;
   justify-content: flex-end;
 `;
 
@@ -90,6 +92,8 @@ export const LinkIconContainer = styled.div`
 
 export const ArticleBottomContainer = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 `;
 

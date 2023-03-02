@@ -3,6 +3,7 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   width: 100vw;
+  height: 100%;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   display: flex;
   flex-direction: column;
@@ -11,10 +12,7 @@ export const Wrapper = styled.div`
   padding-bottom: 70px;
 `;
 
-export const newsviewContainer = styled.section`
-  width: 100vmin;
-  background-color: ${theme.COLORS.CONTAINER_WHITE};
-`;
+export const newsviewContainer = styled.section``;
 
 export const newsTitleContainer = styled.section`
   display: flex;
@@ -39,10 +37,15 @@ export const date = styled.div`
   color: #808080;
   font-size: ${theme.FONT_SIZE.SMALL_SIZE};
 `;
-export const newsImageContainer = styled.img`
-  width: 100vmin;
-  height: 100vmin;
+export const newsImageContainer = styled.div`
   display: flex;
+  width: 56vmin;
+  height: 56vmin;
+  max-width: 100%;
+  max-height: 900px;
+  max-width: 1200px;
+  min-height: 300px;
+  min-width: 400px;
   margin: 10px 0 10px 0;
   background-color: ${theme.COLORS.LINE_GRAY};
 `;
@@ -53,22 +56,26 @@ export const contentBox = styled.section`
 `;
 export const content = styled.article`
   display: flex;
+  min-width: 400px;
+  max-width: 1200px;
+  padding: 0 10px 0 10px;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.DEFAULT};
   line-height: 3vh;
 `;
 export const AuthorIntroContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 4%;
 `;
 
 export const BottomContainer = styled.div`
   display: flex;
+  justify-content: center;
 `;
 export const BtnContainer = styled.div`
   padding: 10px 0 10px 0;
   border-top: 1px solid ${theme.COLORS.MAIN_ORANGE};
-  width: 100vmin;
   display: flex;
+  width: 90vw;
   justify-content: flex-end;
 `;
 
@@ -90,7 +97,14 @@ export const LinkIconContainer = styled.div`
 
 export const ArticleBottomContainer = styled.div`
   display: flex;
+
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 `;
 
-export const ArticleBottomBox = styled.div``;
+export const ArticleBottomBox = styled.div`
+  width: 56vw;
+  min-width: 400px;
+  max-width: 1200px;
+`;

@@ -10,12 +10,11 @@ export const ProfileContainer = styled.div`
   background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 export const ProfileBox = styled.div`
-  padding-left: 5px;
-  width: 100%;
   display: flex;
+  width: 80%;
   align-items: center;
 `;
-export const ProfileImage = styled.div`
+export const ProfileImage = styled.img`
   width: 80px;
   height: 80px;
   background-color: ${theme.COLORS.LINE_GRAY};

@@ -88,7 +88,7 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
               <Link href="/">
-                <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" />
+                <AuthorIntro authorName="이정우" intro="꿈은 없고 놀고만 싶습니다." imageURL="" />
               </Link>
             </s.AuthorIntroContainer>
 

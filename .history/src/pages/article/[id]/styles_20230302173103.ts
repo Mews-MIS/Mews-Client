@@ -63,12 +63,13 @@ export const AuthorIntroContainer = styled.div`
 
 export const BottomContainer = styled.div`
   display: flex;
+  justify-content: center;
 `;
 export const BtnContainer = styled.div`
   padding: 10px 0 10px 0;
   border-top: 1px solid ${theme.COLORS.MAIN_ORANGE};
-  width: 100vmin;
   display: flex;
+  width: 90vw;
   justify-content: flex-end;
 `;
 
@@ -91,6 +92,7 @@ export const LinkIconContainer = styled.div`
 export const ArticleBottomContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100vmin;
 `;
 
 export const ArticleBottomBox = styled.div``;

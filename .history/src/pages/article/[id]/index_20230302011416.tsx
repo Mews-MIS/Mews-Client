@@ -79,7 +79,10 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
             <s.date>{news?.created_at}</s.date>
           </s.newsTitleBox>
         </s.newsTitleContainer>
-        <s.newsImageContainer>{/* 뉴스 이미지 들어갈 자리 */}</s.newsImageContainer>
+        <s.newsImageContainer>
+          {/* 뉴스 이미지 들어갈 자리 */}
+          <s.newsImageBox />
+        </s.newsImageContainer>
         <s.contentBox>
           <s.content>{news?.content}</s.content>
         </s.contentBox>
@@ -88,7 +91,7 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
               <Link href="/">
-                <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" />
+                <AuthorIntro authorName="이정우" intro="꿈은 없고 놀고만 싶습니다." imageURL="" />
               </Link>
             </s.AuthorIntroContainer>
 

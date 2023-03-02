@@ -10,8 +10,6 @@ export const ProfileContainer = styled.div`
   background-color: ${theme.COLORS.CONTAINER_WHITE};
 `;
 export const ProfileBox = styled.div`
-  padding-left: 5px;
-  width: 100%;
   display: flex;
   align-items: center;
 `;
@@ -23,6 +21,7 @@ export const ProfileImage = styled.div`
   overflow: hidden;
 `;
 export const Image = styled.img`
+  padding-left: 2px;
   width: 80px;
   height: 80px;
 `;

@@ -67,7 +67,7 @@ export const BottomContainer = styled.div`
 export const BtnContainer = styled.div`
   padding: 10px 0 10px 0;
   border-top: 1px solid ${theme.COLORS.MAIN_ORANGE};
-  width: 100vmin;
+  width: 100vminl
   display: flex;
   justify-content: flex-end;
 `;

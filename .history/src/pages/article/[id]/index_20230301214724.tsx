@@ -72,44 +72,52 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
   return (
     <s.Wrapper>
       <s.newsviewContainer>
-        <s.newsTitleContainer>
-          <s.newsTitleBox>
-            <s.category>{news?.category}</s.category>
-            <s.title>{news?.title}</s.title>
-            <s.date>{news?.created_at}</s.date>
-          </s.newsTitleBox>
-        </s.newsTitleContainer>
-        <s.newsImageContainer>{/* 뉴스 이미지 들어갈 자리 */}</s.newsImageContainer>
-        <s.contentBox>
-          <s.content>{news?.content}</s.content>
-        </s.contentBox>
+        <s.newsContainer>
+          <s.newsTitleContainer>
+            <s.newsTitleBox>
+              <s.category>{news?.category}</s.category>
+              <s.title>{news?.title}</s.title>
+              <s.date>{news?.created_at}</s.date>
+            </s.newsTitleBox>
+          </s.newsTitleContainer>
+          <s.newsImageContainer>
+            {/* 뉴스 이미지 들어갈 자리 */}
+            <s.newsImageBox />
+          </s.newsImageContainer>
+          <s.contentBox>
+            <s.content>{news?.content}</s.content>
+          </s.contentBox>
 
-        <s.ArticleBottomContainer>
-          <s.ArticleBottomBox>
-            <s.AuthorIntroContainer>
-              <Link href="/">
-                <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" />
-              </Link>
-            </s.AuthorIntroContainer>
+          <s.ArticleBottomContainer>
+            <s.ArticleBottomBox>
+              <s.AuthorIntroContainer>
+                <Link href="/">
+                  <AuthorIntro authorName="이정우" intro="꿈은 없고 놀고만 싶습니다." imageURL="" />
+                </Link>
+              </s.AuthorIntroContainer>
 
-            <s.BottomContainer>
-              <s.BtnContainer>
-                <s.LikeIconContainer onClick={onClickLike} className={like ? "active" : "inactive"}>
-                  <NewsViewLikeBtn />
-                </s.LikeIconContainer>
-                <s.BookmarkIconContainer
-                  onClick={onClickBookmark}
-                  className={active ? "active" : "inactive"}
-                >
-                  <NewsViewBookmarkBtn />
-                </s.BookmarkIconContainer>
-                <s.LinkIconContainer>
-                  <LinkBtn onClick={copyURL} />
-                </s.LinkIconContainer>
-              </s.BtnContainer>
-            </s.BottomContainer>
-          </s.ArticleBottomBox>
-        </s.ArticleBottomContainer>
+              <s.BottomContainer>
+                <s.BtnContainer>
+                  <s.LikeIconContainer
+                    onClick={onClickLike}
+                    className={like ? "active" : "inactive"}
+                  >
+                    <NewsViewLikeBtn />
+                  </s.LikeIconContainer>
+                  <s.BookmarkIconContainer
+                    onClick={onClickBookmark}
+                    className={active ? "active" : "inactive"}
+                  >
+                    <NewsViewBookmarkBtn />
+                  </s.BookmarkIconContainer>
+                  <s.LinkIconContainer>
+                    <LinkBtn onClick={copyURL} />
+                  </s.LinkIconContainer>
+                </s.BtnContainer>
+              </s.BottomContainer>
+            </s.ArticleBottomBox>
+          </s.ArticleBottomContainer>
+        </s.newsContainer>
       </s.newsviewContainer>
     </s.Wrapper>
   );

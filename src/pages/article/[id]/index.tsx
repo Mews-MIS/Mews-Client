@@ -4,7 +4,6 @@ import AuthorIntro from "@components/AuthorIntro";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
-import Comment from "@components/Comment";
 import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
 import * as s from "./styles";
@@ -14,19 +13,8 @@ export interface NewsViewProps {
   isActive: boolean;
 }
 
-export const getServerSideProps = async () => {
-  const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
-  const popularArticleList = await ArticleAPI.getPopularArticles();
-
-  return {
-    props: {
-      newArticleList,
-      popularArticleList,
-    },
-  };
-};
-
-const NewsView = ({ isLike, isActive }: NewsViewProps) => {
+const NewsView = (props: any) => {
+  console.log(props);
   /* 더미데이터 */
   // 추후에 사진도 추가되어야 함
   const [news, setNews] = useState<any>({
@@ -37,14 +25,21 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
       "코로나19로 인한 비대면 대학 생활로 인해, 3년 만에 대동전이 마지막이라 모두가 기억도 가물가물하고 준비하는 데 어려움이 있었을 텐데 여럿이 힘을 합쳐 재밌는 축제를 만들 수 있었던 것 같습니다. (식품산업공학과 19학번 김00)",
   });
 
-  const [like, setLike] = useState<Boolean>(isLike);
-  const [active, setActive] = useState<Boolean>(isActive);
+  const tmp = async () => {
+    const t = await ArticleAPI.getArticle(1);
+    return t;
+  };
+
+  useEffect(() => {
+    const ans = tmp();
+    console.log("ans", ans);
+  });
 
   const onClickLike = () => {
-    setLike(!like);
+    // setLike(!like);
   };
   const onClickBookmark = () => {
-    setActive(!active);
+    // setActive(!active);
   };
   const copyURL = () => {
     const currentUrl = window.document.location.href;
@@ -88,18 +83,18 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
               <Link href="/">
-                <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" />
+                {/* <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" /> */}
               </Link>
             </s.AuthorIntroContainer>
 
             <s.BottomContainer>
               <s.BtnContainer>
-                <s.LikeIconContainer onClick={onClickLike} className={like ? "active" : "inactive"}>
-                  <NewsViewLikeBtn />
-                </s.LikeIconContainer>
+                {/* <s.LikeIconContainer onClick={onClickLike} className={like ? "active" : "inactive"}> */}
+                {/*  <NewsViewLikeBtn /> */}
+                {/* </s.LikeIconContainer> */}
                 <s.BookmarkIconContainer
                   onClick={onClickBookmark}
-                  className={active ? "active" : "inactive"}
+                  // className={active ? "active" : "inactive"}
                 >
                   <NewsViewBookmarkBtn />
                 </s.BookmarkIconContainer>

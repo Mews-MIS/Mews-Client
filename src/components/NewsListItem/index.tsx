@@ -6,7 +6,16 @@ import { NewsListIcon } from "../../types/article";
 export interface NewsListItemProps {
   // eslint-disable-next-line react/no-unused-prop-types
   index: number;
-  contentInfo: NewsListIcon;
+  contentInfo: {
+    id: number;
+    title: string;
+    views: {
+      views: number;
+      views_id: number;
+    };
+    like_count: number;
+    filrUrls: string[];
+  };
 }
 
 function NewsListItem({ contentInfo }: NewsListItemProps) {
@@ -16,23 +25,13 @@ function NewsListItem({ contentInfo }: NewsListItemProps) {
         <s.NewsItemContainer>
           <s.LeftItems>
             <s.NewsTitle>{contentInfo.title}</s.NewsTitle>
-            <s.AuthorContainer>
-              {contentInfo.authorNames.map((name) => {
-                return <s.Author key={name}>{name}</s.Author>;
-              })}
-            </s.AuthorContainer>
             <s.CountItems>
-              <s.Views>조회수 {contentInfo.views}</s.Views>
-              <s.LikeNum>좋아요 {contentInfo.likeNum}</s.LikeNum>
-              <s.BookmarkNum>북마크 {contentInfo.bookmarkNum}</s.BookmarkNum>
+              <s.Views>조회수 {contentInfo.views.views}</s.Views>
+              <s.LikeNum>좋아요 {contentInfo.like_count}</s.LikeNum>
             </s.CountItems>
           </s.LeftItems>
           <s.RightItems>
-            <s.Thumbnail src={contentInfo.thumbnailURL} />
-            <s.CommentNumBox>
-              <s.CommentNum>{contentInfo.commentNum}</s.CommentNum>
-              <s.CommentCountLabel>댓글</s.CommentCountLabel>
-            </s.CommentNumBox>
+            <s.Thumbnail src={contentInfo.fileUrls[0]} />
           </s.RightItems>
         </s.NewsItemContainer>
       </s.Wrapper>

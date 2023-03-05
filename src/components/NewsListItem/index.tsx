@@ -14,7 +14,7 @@ export interface NewsListItemProps {
       views_id: number;
     };
     like_count: number;
-    filrUrls: string[];
+    fileUrls: string[];
   };
 }
 

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Swal from "sweetalert2";

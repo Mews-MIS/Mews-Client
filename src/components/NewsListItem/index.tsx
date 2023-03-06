@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import * as s from "./styles";
-import { NewsListIcon } from "../../types/article";
 
 export interface NewsListItemProps {
   // eslint-disable-next-line react/no-unused-prop-types

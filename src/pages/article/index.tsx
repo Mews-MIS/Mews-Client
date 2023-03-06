@@ -1,7 +1,7 @@
 import NewsPostCard, { NewsPostCardProps } from "@components/NewsPostCard";
 import NewsPostSlider from "@components/NewsPostSlider";
 import newsPost from "@pages/tmp/newsPostCards";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // eslint-disable-next-line import/no-named-as-default
 import Paging from "@components/Pagination";
 
@@ -11,13 +11,7 @@ import * as s from "./styles";
 
 const NewsPage = () => {
   const [pageNumber, setPageNumber] = useState(1); // 현재페이지
-  const { data: posts, isLoading } = usePostByPageNumber(pageNumber);
-
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
-
-  console.log(posts);
+  const { data: posts } = usePostByPageNumber(pageNumber);
 
   const setPage = (e: number) => {
     setPageNumber(e);

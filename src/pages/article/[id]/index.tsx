@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
 import { dehydrate, QueryClient } from "react-query";
 import useArticleById from "@hooks/query/article/useArticleById";
+import AuthorIntro from "@components/AuthorIntro";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
 
@@ -32,19 +33,9 @@ export const getServerSideProps = async (context: any) => {
   };
 };
 
-const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) => {
-  const { data: news, isLoading }: { data: Article; isLoading: boolean } = useArticleById(id);
+const NewsView = ({ id }: { id: number }) => {
+  const { data: news }: { data: any } = useArticleById(id);
 
-  if (isLoading) {
-    return <h1>로딩중</h1>;
-  }
-
-  const onClickLike = () => {
-    // setLike(!like);
-  };
-  const onClickBookmark = () => {
-    // setActive(!active);
-  };
   const copyURL = () => {
     const currentUrl = window.document.location.href;
     const url = document.createElement("textarea");
@@ -83,18 +74,15 @@ const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) =
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
               <Link href="/">
-                {/* <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" /> */}
+                <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" />
               </Link>
             </s.AuthorIntroContainer>
 
             <s.BottomContainer>
               <s.BtnContainer>
-                {/* <s.LikeIconContainer onClick={onClickLike} className={like ? "active" : "inactive"}> */}
-                {/*  <NewsViewLikeBtn /> */}
-                {/* </s.LikeIconContainer> */}
+                <s.LikeIconContainer />
                 <s.BookmarkIconContainer
-                  onClick={onClickBookmark}
-                  // className={active ? "active" : "inactive"}
+                // className={active ? "active" : "inactive"}
                 >
                   <NewsViewBookmarkBtn />
                 </s.BookmarkIconContainer>

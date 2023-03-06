@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import ArticleAPI from "@api/ArticleAPI";
-import { Article } from "../../../types/article";
 
 const useArticleById = (id: number, dehydratedState?: any) => {
   const { data } = useQuery(

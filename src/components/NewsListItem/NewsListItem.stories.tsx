@@ -1,4 +1,4 @@
-import NewsListItem, { NewsListItemProps } from "@components/NewListItem";
+import NewsListItem, { NewsListItemProps } from "@components/NewsListItem";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Story } from "@storybook/react";
 

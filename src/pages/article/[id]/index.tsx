@@ -1,11 +1,12 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import AuthorIntro from "@components/AuthorIntro";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
-import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
+import { dehydrate, QueryClient } from "react-query";
+import useArticleById from "@hooks/query/article/useArticleById";
+import { Article } from "../../../types/article";
 import * as s from "./styles";
 
 export interface NewsViewProps {
@@ -13,27 +14,31 @@ export interface NewsViewProps {
   isActive: boolean;
 }
 
-const NewsView = (props: any) => {
-  console.log(props);
-  /* 더미데이터 */
-  // 추후에 사진도 추가되어야 함
-  const [news, setNews] = useState<any>({
-    category: "경정인을 소개합니다.",
-    title: "뮤즈의 제작기 들어보실래요? \n -프론트엔드 최시운 편",
-    created_at: "2023-01-25",
-    content:
-      "코로나19로 인한 비대면 대학 생활로 인해, 3년 만에 대동전이 마지막이라 모두가 기억도 가물가물하고 준비하는 데 어려움이 있었을 텐데 여럿이 힘을 합쳐 재밌는 축제를 만들 수 있었던 것 같습니다. (식품산업공학과 19학번 김00)",
+export const getServerSideProps = async (context: any) => {
+  const { id } = context.query;
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery(["article", id], async () => {
+    const response = await ArticleAPI.getArticle(2);
+    const data: Article = response;
+
+    return data;
   });
 
-  const tmp = async () => {
-    const t = await ArticleAPI.getArticle(1);
-    return t;
+  return {
+    props: {
+      dehydrateState: dehydrate(queryClient),
+      id,
+    },
   };
+};
 
-  useEffect(() => {
-    const ans = tmp();
-    console.log("ans", ans);
-  });
+const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) => {
+  const { data: news, isLoading }: { data: Article; isLoading: boolean } = useArticleById(id);
+
+  if (isLoading) {
+    return <h1>로딩중</h1>;
+  }
 
   const onClickLike = () => {
     // setLike(!like);
@@ -60,21 +65,17 @@ const NewsView = (props: any) => {
     });
   };
 
-  useEffect(() => {
-    /*   getNews(); */
-  }, []);
-
   return (
     <s.Wrapper>
       <s.newsviewContainer>
         <s.newsTitleContainer>
           <s.newsTitleBox>
-            <s.category>{news?.category}</s.category>
+            <s.category>{news?.type}</s.category>
             <s.title>{news?.title}</s.title>
-            <s.date>{news?.created_at}</s.date>
+            <s.date>{`${news?.modifiedAt[0]}.${news?.modifiedAt[1]}.${news?.modifiedAt[2]} ${news?.modifiedAt[3]}:${news?.modifiedAt[4]}`}</s.date>
           </s.newsTitleBox>
         </s.newsTitleContainer>
-        <s.newsImageContainer>{/* 뉴스 이미지 들어갈 자리 */}</s.newsImageContainer>
+        <s.newsImageContainer src={news?.fileUrls[0]} alt="썸네일 이미지" />
         <s.contentBox>
           <s.content>{news?.content}</s.content>
         </s.contentBox>

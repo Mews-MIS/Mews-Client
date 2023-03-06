@@ -7,6 +7,9 @@ export interface Article {
   isLike: boolean;
   authorNames: string[];
   like_count: number;
+  modifiedAt: number[];
+
+  content?: string;
 }
 
 export interface ArticleSearchedResult {

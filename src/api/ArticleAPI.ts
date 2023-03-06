@@ -4,18 +4,7 @@ const ArticleAPI = {
   getArticle: async (id: number) => {
     try {
       const path = `article/${id}`;
-      const response = await HttpClient.get(path, { id });
-      return response;
-    } catch (e) {
-      console.log(e);
-      return null;
-    }
-  },
-
-  getArticleContent: async (articleId: number) => {
-    try {
-      const path = `article`;
-      const response = await HttpClient.get(path, { articleId });
+      const response = await HttpClient.get(path);
       return response;
     } catch (e) {
       console.log(e);

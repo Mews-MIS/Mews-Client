@@ -4,8 +4,6 @@ import ContentWrapper from "@components/ContentWrapper";
 import React from "react";
 import CardSlider from "@components/CardSlider";
 import mySubscribeArticle from "@pages/tmp/mySubscribeArticle";
-
-import Curations from "@pages/tmp/Curations";
 import PageTemplate from "@components/PageTemplate";
 
 import ArticleAPI from "@api/ArticleAPI";
@@ -13,7 +11,7 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
-import { Article, CurationType } from "../types/article";
+import { Article } from "../types/article";
 
 const NoneContentWrapper = styled.div`
   width: 100%;
@@ -44,9 +42,8 @@ export const getServerSideProps = async () => {
 };
 
 export default function Home(props: any) {
-  const curation: CurationType = Curations[0];
-  const { newArticleList, popularArticleList, checkedCuration, firstCurationInfo } = props;
-  console.log(checkedCuration);
+  const { newArticleList, popularArticleList, firstCurationInfo } = props;
+  console.log(newArticleList);
 
   return (
     <>
@@ -84,7 +81,7 @@ export default function Home(props: any) {
           <ContentWrapper contentName="새로운 게시글" viewMoreLink="/article">
             {newArticleList ? (
               <CardSlider>
-                {newArticleList.map((element: Article) => {
+                {newArticleList.articles.map((element: Article) => {
                   return (
                     <ContentCard
                       key={`new Article${element.id}${element.title}`}

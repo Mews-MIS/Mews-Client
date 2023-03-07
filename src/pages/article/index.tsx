@@ -11,7 +11,11 @@ import * as s from "./styles";
 
 const NewsPage = () => {
   const [pageNumber, setPageNumber] = useState(1); // 현재페이지
-  const { data: posts } = usePostByPageNumber(pageNumber);
+  const { data, isLoading } = usePostByPageNumber(pageNumber);
+
+  if (isLoading) {
+    return <h1>로딩중</h1>;
+  }
 
   const setPage = (e: number) => {
     setPageNumber(e);
@@ -28,16 +32,19 @@ const NewsPage = () => {
       </s.NewsTopContainer>
       <s.NewsbottomContainer>
         <s.NewsListBox>
-          {posts
-            ? posts.map((element: any, index: number) => {
+          {data.articles
+            ? data.articles.map((element: any, index: number) => {
                 return <NewsListItem key={element.id} index={index + 1} contentInfo={element} />;
               })
             : "등록된 게시물이 없습니다"}
         </s.NewsListBox>
 
-        <Paging page={pageNumber} count={10} setPage={setPage} />
+
+        <Paging page={pageNumber} count={data.pageCount} setPage={setPage} />
       </s.NewsbottomContainer>
     </s.Wrapper>
   );
 };
+
+// 100 pageCount = Math.ceil(articleSum/10)
 export default NewsPage;

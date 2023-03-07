@@ -4,7 +4,13 @@ import React from "react";
 import styled from "styled-components";
 import theme from "@styles/Theme";
 
-export const Paging = ({ page, count, setPage }) => {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export interface pagingProps {
+  page: number;
+  count: number;
+  setPage: (value: number) => void;
+}
+export const Paging = ({ page, count, setPage }: pagingProps) => {
   const PaginationBox = styled.div`
     .pagination {
       display: flex;

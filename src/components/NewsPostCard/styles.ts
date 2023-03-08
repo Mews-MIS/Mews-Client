@@ -22,9 +22,8 @@ export const ContentContainer = styled.div`
 export const ImageContainer = styled.div`
   margin: 0 auto 15px auto; 
   height: 45vw;
-  width: 80vw;
+  width: 100%;
   min-height: 200px;
-  min-width: 340px;
   max-height: 400px;
   background-color: ${theme.COLORS.LINE_GRAY};
   border-radius: 20px;

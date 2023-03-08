@@ -17,6 +17,11 @@ export const ContentWrapper = styled.div`
   margin: 0;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const CardWrapper = styled.div`

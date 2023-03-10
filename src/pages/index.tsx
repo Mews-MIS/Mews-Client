@@ -29,7 +29,7 @@ export const getServerSideProps = async () => {
   const popularArticleList = await ArticleAPI.getPopularArticles();
   const checkedCuration = await CurationAPI.getCheckedCuration();
   const firstCurationInfo =
-    checkedCuration.length > 0 ? await CurationAPI.getCurationInfo(checkedCuration[0]) : [];
+    checkedCuration?.length > 0 ? await CurationAPI.getCurationInfo(checkedCuration[0]) : [];
 
   return {
     props: {

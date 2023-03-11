@@ -1,7 +1,7 @@
 import CalendarDays from "@components/CalendarDays";
 // eslint-disable-next-line import/no-cycle
 import DayItem from "@components/DayItem";
-import { addDays, endOfMonth, format, startOfDay, startOfMonth, startOfWeek } from "date-fns";
+import { addDays, endOfMonth, format, startOfDay, startOfMonth, startOfWeek, isWithinInterval } from "date-fns";
 import { useEffect, useMemo } from "react";
 import { useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from "recoil";
 import calendarInfoAllSelector from "src/states/calendarInfoAll";
@@ -21,7 +21,7 @@ export interface IPropsDayItem {
 export interface IDayItem {
   title?: string;
   startDate: number[];
-  endDate?: number[];
+  endDate: number[];
   category: string;
 }
 
@@ -78,7 +78,7 @@ const CalendarLayout = () => {
     switch (allCalendarDateLoadable.state) {
       case "hasValue":
         allCalendarDateLoadable.contents.map((item: IDayItem) =>
-          categories.push({ category: item.category, startDate: item.startDate })
+          categories.push({ category: item.category, startDate: item.startDate, endDate: item.endDate })
         );
         // eslint-disable-next-line array-callback-return
         categories.map((item) => {
@@ -92,9 +92,10 @@ const CalendarLayout = () => {
               item.category,
             ]);
         });
-        console.log(dayList);
+        console.log({dayList});
         console.log({ categories });
         break;
+
       default:
         console.log(allCalendarDateLoadable.state);
     }
@@ -103,7 +104,7 @@ const CalendarLayout = () => {
   switch (allCalendarDateLoadable.state) {
     case "hasValue":
       allCalendarDateLoadable.contents.map((item: IDayItem) =>
-        categories.push({ category: item.category, startDate: item.startDate })
+        categories.push({ category: item.category, startDate: item.startDate, endDate: item.endDate })
       );
       // eslint-disable-next-line array-callback-return
       categories.map((item) => {
@@ -118,8 +119,10 @@ const CalendarLayout = () => {
           ]);
       });
       break;
+
     case "hasError":
       throw allCalendarDateLoadable.contents;
+      
     default:
       console.log(allCalendarDateLoadable.state);
   }
@@ -156,7 +159,7 @@ const CalendarLayout = () => {
                       categories={
                         dayList.has(
                           `${+format(day, "yyyy")}_${+format(day, "M")}_${+format(day, "dd")}`
-                        )
+                        ) && isWithinInterval(day, {start: new Date(day.getFullYear(), day.getMonth(),day.getDate()-10), end: new Date(day.getFullYear(), day.getMonth(),day.getDate()+10)})
                           ? dayList.get(
                               `${+format(day, "yyyy")}_${+format(day, "M")}_${+format(day, "dd")}`
                             )!

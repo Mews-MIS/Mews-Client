@@ -21,13 +21,13 @@ export const EditContainer = styled.div`
 `;
 
 export const EditImageContainer = styled.div`
-  width: 60vw;
+  width: 60%;
   margin-top: 5%;
   margin-bottom: 7%;
 `;
 
 export const EditInfoContainer = styled.div`
-  width: 60vw;
+  width: 60%;
 `;
 
 export const ToggleContainer = styled.div`
@@ -113,12 +113,15 @@ export const IntroduceTextarea = styled.textarea`
 `;
 
 export const EditBtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin-top: 70px;
   margin-bottom: 70px;
 `;
 
 export const EditFinishBtn = styled.button`
-  width: 60vw;
+  width: 60%;
   height: 35px;
   display: flex;
   justify-content: center;

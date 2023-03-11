@@ -2,18 +2,12 @@ import React from "react";
 import LargeLogo from "@public/icon/LargeLogo.svg";
 import TopNavBar from "@components/TopNavBar";
 import BottomNavBar from "@components/BottomNavbar";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import GLogo from "@public/icon/GLogo.svg";
-import UserAPI from "@api/UserAPI";
 import * as s from "./styles";
 
 const NotLoginPage = () => {
   const { data, status } = useSession();
-  const handleClick = async () => {
-    const response = await UserAPI.googleLogin();
-
-    return response;
-  };
 
   return (
     <s.Wrapper>
@@ -26,10 +20,11 @@ const NotLoginPage = () => {
         <s.MewsIntro>지금 뮤즈에 가입하고</s.MewsIntro>
         <s.MewsAd>기깔나는 홍보문구 들어갈 자리</s.MewsAd>
 
-        <s.Button onClick={() => signIn()}>
+        <s.Button onClick={() => signIn("google")}>
           <GLogo style={{ marginRight: "4%" }} />
           Sign in with Google
         </s.Button>
+        {/* <LoginButton /> */}
 
         <BottomNavBar />
       </s.NotLoginContainer>

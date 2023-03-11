@@ -116,3 +116,17 @@ export const EditBtnContainer = styled.div`
   margin-top: 70px;
   margin-bottom: 70px;
 `;
+
+export const EditFinishBtn = styled.button`
+  width: 60vw;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${theme.COLORS.CONTAINER_WHITE};
+  background: ${(props) =>
+    props["aria-checked"] ? theme.COLORS.FILTER_GRAY : theme.COLORS.MAIN_ORANGE};
+  border-radius: 3em;
+  border-color: transparent;
+  cursor: ${(props) => (props["aria-checked"] ? `not-allowed` : `pointer`)};
+`;

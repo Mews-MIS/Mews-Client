@@ -1,6 +1,5 @@
 import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
 import BackBtn from "@components/BackBtn";
-import authors from "@pages/tmp/authors";
 import React from "react";
 import EditorAPI from "@api/EditorAPI";
 import * as s from "./styles";

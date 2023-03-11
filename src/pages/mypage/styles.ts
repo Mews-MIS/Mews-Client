@@ -67,7 +67,7 @@ export const EditProfileBtn = styled.button`
 `;
 
 export const ArticleNumberContainer = styled.div`
-  width: 60vw;
+  width: 60%;
   margin-top: 20px;
   display: flex;
   justify-content: space-between;

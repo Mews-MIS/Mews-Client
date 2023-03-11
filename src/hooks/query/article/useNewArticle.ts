@@ -1,11 +1,13 @@
 import { useQuery } from "react-query";
-import { QueryKey } from "@constants/enums";
 import ArticleAPI from "@api/ArticleAPI";
 
-const useNewArticle = () => {
-  const { data } = useQuery([QueryKey], () => ArticleAPI.getPageArticles({ page: 1 }));
+const usePostByPageNumber = (pageNumber: number) => {
+  const { data, isLoading } = useQuery(["posts", pageNumber], async () => {
+    const posts = await ArticleAPI.getPageArticles({ page: pageNumber });
+    return posts;
+  });
 
-  return { newArticleList: data };
+  return { data, isLoading };
 };
 
-export default useNewArticle;
+export default usePostByPageNumber;

@@ -1,12 +1,12 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import AuthorIntro from "@components/AuthorIntro";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
-import NewsViewLikeBtn from "@public/button/NewsViewLikeBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
-import Comment from "@components/Comment";
 import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
+import { dehydrate, QueryClient } from "react-query";
+import useArticleById from "@hooks/query/article/useArticleById";
+import AuthorIntro from "@components/AuthorIntro";
+import { Article } from "../../../types/article";
 import * as s from "./styles";
 
 export interface NewsViewProps {
@@ -14,38 +14,28 @@ export interface NewsViewProps {
   isActive: boolean;
 }
 
-export const getServerSideProps = async () => {
-  const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
-  const popularArticleList = await ArticleAPI.getPopularArticles();
+export const getServerSideProps = async (context: any) => {
+  const { id } = context.query;
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery(["article", id], async () => {
+    const response = await ArticleAPI.getArticle(2);
+    const data: Article = response;
+
+    return data;
+  });
 
   return {
     props: {
-      newArticleList,
-      popularArticleList,
+      dehydrateState: dehydrate(queryClient),
+      id,
     },
   };
 };
 
-const NewsView = ({ isLike, isActive }: NewsViewProps) => {
-  /* 더미데이터 */
-  // 추후에 사진도 추가되어야 함
-  const [news, setNews] = useState<any>({
-    category: "경정인을 소개합니다.",
-    title: "뮤즈의 제작기 들어보실래요? \n -프론트엔드 최시운 편",
-    created_at: "2023-01-25",
-    content:
-      "코로나19로 인한 비대면 대학 생활로 인해, 3년 만에 대동전이 마지막이라 모두가 기억도 가물가물하고 준비하는 데 어려움이 있었을 텐데 여럿이 힘을 합쳐 재밌는 축제를 만들 수 있었던 것 같습니다. (식품산업공학과 19학번 김00)",
-  });
+const NewsView = ({ id }: { id: number }) => {
+  const { data: news }: { data: any } = useArticleById(id);
 
-  const [like, setLike] = useState<Boolean>(isLike);
-  const [active, setActive] = useState<Boolean>(isActive);
-
-  const onClickLike = () => {
-    setLike(!like);
-  };
-  const onClickBookmark = () => {
-    setActive(!active);
-  };
   const copyURL = () => {
     const currentUrl = window.document.location.href;
     const url = document.createElement("textarea");
@@ -65,60 +55,44 @@ const NewsView = ({ isLike, isActive }: NewsViewProps) => {
     });
   };
 
-  useEffect(() => {
-    /*   getNews(); */
-  }, []);
-
   return (
     <s.Wrapper>
       <s.newsviewContainer>
-        <s.newsContainer>
-          <s.newsTitleContainer>
-            <s.newsTitleBox>
-              <s.category>{news?.category}</s.category>
-              <s.title>{news?.title}</s.title>
-              <s.date>{news?.created_at}</s.date>
-            </s.newsTitleBox>
-          </s.newsTitleContainer>
-          <s.newsImageContainer>
-            {/* 뉴스 이미지 들어갈 자리 */}
-            <s.newsImageBox />
-          </s.newsImageContainer>
-          <s.contentBox>
-            <s.content>{news?.content}</s.content>
-          </s.contentBox>
+        <s.newsTitleContainer>
+          <s.newsTitleBox>
+            <s.category>{news?.type}</s.category>
+            <s.title>{news?.title}</s.title>
+            <s.date>{`${news?.modifiedAt[0]}.${news?.modifiedAt[1]}.${news?.modifiedAt[2]} ${news?.modifiedAt[3]}:${news?.modifiedAt[4]}`}</s.date>
+          </s.newsTitleBox>
+        </s.newsTitleContainer>
+        <s.newsImageContainer src={news?.fileUrls[0]} alt="썸네일 이미지" />
+        <s.contentBox>
+          <s.content>{news?.content}</s.content>
+        </s.contentBox>
 
-          <s.ArticleBottomContainer>
-            <s.ArticleBottomBox>
-              <s.AuthorIntroContainer>
-                <Link href="/">
-                  <AuthorIntro authorName="이정우" intro="꿈은 없고 놀고만 싶습니다." imageURL="" />
-                </Link>
-              </s.AuthorIntroContainer>
+        <s.ArticleBottomContainer>
+          <s.ArticleBottomBox>
+            <s.AuthorIntroContainer>
+              <Link href="/">
+                <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" />
+              </Link>
+            </s.AuthorIntroContainer>
 
-              <s.BottomContainer>
-                <s.BtnContainer>
-                  <s.LikeIconContainer
-                    onClick={onClickLike}
-                    className={like ? "active" : "inactive"}
-                  >
-                    <NewsViewLikeBtn />
-                  </s.LikeIconContainer>
-                  <s.BookmarkIconContainer
-                    onClick={onClickBookmark}
-                    className={active ? "active" : "inactive"}
-                  >
-                    <NewsViewBookmarkBtn />
-                  </s.BookmarkIconContainer>
-                  <s.LinkIconContainer>
-                    <LinkBtn onClick={copyURL} />
-                  </s.LinkIconContainer>
-                </s.BtnContainer>
-              </s.BottomContainer>
-            </s.ArticleBottomBox>
-          </s.ArticleBottomContainer>
-        </s.newsContainer>
-        <Comment commentArray={undefined} />
+            <s.BottomContainer>
+              <s.BtnContainer>
+                <s.LikeIconContainer />
+                <s.BookmarkIconContainer
+                // className={active ? "active" : "inactive"}
+                >
+                  <NewsViewBookmarkBtn />
+                </s.BookmarkIconContainer>
+                <s.LinkIconContainer>
+                  <LinkBtn onClick={copyURL} />
+                </s.LinkIconContainer>
+              </s.BtnContainer>
+            </s.BottomContainer>
+          </s.ArticleBottomBox>
+        </s.ArticleBottomContainer>
       </s.newsviewContainer>
     </s.Wrapper>
   );

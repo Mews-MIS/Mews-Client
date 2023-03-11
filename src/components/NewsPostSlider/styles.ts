@@ -17,6 +17,11 @@ export const ContentWrapper = styled.div`
   margin: 0;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const CardWrapper = styled.div`
@@ -36,6 +41,7 @@ export const Dot = styled.div`
   height: 10px;
   border-radius: 50px;
   margin: 0 1% 3%;
+  cursor: pointer;
   background-color: ${theme.COLORS.LINE_GRAY};
   &.active {
     background-color: ${theme.COLORS.BRIGHT_ORANGE};

@@ -133,3 +133,39 @@ export const EditFinishBtn = styled.button`
   border-color: transparent;
   cursor: ${(props) => (props["aria-checked"] ? `not-allowed` : `pointer`)};
 `;
+
+
+export const EditWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const EditingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const EditImageBox = styled.div`
+  width: 140px;
+  height: 140px;
+  border-radius: 70%;
+  overflow: hidden;
+`;
+
+export const EditImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const EditImageLabel = styled.label`
+  font-size: ${theme.FONT_SIZE.SUB_TITLE_SIZE};
+  color: ${theme.COLORS.CONFORM_BLUE};
+  margin-top: 3%;
+  cursor: pointer;
+`;
+
+export const EditImageBtn = styled.input`
+  display: none;
+`;

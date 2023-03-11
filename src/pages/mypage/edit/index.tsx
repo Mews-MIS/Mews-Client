@@ -1,8 +1,8 @@
-import EditProfileImage from "@components/EditProfileImage";
 import PageTemplate from "@components/PageTemplate";
 import TobNavBar from "@components/TopNavBar";
 import EditProfileAPI from "@pages/api/EditProfileAPI";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { tmpImageURL } from "@pages/tmp/tmpImageURL";
 import { IProfile } from "..";
 import * as s from "./styles";
 
@@ -15,21 +15,51 @@ export interface IEditProfile {
 }
 
 const EditMypage = () => {
+
   const [isFirstState, setIsFirstState] = useState(true); // 수정 사항 없다면 버튼 비활성화
 
   const [name, setName] = useState("박상준");
   const [introduce, setIntroduce] = useState("테스트 자기소개");
   const [isOpen, setIsOpen] = useState(false);
-  const [imgURL, setImgURL] = useState("/");
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [imageURL, setImageURL] = useState<string | ArrayBuffer | undefined | null>(tmpImageURL);
+  const [firstImgURL, setFirstImgURL] = useState("");
+  const [isImgChanged, setIsImgChanged] = useState(false);
+
+  let formData: FormData;
 
   useEffect(() => {
+    formData = new FormData();
     const profile: Promise<any> = EditProfileAPI.getProfile();
     profile.then((data: IProfile) => {
       setName(data.userName);
       setIntroduce(data.introduction);
-      setImgURL(data.imgUrl);
+      setImageURL(data.imgUrl);
+      setFirstImgURL(data.imgUrl);
     });
   }, []);
+
+  useEffect(() => {
+    if(imageURL === firstImgURL) setIsImgChanged(true);
+    else setIsImgChanged(false);
+  }, [imageURL])
+
+  const handleChangedFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+    if(e.target.files){
+      reader.readAsDataURL(e.target.files[0]);
+      if(formData) formData.append("file", e.target.files[0]);
+      else {
+        formData = new FormData();
+        formData.append("file", e.target.files[0]);
+      }
+    }
+    reader.onloadend = () => {
+      const resultImage = reader.result;
+      setImageURL(resultImage);
+    };
+  };
 
   const toggleHandler = () => {
     setIsOpen(!isOpen);
@@ -47,12 +77,20 @@ const EditMypage = () => {
   };
 
   const sendEditProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
-    EditProfileAPI.patchProfile({
+    const value = [{
       introduction: introduce,
       open: isOpen,
-      userEmail: "testemail123123@gmail.com",
       userName: name,
-    });
+    }];
+
+    const blob = new Blob([JSON.stringify(value)], {type: "application/json"});
+    if(formData) formData.append("data", blob);
+    else {
+      formData = new FormData();
+      formData.append("data", blob);
+    }
+
+    EditProfileAPI.patchProfile(formData);
   };
 
   return (
@@ -62,7 +100,15 @@ const EditMypage = () => {
           <TobNavBar />
           <s.EditContainer>
             <s.EditImageContainer>
-              <EditProfileImage />
+              <s.EditWrapper>
+                <s.EditingContainer>
+                  <s.EditImageBox>
+                    <s.EditImage src={imageURL?.toString()} />
+                  </s.EditImageBox>
+                  <s.EditImageLabel htmlFor="file">프로필 사진 편집</s.EditImageLabel>
+                  <s.EditImageBtn type="file" id="file" accept="image/*" onChange={handleChangedFile} ref={fileInputRef} />
+                </s.EditingContainer>
+              </s.EditWrapper>
             </s.EditImageContainer>
 
             <s.EditInfoContainer>

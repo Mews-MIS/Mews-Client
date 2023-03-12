@@ -1,51 +1,95 @@
-import { NextApiHandler } from "next";
-import NextAuth, { InitOptions } from "next-auth";
+import NextAuth, { SignInCallback, JWTCallback, SessionCallback } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { JWT } from "next-auth/jwt";
+import UserAPI from "@api/UserAPI";
 
-interface User {
-  name?: string;
-  email?: string;
-  image?: string;
-}
-
-interface Token extends JWT {
-  accessToken?: string;
-}
-
-interface Session {
-  user?: User;
-  accessToken?: string;
-}
-
-const authHandler: NextApiHandler = async (req, res) => {
-  const options: InitOptions = {
-    providers: [
-      GoogleProvider({
-        clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-        clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
-      }),
-    ],
-    callbacks: {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      async jwt(token: Token, _user: User, account: any, _profile: any, _isNewUser: boolean) {
-        // JWT 토큰을 생성할 때, 사용자 정보를 저장합니다.
-        const newToken = { ...token, accessToken: account?.accessToken };
-        return newToken;
-      },
-      async session(session: Session, token: Token) {
-        // 세션에 사용자 정보를 저장합니다.
-        const newSession = { ...session, accessToken: token.accessToken };
-        return newSession;
-      },
-    },
-    session: {
-      jwt: true,
-    },
-    jwt: {},
+type User = {
+  user: {
+    email?: string;
+    name?: string;
+    image?: string;
   };
-
-  await NextAuth(req, res, options);
 };
 
-export default authHandler;
+type Account = {
+  provider?: string;
+  id?: string;
+};
+
+type Profile = Record<string, unknown>;
+
+type JWT = {
+  email?: string;
+  name?: string;
+  [key: string]: any;
+};
+
+type Session = {
+  user: {
+    email?: string;
+    name?: string;
+  };
+};
+
+const callbacks = {
+  signIn: async (params: User): Promise<SignInCallback> => {
+    const user = params as User;
+    const { name, email, image } = user.user;
+    console.log("datadsfadsfadsfadsfadsfaf", user.user);
+    try {
+      const response = await UserAPI.googleLogin({
+        userEmail: email,
+        userName: name,
+        imgUrl: "",
+        introduction: "",
+      });
+      return "/";
+    } catch (error) {
+      // 오류 처리
+      throw new Error("Unable to sign in");
+    }
+  },
+  jwt: async (
+    token: JWT,
+    user: User,
+    account: Account,
+    profile: Profile,
+    isNewUser: boolean
+  ): Promise<JWTCallback> => {
+    const newToken: JWT = {
+      ...token,
+    };
+
+    if (user) {
+      newToken.email = user.user.email;
+      newToken.name = user.user.name;
+    }
+
+    return newToken;
+  },
+  session: async (session: Session, token: JWT): Promise<SessionCallback> => {
+    debugger;
+    const newSession: Session = {
+      ...session,
+      user: {
+        ...session.user,
+        email: token.email,
+        name: token.name,
+      },
+    };
+
+    return newSession;
+  },
+};
+
+const options = {
+  providers: [
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
+    }),
+  ],
+  callbacks,
+};
+
+// @ts-ignore
+export default (req: any, res: any) => NextAuth(req, res, options);

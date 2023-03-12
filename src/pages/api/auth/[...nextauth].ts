@@ -1,6 +1,7 @@
 import NextAuth, { SignInCallback, JWTCallback, SessionCallback } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import UserAPI from "@api/UserAPI";
+import { setCookie } from "nookies";
 
 type User = {
   user: {
@@ -31,10 +32,8 @@ type Session = {
 };
 
 const callbacks = {
-  signIn: async (params: User): Promise<SignInCallback> => {
-    const user = params as User;
-    const { name, email, image } = user.user;
-    console.log("datadsfadsfadsfadsfadsfaf", user.user);
+  signIn: async (params: any): Promise<SignInCallback> => {
+    const { email, name, image } = params.user;
     try {
       const response = await UserAPI.googleLogin({
         userEmail: email,
@@ -42,42 +41,30 @@ const callbacks = {
         imgUrl: "",
         introduction: "",
       });
-      return "/";
+      console.log(response);
+
+      const token = response.atk;
+      setCookie(null, "access_token", token, {
+        maxAge: 30 * 24 * 60 * 60, // 30일간 유지
+        path: "/",
+      });
+
+      console.log(response);
+
+      return true;
     } catch (error) {
       // 오류 처리
       throw new Error("Unable to sign in");
     }
   },
-  jwt: async (
-    token: JWT,
-    user: User,
-    account: Account,
-    profile: Profile,
-    isNewUser: boolean
-  ): Promise<JWTCallback> => {
-    const newToken: JWT = {
-      ...token,
-    };
+  async session({ session, token, user }) {
+    // Send properties to the client, like an access_token from a provider.
 
-    if (user) {
-      newToken.email = user.user.email;
-      newToken.name = user.user.name;
-    }
-
-    return newToken;
-  },
-  session: async (session: Session, token: JWT): Promise<SessionCallback> => {
-    debugger;
-    const newSession: Session = {
+    return {
       ...session,
-      user: {
-        ...session.user,
-        email: token.email,
-        name: token.name,
-      },
+      accessToken: token.accessToken,
+      response: session.response,
     };
-
-    return newSession;
   },
 };
 

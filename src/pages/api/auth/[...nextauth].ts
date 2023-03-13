@@ -25,12 +25,27 @@ const callbacks = {
       throw new Error("Unable to sign in");
     }
   },
-  async session({ session, token }) {
+  async session({ session }) {
     // Send properties to the client, like an access_token from a provider.
+    const { user } = session;
+    const response = await UserAPI.googleLogin({
+      userEmail: user.email,
+      userName: user.name,
+      imgUrl: user.image,
+      introduction: "",
+    });
+
+    const token = response.atk;
+    const userId = response.id;
+
+    setCookie(null, "access_token", token, {
+      maxAge: 30 * 24 * 60 * 60, // 30일간 유지
+    });
+
     return {
       ...session,
-      accessToken: token.accessToken,
-      response: session.response,
+      userId,
+      accessToken: token,
     };
   },
 };

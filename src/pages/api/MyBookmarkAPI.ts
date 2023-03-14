@@ -1,14 +1,13 @@
 import HttpClient from "src/services/HttpClient";
 
 const MyBookmarkAPI = {
-  getBookmarks: async () => {
+  getBookmarks: async (session: any) => {
     try {
-      /* User ID 는 전역 process.env에서 관리 */
-      const path = `mypage/${process.env.NEXT_PUBLIC_USERID}/myBookmark`;
+      const path = `mypage/${session?.userId}/myBookmark`;
       const response: [] | undefined = await HttpClient.get(
         path,
         {},
-        { Authorization: process.env.NEXT_PUBLIC_TMP_ACCESS_TOKEN }
+        { Authorization: `Bearer ` + session?.accessToken }
       );
       console.log(response);
       return response;

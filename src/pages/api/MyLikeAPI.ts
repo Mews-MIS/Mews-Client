@@ -1,14 +1,14 @@
 import HttpClient from "src/services/HttpClient";
 
 const MyLikeAPI = {
-  getLikes: async () => {
+  getLikes: async (session: any) => {
     try {
-      /* User ID 는 전역 process.env에서 관리 */
-      const path = `mypage/${process.env.NEXT_PUBLIC_USERID}/myLikeArticle`;
+
+      const path = `mypage/${session?.userId}/myLikeArticle`;
       const response: [] | undefined = await HttpClient.get(
         path,
         {},
-        { Authorization: process.env.NEXT_PUBLIC_TMP_ACCESS_TOKEN }
+        { Authorization: `Bearer ` + session?.accessToken }
       );
       console.log(response);
       return response;

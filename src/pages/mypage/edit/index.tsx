@@ -2,6 +2,7 @@ import EditProfileImage from "@components/EditProfileImage";
 import PageTemplate from "@components/PageTemplate";
 import TobNavBar from "@components/TopNavBar";
 import EditProfileAPI from "@pages/api/EditProfileAPI";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { IProfile } from "..";
 import * as s from "./styles";
@@ -17,13 +18,15 @@ export interface IEditProfile {
 const EditMypage = () => {
   const [isFirstState, setIsFirstState] = useState(true); // 수정 사항 없다면 버튼 비활성화
 
-  const [name, setName] = useState("박상준");
-  const [introduce, setIntroduce] = useState("테스트 자기소개");
+  const [name, setName] = useState("");
+  const [introduce, setIntroduce] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [imgURL, setImgURL] = useState("/");
 
+  const { data: session } = useSession();
+
   useEffect(() => {
-    const profile: Promise<any> = EditProfileAPI.getProfile();
+    const profile: Promise<any> = EditProfileAPI.getProfile(session);
     profile.then((data: IProfile) => {
       setName(data.userName);
       setIntroduce(data.introduction);
@@ -50,9 +53,8 @@ const EditMypage = () => {
     EditProfileAPI.patchProfile({
       introduction: introduce,
       open: isOpen,
-      userEmail: "testemail123123@gmail.com",
       userName: name,
-    });
+    }, session);
   };
 
   return (

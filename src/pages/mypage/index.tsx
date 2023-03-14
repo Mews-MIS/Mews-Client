@@ -10,6 +10,7 @@ import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
 import MyLikeAPI from "@pages/api/MyLikeAPI";
 import MyProfileAPI from "@pages/api/MyProfileAPI";
 import * as s from "./styles";
+import { useSession } from "next-auth/react";
 
 export interface IProfile {
   imgUrl: string;
@@ -46,15 +47,17 @@ const Mypage = () => {
   const [likeNum, setLikeNum] = useState(0);
   const [bookmarkNum, setBookmarkNum] = useState(0);
   const [subscribeNum, setSubscribeNum] = useState(0);
-  const [name, setName] = useState("박상준");
-  const [introduce, setIntroduce] = useState("테스트 자기소개입니다.");
+  const [name, setName] = useState("");
+  const [introduce, setIntroduce] = useState("");
   const [imgURL, setImgURL] = useState("/");
 
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
   const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
-
+  const { data: session } = useSession();
+  console.log(session);
+  
   useEffect(() => {
-    const profile: Promise<any> = MyProfileAPI.getProfiles();
+    const profile: Promise<any> = MyProfileAPI.getProfiles(session);
     profile.then((data: IProfile) => {
       setName(data.userName);
       setIntroduce(data.introduction);
@@ -62,24 +65,30 @@ const Mypage = () => {
       setBookmarkNum(data.bookmarkCount);
       setSubscribeNum(data.subscribeCount);
       setImgURL(data.imgUrl);
+    }).catch((e) => {
+      console.log(e);
     });
-  }, []);
+  }, [session]);
 
   useEffect(() => {
-    const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks();
+    const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
     bookmarks.then((data: IBookmark[]) => {
       setBookmarkList([...data]);
       setBookmarkNum(bookmarkList.length);
+    }).catch((e) => {
+      console.log(e);
     });
-  }, [bookmarkList]);
+  }, [bookmarkList, session]);
 
   useEffect(() => {
-    const likes: Promise<any> = MyLikeAPI.getLikes();
+    const likes: Promise<any> = MyLikeAPI.getLikes(session);
     likes.then((data: ILike[]) => {
       setLikeList([...data]);
       setLikeNum(likeList.length);
+    }).catch((e) => {
+      console.log(e);
     });
-  }, [likeList]);
+  }, [likeList, session]);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals

@@ -1,83 +1,52 @@
 import NextAuth, { SignInCallback, JWTCallback, SessionCallback } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import UserAPI from "@api/UserAPI";
-
-type User = {
-  user: {
-    email?: string;
-    name?: string;
-    image?: string;
-  };
-};
-
-type Account = {
-  provider?: string;
-  id?: string;
-};
-
-type Profile = Record<string, unknown>;
-
-type JWT = {
-  email?: string;
-  name?: string;
-  [key: string]: any;
-};
-
-type Session = {
-  user: {
-    email?: string;
-    name?: string;
-  };
-};
+import { setCookie } from "nookies";
 
 const callbacks = {
-  signIn: async (params: User): Promise<SignInCallback> => {
-    const user = params as User;
-    const { name, email, image } = user.user;
-    console.log("datadsfadsfadsfadsfadsfaf", user.user);
+  signIn: async (params: any): Promise<SignInCallback> => {
+    const { email, name, image } = params.user;
     try {
       const response = await UserAPI.googleLogin({
         userEmail: email,
         userName: name,
-        imgUrl: "",
+        imgUrl: image,
         introduction: "",
       });
-      return "/";
+
+      const token = response.atk;
+      setCookie(null, "access_token", token, {
+        maxAge: 30 * 24 * 60 * 60, // 30일간 유지
+      });
+
+      return true;
     } catch (error) {
       // 오류 처리
       throw new Error("Unable to sign in");
     }
   },
-  jwt: async (
-    token: JWT,
-    user: User,
-    account: Account,
-    profile: Profile,
-    isNewUser: boolean
-  ): Promise<JWTCallback> => {
-    const newToken: JWT = {
-      ...token,
-    };
+  async session({ session }) {
+    // Send properties to the client, like an access_token from a provider.
+    const { user } = session;
+    const response = await UserAPI.googleLogin({
+      userEmail: user.email,
+      userName: user.name,
+      imgUrl: user.image,
+      introduction: "",
+    });
 
-    if (user) {
-      newToken.email = user.user.email;
-      newToken.name = user.user.name;
-    }
+    const token = response.atk;
+    const userId = response.id;
 
-    return newToken;
-  },
-  session: async (session: Session, token: JWT): Promise<SessionCallback> => {
-    debugger;
-    const newSession: Session = {
+    setCookie(null, "access_token", token, {
+      maxAge: 30 * 24 * 60 * 60, // 30일간 유지
+    });
+
+    return {
       ...session,
-      user: {
-        ...session.user,
-        email: token.email,
-        name: token.name,
-      },
+      userId,
+      accessToken: token,
     };
-
-    return newSession;
   },
 };
 

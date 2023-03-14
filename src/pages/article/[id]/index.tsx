@@ -6,6 +6,8 @@ import ArticleAPI from "@api/ArticleAPI";
 import { dehydrate, QueryClient } from "react-query";
 import useArticleById from "@hooks/query/article/useArticleById";
 import AuthorIntro from "@components/AuthorIntro";
+import TurndownService from "turndown";
+import MarkdownIt from "markdown-it";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
 
@@ -35,6 +37,8 @@ export const getServerSideProps = async (context: any) => {
 
 const NewsView = ({ id }: { id: number }) => {
   const { data: news }: { data: any } = useArticleById(id);
+  const turnDown = new TurndownService();
+  const md = new MarkdownIt();
 
   const copyURL = () => {
     const currentUrl = window.document.location.href;
@@ -65,9 +69,10 @@ const NewsView = ({ id }: { id: number }) => {
             <s.date>{`${news?.modifiedAt[0]}.${news?.modifiedAt[1]}.${news?.modifiedAt[2]} ${news?.modifiedAt[3]}:${news?.modifiedAt[4]}`}</s.date>
           </s.newsTitleBox>
         </s.newsTitleContainer>
-        <s.newsImageContainer src={news?.fileUrls[0]} alt="썸네일 이미지" />
         <s.contentBox>
-          <s.content>{news?.content}</s.content>
+          {news?.content && (
+            <s.content dangerouslySetInnerHTML={{ __html: md.render(news.content) }} />
+          )}
         </s.contentBox>
 
         <s.ArticleBottomContainer>

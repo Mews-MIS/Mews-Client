@@ -52,7 +52,6 @@ export const contentBox = styled.section`
   justify-content: center;
 `;
 export const content = styled.article`
-  display: flex;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   font-weight: ${theme.FONT_WEIGHT.DEFAULT};
   line-height: 3vh;

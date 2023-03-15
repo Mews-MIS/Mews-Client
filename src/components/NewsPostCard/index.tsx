@@ -10,7 +10,7 @@ const NewsPostCard = ({ category, title, imgUrl }: NewsPostCardProps) => {
   return (
     <s.Wrapper>
       <s.ContentContainer>
-        {/* 이미지 추가해야 함 */}
+        {imgUrl}
         <s.ImageContainer />
         <s.NewsInfoSummary>
           <s.NewsTitleLabel>{title}</s.NewsTitleLabel>

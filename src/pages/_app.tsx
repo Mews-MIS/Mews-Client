@@ -5,21 +5,23 @@ import theme from "@styles/Theme";
 import { SessionProvider } from "next-auth/react";
 import Layout from "@components/Layout";
 import { RecoilRoot } from "recoil";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 
 const queryClient = new QueryClient();
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ThemeProvider>
-        </RecoilRoot>
+        <Hydrate state={pageProps.dehydratedState}>
+          <RecoilRoot>
+            <ThemeProvider theme={theme}>
+              <GlobalStyles />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </ThemeProvider>
+          </RecoilRoot>
+        </Hydrate>
       </QueryClientProvider>
     </SessionProvider>
   );

@@ -1,10 +1,10 @@
-import { tmpImageURL } from "@pages/tmp/tmpImageURL";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as s from "./styles";
 
-const EditProfileImage = () => {
+const EditProfileImage = ({serverImageURL, setIsFirstState}: any) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [imageURL, setImageURL] = useState<string | ArrayBuffer | undefined | null>(tmpImageURL);
+  const [imageURL, setImageURL] = useState<string | ArrayBuffer | undefined | null>("");
+  console.log(serverImageURL);
 
   const handleChangedFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -14,8 +14,13 @@ const EditProfileImage = () => {
     reader.onloadend = () => {
       const resultImage = reader.result;
       setImageURL(resultImage);
+      setIsFirstState(false);
     }
-  }
+  };
+
+  useEffect(() => {
+    setImageURL(serverImageURL);
+  }, [serverImageURL]);
 
   return (
     <s.Wrapper>
@@ -23,9 +28,7 @@ const EditProfileImage = () => {
         <s.ImageBox>
           <s.Image src={imageURL?.toString()} />
         </s.ImageBox>
-        <s.EditImageLabel 
-          htmlFor="file"
-          >프로필 사진 편집</s.EditImageLabel>
+        <s.EditImageLabel htmlFor="file">프로필 사진 편집</s.EditImageLabel>
         <s.EditImage type="file" id="file" accept="image/*" onChange={handleChangedFile} ref={fileInputRef}/>
       </s.Container>
     </s.Wrapper>

@@ -27,8 +27,6 @@ const NoneContentWrapper = styled.div`
 
 export const getServerSideProps = async (context: any) => {
   const session = await getSession(context);
-  console.log("seee");
-  console.log("s", session);
   const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
   const popularArticleList = await ArticleAPI.getPopularArticles();
   const checkedCuration = await CurationAPI.getCheckedCuration();
@@ -49,6 +47,7 @@ export default function Home(props: any) {
   const { newArticleList, popularArticleList, firstCurationInfo } = props;
   const { data } = useSession();
   console.log(data);
+  console.log(popularArticleList);
 
   return (
     <>

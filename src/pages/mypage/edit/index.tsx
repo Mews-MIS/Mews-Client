@@ -21,7 +21,7 @@ const EditMypage = () => {
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [imgURL, setImgURL] = useState("/");
+  const [imgURL, setImgURL] = useState("");
 
   const { data: session } = useSession();
 
@@ -31,8 +31,10 @@ const EditMypage = () => {
       setName(data.userName);
       setIntroduce(data.introduction);
       setImgURL(data.imgUrl);
+    }).catch((e) => {
+      console.log(e);
     });
-  }, []);
+  }, [session]);
 
   const toggleHandler = () => {
     setIsOpen(!isOpen);
@@ -50,11 +52,16 @@ const EditMypage = () => {
   };
 
   const sendEditProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
-    EditProfileAPI.patchProfile({
+    const formData = new FormData();
+    if(imgURL) formData.append("file", imgURL);
+
+    const data = {
       introduction: introduce,
       open: isOpen,
       userName: name,
-    }, session);
+    };
+    formData.append("data", new Blob([JSON.stringify(data)], {type: "application/json"}));
+    EditProfileAPI.patchProfile(formData, session);
   };
 
   return (
@@ -64,7 +71,7 @@ const EditMypage = () => {
           <TobNavBar />
           <s.EditContainer>
             <s.EditImageContainer>
-              <EditProfileImage />
+              <EditProfileImage serverImageURL={imgURL} setIsFirstState={setIsFirstState}/>
             </s.EditImageContainer>
 
             <s.EditInfoContainer>

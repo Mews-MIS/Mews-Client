@@ -1,6 +1,5 @@
 import NewsPostCard, { NewsPostCardProps } from "@components/NewsPostCard";
 import NewsPostSlider from "@components/NewsPostSlider";
-import newsPost from "@pages/tmp/newsPostCards";
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line import/no-named-as-default
 import Paging from "@components/Pagination";

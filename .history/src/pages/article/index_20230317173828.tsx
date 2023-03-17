@@ -2,7 +2,7 @@ import NewsPostCard, { NewsPostCardProps } from "@components/NewsPostCard";
 import NewsPostSlider from "@components/NewsPostSlider";
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line import/no-named-as-default
-import Paging from "@components/Pagination";
+import Pagination from "react-js-pagination";
 
 import usePostByPageNumber from "@hooks/query/article/useNewArticle";
 import NewsListItem from "@components/NewsListItem";
@@ -11,24 +11,25 @@ import ArticleAPI from "@api/ArticleAPI";
 import * as s from "./styles";
 
 const NewsPage = () => {
-  const [pageNumber, setPageNumber] = useState(1); // 현재페이지
-  const [article, setArticle] = useState<NewsPostCardProps[] | null>([]);
-  const { data, isLoading } = usePostByPageNumber(pageNumber);
+  const [page, setPage] = useState<number>(1);
+  const [articles, setArticles] = useState([]);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
   const itemsCountPerPage = 10;
+  const [article, setArticle] = useState<NewsPostCardProps[] | null>([]);
+  const { data, isLoading } = usePostByPageNumber(pageNumber);
   useEffect(() => {
     ArticleAPI.getPageArticles({ page: 1 }).then((data) => {
       setArticle(data.articles);
       setTotalItemsCount(Math.ceil(data.pageCount * itemsCountPerPage));
     });
-  }, []);
+  }, [page]);
 
   if (isLoading) {
     return <h1>로딩중</h1>;
   }
 
-  const setPage = (e: number) => {
-    setPageNumber(e);
+  const onclickPageChange = (pageNumber: number) => {
+    setPage(pageNumber);
   };
 
   return (
@@ -50,7 +51,7 @@ const NewsPage = () => {
             : "등록된 게시물이 없습니다"}
         </s.NewsListBox>
 
-        <Paging page={pageNumber} count={totalItemsCount} setPage={setPage} />
+        <Paging page={pageNumber} count={data.pageCount} setPage={setPage} />
       </s.NewsbottomContainer>
     </s.Wrapper>
   );

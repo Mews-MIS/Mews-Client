@@ -2,33 +2,30 @@ import NewsPostCard, { NewsPostCardProps } from "@components/NewsPostCard";
 import NewsPostSlider from "@components/NewsPostSlider";
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line import/no-named-as-default
-import Paging from "@components/Pagination";
+import Pagination from "react-js-pagination";
 
 import usePostByPageNumber from "@hooks/query/article/useNewArticle";
-import NewsListItem from "@components/NewsListItem";
+import NewsListItem, { NewsListItemProps } from "@components/NewsListItem";
 import ArticleAPI from "@api/ArticleAPI";
 
 import * as s from "./styles";
 
 const NewsPage = () => {
-  const [pageNumber, setPageNumber] = useState(1); // 현재페이지
-  const [article, setArticle] = useState<NewsPostCardProps[] | null>([]);
-  const { data, isLoading } = usePostByPageNumber(pageNumber);
+  const [page, setPage] = useState<number>(1);
+  const [allArticles, setAllArticles] = useState<NewsListItemProps[] | null>([]);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
   const itemsCountPerPage = 10;
+  const [article, setArticle] = useState<NewsPostCardProps[] | null>([]);
   useEffect(() => {
     ArticleAPI.getPageArticles({ page: 1 }).then((data) => {
       setArticle(data.articles);
+      setAllArticles(data.articles);
       setTotalItemsCount(Math.ceil(data.pageCount * itemsCountPerPage));
     });
-  }, []);
+  }, [page]);
 
-  if (isLoading) {
-    return <h1>로딩중</h1>;
-  }
-
-  const setPage = (e: number) => {
-    setPageNumber(e);
+  const onclickPageChange = (pageNumber: number) => {
+    setPage(pageNumber);
   };
 
   return (
@@ -43,14 +40,22 @@ const NewsPage = () => {
       </s.NewsTopContainer>
       <s.NewsbottomContainer>
         <s.NewsListBox>
-          {data.articles
-            ? data.articles.map((element: any, index: number) => {
-                return <NewsListItem key={element.id} index={index + 1} contentInfo={element} />;
+          {allArticles
+            ? allArticles.map((e: NewsListItemProps) => {
+                return <NewsListItem {...e} />;
               })
             : "등록된 게시물이 없습니다"}
         </s.NewsListBox>
 
-        <Paging page={pageNumber} count={totalItemsCount} setPage={setPage} />
+        <s.PaginationBox>
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={itemsCountPerPage}
+            totalItemsCount={totalItemsCount}
+            pageRangeDisplayed={5}
+            onChange={onclickPageChange}
+          />
+        </s.PaginationBox>
       </s.NewsbottomContainer>
     </s.Wrapper>
   );

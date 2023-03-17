@@ -50,7 +50,7 @@ const NewsPage = () => {
             : "등록된 게시물이 없습니다"}
         </s.NewsListBox>
 
-        <Paging page={pageNumber} count={totalItemsCount} setPage={setPage} />
+        <Paging page={pageNumber} count={data.pageCount} setPage={setPage} />
       </s.NewsbottomContainer>
     </s.Wrapper>
   );

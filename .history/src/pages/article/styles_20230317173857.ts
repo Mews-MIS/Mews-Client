@@ -15,7 +15,7 @@ export const NewsbottomContainer = styled.div`
 `;
 export const NewsListBox = styled.article``;
 
-export const PaginationBox = styled.div`
+const PaginationBox = styled.div`
   .pagination {
     display: flex;
     justify-content: center;

@@ -9,7 +9,7 @@ const useArticleById = (id: number, dehydratedState?: any) => {
       return posts;
     },
     {
-      initialData: dehydratedState?.queries?.["my-data"]?.state?.data,
+      initialData: dehydratedState?.queries?.[0].state?.data,
     }
   );
 

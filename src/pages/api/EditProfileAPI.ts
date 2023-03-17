@@ -1,14 +1,13 @@
 import HttpClient from "src/services/HttpClient";
 
 const EditProfileAPI = {
-  getProfile: async () => {
+  getProfile: async (session: any) => {
     try {
-      /* User ID 는 전역 process.env에서 관리 */
-      const path = `mypage/profile/${process.env.NEXT_PUBLIC_USERID}`;
+      const path = `mypage/profile/${session?.userId}`;
       const response: [] | undefined = await HttpClient.get(
         path,
         {},
-        { Authorization: process.env.NEXT_PUBLIC_TMP_ACCESS_TOKEN }
+        { Authorization: `Bearer ` + session?.accessToken }
       );
       console.log(response);
       return response;
@@ -17,12 +16,12 @@ const EditProfileAPI = {
       return null;
     }
   },
-  patchProfile: async (data: {}) => {
+  patchProfile: async (data: FormData, session: any) => {
     try {
-      /* User ID 는 전역 process.env에서 관리 */
-      const path = `mypage/profile/${process.env.NEXT_PUBLIC_USERID}`;
+      const path = `mypage/profile/${session?.userId}`;
       const response: [] | undefined = await HttpClient.patch(path, data, {
-        Authorization: process.env.NEXT_PUBLIC_TMP_ACCESS_TOKEN,
+        Authorization: `Bearer ` + session?.accessToken,
+        "content-type": "multipart/form-data"
       });
       console.log(response);
       return response;

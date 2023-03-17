@@ -1,6 +1,6 @@
 import ScheduleCategory from '@components/ScheduleCategory';
 import React, { useEffect } from 'react';
-import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { useRecoilValueLoadable } from 'recoil';
 import calendarInfoDetailsSelector from 'src/states/calendarInfoDetails';
 import * as s from "./styles";
 
@@ -36,7 +36,7 @@ const ScheduleLayout = () => {
 
   switch(selectedDateLoadable.state){
     case 'hasValue':
-      selectedDateLoadable.contents.map((item: any) => {
+      selectedDateLoadable.contents.map((item: IScheduleItem) => {
         if(item.category === "동국대학교") titleDGUniv.push(item.title);
         if(item.category === "경영정보학과") titleMIS.push(item.title);
         if(item.category === "Mews") titleMews.push(item.title);
@@ -44,14 +44,14 @@ const ScheduleLayout = () => {
 
       return(
         <s.Wrapper>
-        <ScheduleCategory category={"동국대학교"} titles={titleDGUniv} />
-        <ScheduleCategory category={"경영정보학과"} titles={titleMIS} />
-        <ScheduleCategory category={"Mews"} titles={titleMews} />
-      </s.Wrapper>
+          <ScheduleCategory category={"동국대학교"} titles={titleDGUniv} />
+          <ScheduleCategory category={"경영정보학과"} titles={titleMIS} />
+          <ScheduleCategory category={"Mews"} titles={titleMews} />
+        </s.Wrapper>
       );
     
     case 'loading':
-      return <div>Loading...</div>;
+      return <div>Loading..</div>;
     case 'hasError':
       throw selectedDateLoadable.contents;
   };

@@ -15,8 +15,8 @@ const ArticleAPI = {
   getPageArticles: async ({ page }: { page: number }) => {
     try {
       const path = "article/all";
-      const response = await HttpClient.get(path, { page });
-
+      const response = await HttpClient.get(path, { page: page });
+      console.log(response);
       return response;
     } catch (e) {
       console.log(e);

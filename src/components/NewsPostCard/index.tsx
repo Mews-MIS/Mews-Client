@@ -1,23 +1,25 @@
 import * as s from "./styles";
-
+import Link from "next/link";
 export interface NewsPostCardProps {
-  category: string;
+  id?: number;
+  type: string;
   title: string;
-  imgUrl?: string;
+  fileUrls: string[];
 }
 
-const NewsPostCard = ({ category, title, imgUrl }: NewsPostCardProps) => {
+const NewsPostCard = ({ id, type, title, fileUrls }: NewsPostCardProps) => {
   return (
-    <s.Wrapper>
-      <s.ContentContainer>
-        {/* 이미지 추가해야 함 */}
-        <s.ImageContainer />
-        <s.NewsInfoSummary>
-          <s.NewsTitleLabel>{title}</s.NewsTitleLabel>
-          <s.NewsCategoryLabel>{category}</s.NewsCategoryLabel>
-        </s.NewsInfoSummary>
-      </s.ContentContainer>
-    </s.Wrapper>
+    <Link href={`article/${id}`}>
+      <s.Wrapper>
+        <s.ContentContainer>
+          <s.ImageContainer src={fileUrls[0]} />
+          <s.NewsInfoSummary>
+            <s.NewsTitleLabel>{title}</s.NewsTitleLabel>
+            <s.NewsCategoryLabel>{type}</s.NewsCategoryLabel>
+          </s.NewsInfoSummary>
+        </s.ContentContainer>
+      </s.Wrapper>
+    </Link>
   );
 };
 export default NewsPostCard;

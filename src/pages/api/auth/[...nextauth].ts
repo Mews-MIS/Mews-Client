@@ -1,23 +1,64 @@
-import NextAuth from "next-auth";
+import NextAuth, { SignInCallback, JWTCallback, SessionCallback } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import UserAPI from "@api/UserAPI";
+import { setCookie } from "nookies";
 
-export default NextAuth({
+const callbacks = {
+  signIn: async (params: any): Promise<SignInCallback> => {
+    const { email, name, image } = params.user;
+    try {
+      const response = await UserAPI.googleLogin({
+        userEmail: email,
+        userName: name,
+        imgUrl: image,
+        introduction: "",
+      });
+
+      const token = response.atk;
+      setCookie(null, "access_token", token, {
+        maxAge: 30 * 24 * 60 * 60, // 30일간 유지
+      });
+
+      return true;
+    } catch (error) {
+      // 오류 처리
+      throw new Error("Unable to sign in");
+    }
+  },
+  async session({ session }) {
+    // Send properties to the client, like an access_token from a provider.
+    const { user } = session;
+    const response = await UserAPI.googleLogin({
+      userEmail: user.email,
+      userName: user.name,
+      imgUrl: user.image,
+      introduction: "",
+    });
+
+    const token = response.atk;
+    const userId = response.id;
+
+    setCookie(null, "access_token", token, {
+      maxAge: 30 * 24 * 60 * 60, // 30일간 유지
+    });
+
+    return {
+      ...session,
+      userId,
+      accessToken: token,
+    };
+  },
+};
+
+const options = {
   providers: [
     GoogleProvider({
-      clientId: "73486084466-4p63srioq1av2h9gq41m0fu40i7hu2pi.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  callbacks,
+};
 
-  callbacks: {
-    jwt: async ({ token, user, account }) => {
-      user && (token.user = user);
-      console.log(account);
-      return token;
-    },
-    session: async ({ session, token }) => {
-      session.user = token.user;
-      return session;
-    },
-  },
-});
+// @ts-ignore
+export default (req: any, res: any) => NextAuth(req, res, options);

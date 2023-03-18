@@ -11,6 +11,7 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
+import { getSession, useSession } from "next-auth/react";
 import { Article } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -24,7 +25,8 @@ const NoneContentWrapper = styled.div`
   color: ${theme.COLORS.LINE_GRAY};
 `;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: any) => {
+  const session = await getSession(context);
   const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
   const popularArticleList = await ArticleAPI.getPopularArticles();
   const checkedCuration = await CurationAPI.getCheckedCuration();
@@ -43,7 +45,9 @@ export const getServerSideProps = async () => {
 
 export default function Home(props: any) {
   const { newArticleList, popularArticleList, firstCurationInfo } = props;
-  console.log(newArticleList);
+  const { data } = useSession();
+  console.log(data);
+  console.log(popularArticleList);
 
   return (
     <>

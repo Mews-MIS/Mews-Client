@@ -3,9 +3,11 @@ import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
-import { dehydrate, QueryClient } from "react-query";
+import { dehydrate, QueryClient, useQuery } from "react-query";
 import useArticleById from "@hooks/query/article/useArticleById";
 import AuthorIntro from "@components/AuthorIntro";
+import TurndownService from "turndown";
+import MarkdownIt from "markdown-it";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
 
@@ -19,7 +21,7 @@ export const getServerSideProps = async (context: any) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(["article", id], async () => {
-    const response = await ArticleAPI.getArticle(2);
+    const response = await ArticleAPI.getArticle(id);
     const data: Article = response;
 
     return data;
@@ -33,8 +35,10 @@ export const getServerSideProps = async (context: any) => {
   };
 };
 
-const NewsView = ({ id }: { id: number }) => {
-  const { data: news }: { data: any } = useArticleById(id);
+const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) => {
+  const { data: news }: { data: any } = useArticleById(id, dehydrateState);
+  const md = new MarkdownIt();
+  console.log(news);
 
   const copyURL = () => {
     const currentUrl = window.document.location.href;
@@ -65,16 +69,22 @@ const NewsView = ({ id }: { id: number }) => {
             <s.date>{`${news?.modifiedAt[0]}.${news?.modifiedAt[1]}.${news?.modifiedAt[2]} ${news?.modifiedAt[3]}:${news?.modifiedAt[4]}`}</s.date>
           </s.newsTitleBox>
         </s.newsTitleContainer>
-        <s.newsImageContainer src={news?.fileUrls[0]} alt="썸네일 이미지" />
         <s.contentBox>
-          <s.content>{news?.content}</s.content>
+          {news?.content && (
+            // eslint-disable-next-line react/no-danger
+            <s.content dangerouslySetInnerHTML={{ __html: md.render(news.content) }} />
+          )}
         </s.contentBox>
 
         <s.ArticleBottomContainer>
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
               <Link href="/">
-                <AuthorIntro name="이정우" introduction="꿈은 없고 놀고만 싶습니다." imageURL="" />
+                <AuthorIntro
+                  name="이정우"
+                  introduction="꿈은 없고 놀고만 싶습니다."
+                  imageURL="ht"
+                />
               </Link>
             </s.AuthorIntroContainer>
 

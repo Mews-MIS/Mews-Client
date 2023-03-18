@@ -1,10 +1,10 @@
 import HttpClient from "../services/HttpClient";
 
 const UserAPI = {
-  googleLogin: async () => {
+  googleLogin: async (body: any) => {
     try {
-      const path = `auth/google`;
-      const response = await HttpClient.get(path);
+      const path = `auth/login`;
+      const response = await HttpClient.post(path, body);
       console.log(response);
       return response;
     } catch (e) {

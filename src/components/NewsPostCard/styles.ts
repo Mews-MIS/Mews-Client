@@ -12,21 +12,20 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  width: 90%;
+  width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 30px;
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.img`
   display: flex;
-  margin: 0 auto 15px auto; 
-  height: 45vw;
-  width: 100%;
+  margin: 0 auto 20px auto; 
+  height: 50vw;
+  width: 85%;
   min-height: 200px;
   max-height: 400px;
-  background-color: ${theme.COLORS.LINE_GRAY};
   border-radius: 20px;
 
   }
@@ -35,7 +34,8 @@ export const ImageContainer = styled.div`
 export const NewsInfoSummary = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin: 0 auto;
+  width: 90%;
   padding: 0 2vw;
 `;
 

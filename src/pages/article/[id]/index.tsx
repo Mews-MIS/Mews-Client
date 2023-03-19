@@ -5,11 +5,13 @@ import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import useArticleById from "@hooks/query/article/useArticleById";
-import AuthorIntro from "@components/AuthorIntro";
+import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
 import TurndownService from "turndown";
 import MarkdownIt from "markdown-it";
+import EditorAPI from "@api/EditorAPI";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
+import { useEffect, useState } from "react";
 
 export interface NewsViewProps {
   isLike: boolean;
@@ -19,6 +21,8 @@ export interface NewsViewProps {
 export const getServerSideProps = async (context: any) => {
   const { id } = context.query;
   const queryClient = new QueryClient();
+  // const editorId = context.params.id;
+  // const editorInfo = await EditorAPI.getEditorInfo(editorId);
 
   await queryClient.prefetchQuery(["article", id], async () => {
     const response = await ArticleAPI.getArticle(id);
@@ -29,16 +33,33 @@ export const getServerSideProps = async (context: any) => {
 
   return {
     props: {
-      dehydrateState: dehydrate(queryClient),
+      dehydratedState: dehydrate(queryClient),
       id,
+      // editorInfo,
     },
   };
 };
 
-const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) => {
-  const { data: news }: { data: any } = useArticleById(id, dehydrateState);
+const NewsView = ({ dehydratedState, id }: { dehydratedState: any; id: number }) => {
+  const { data: news }: { data: any } = useArticleById({ id, dehydratedState });
   const md = new MarkdownIt();
+  const [editors, setEditors] = useState<IAuthorProps[]>([]);
   console.log(news);
+
+  useEffect(() => {
+    if (news?.editorIdList) {
+      const fetchEditors = async () => {
+        const fetchedEditors: IAuthorProps[] = [];
+        for (const editorId of news.editorIdList) {
+          const editorInfo = await EditorAPI.getEditorInfo(editorId);
+          fetchedEditors.push(editorInfo);
+        }
+        setEditors(fetchedEditors);
+      };
+
+      fetchEditors();
+    }
+  }, [news?.editorIdList]);
 
   const copyURL = () => {
     const currentUrl = window.document.location.href;
@@ -79,15 +100,16 @@ const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) =
         <s.ArticleBottomContainer>
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
-              <Link href="/">
-                <AuthorIntro
-                  name="이정우"
-                  introduction="꿈은 없고 놀고만 싶습니다."
-                  imageURL="ht"
-                />
-              </Link>
+              {editors &&
+                editors.map((data: IAuthorProps) => (
+                  <AuthorIntro
+                    id={data.id}
+                    name={data.name}
+                    imgUrl={data.imgUrl}
+                    introduction={data.introduction}
+                  />
+                ))}
             </s.AuthorIntroContainer>
-
             <s.BottomContainer>
               <s.BtnContainer>
                 <s.LikeIconContainer />

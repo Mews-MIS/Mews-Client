@@ -1,7 +1,19 @@
 import { useQuery } from "react-query";
 import ArticleAPI from "@api/ArticleAPI";
 
-const useArticleById = (id: number, dehydratedState?: any) => {
+export interface IEditorInfo {
+  id: number;
+  imgUrl: "string";
+  name: "string";
+}
+
+export interface IUseArticleByIdParams {
+  id: number;
+  dehydratedState?: any;
+  editorInfo?: IEditorInfo;
+}
+
+const useArticleById = ({ id, dehydratedState, editorInfo }: IUseArticleByIdParams) => {
   const { data } = useQuery(
     ["article", id],
     async () => {

@@ -4,16 +4,17 @@ import ArticleAPI from "@api/ArticleAPI";
 export interface IEditorInfo {
   id: number;
   imgUrl: "string";
+  introduction: "string";
   name: "string";
 }
 
 export interface IUseArticleByIdParams {
   id: number;
   dehydratedState?: any;
-  editorInfo?: IEditorInfo;
+  editorInfoList?: IEditorInfo;
 }
 
-const useArticleById = ({ id, dehydratedState, editorInfo }: IUseArticleByIdParams) => {
+const useArticleById = ({ id, dehydratedState, editorInfoList }: IUseArticleByIdParams) => {
   const { data } = useQuery(
     ["article", id],
     async () => {

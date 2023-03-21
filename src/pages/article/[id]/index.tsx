@@ -21,46 +21,59 @@ export interface NewsViewProps {
 export const getServerSideProps = async (context: any) => {
   const { id } = context.query;
   const queryClient = new QueryClient();
-  // const editorId = context.params.id;
-  // const editorInfo = await EditorAPI.getEditorInfo(editorId);
 
   await queryClient.prefetchQuery(["article", id], async () => {
     const response = await ArticleAPI.getArticle(id);
     const data: Article = response;
-
     return data;
   });
+
+  const articleInfo = queryClient.getQueryData(["article", id]);
+  console.log("dfgd", articleInfo);
+  const editorNumsList = articleInfo ? articleInfo.editorIdList : [];
+
+  const editorInfoList = await editorNumsList.reduce(
+    async (acc: Promise<IAuthorProps[]>, cur: number) => {
+      const getUserInfo = async () => {
+        const info = await EditorAPI.getEditorInfo(cur);
+        return info;
+      };
+      const userInfo = await getUserInfo();
+      console.log("uif", userInfo);
+      console.log("acc", acc);
+      const result = await acc;
+      result.push(userInfo);
+      console.log("acc after", acc);
+      console.log(typeof acc);
+      return result;
+    },
+    Promise.resolve([])
+  );
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
       id,
+      editorInfoList,
       // editorInfo,
     },
   };
 };
 
-const NewsView = ({ dehydratedState, id }: { dehydratedState: any; id: number }) => {
-  const { data: news }: { data: any } = useArticleById({ id, dehydratedState });
+const NewsView = ({
+  dehydratedState,
+  id,
+  editorInfoList,
+}: {
+  dehydratedState: any;
+  id: number;
+  editorInfoList: IAuthorProps[];
+}) => {
+  const { data: news }: { data: any } = useArticleById({ id, dehydratedState, editorInfoList });
   const md = new MarkdownIt();
   const [editors, setEditors] = useState<IAuthorProps[]>([]);
-  console.log(news);
 
-  useEffect(() => {
-    if (news?.editorIdList) {
-      const fetchEditors = async () => {
-        const fetchedEditors: IAuthorProps[] = [];
-        for (const editorId of news.editorIdList) {
-          const editorInfo = await EditorAPI.getEditorInfo(editorId);
-          fetchedEditors.push(editorInfo);
-        }
-        setEditors(fetchedEditors);
-      };
-
-      fetchEditors();
-    }
-  }, [news?.editorIdList]);
-
+  useEffect(() => {});
   const copyURL = () => {
     const currentUrl = window.document.location.href;
     const url = document.createElement("textarea");
@@ -100,13 +113,13 @@ const NewsView = ({ dehydratedState, id }: { dehydratedState: any; id: number })
         <s.ArticleBottomContainer>
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
-              {editors &&
-                editors.map((data: IAuthorProps) => (
+              {editorInfoList &&
+                editorInfoList.map((editorInfo) => (
                   <AuthorIntro
-                    id={data.id}
-                    name={data.name}
-                    imgUrl={data.imgUrl}
-                    introduction={data.introduction}
+                    id={editorInfo.id}
+                    name={editorInfo.name}
+                    imgUrl={editorInfo.imgUrl}
+                    introduction={editorInfo.introduction}
                   />
                 ))}
             </s.AuthorIntroContainer>

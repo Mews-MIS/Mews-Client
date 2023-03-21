@@ -39,12 +39,8 @@ export const getServerSideProps = async (context: any) => {
         return info;
       };
       const userInfo = await getUserInfo();
-      console.log("uif", userInfo);
-      console.log("acc", acc);
       const result = await acc;
       result.push(userInfo);
-      console.log("acc after", acc);
-      console.log(typeof acc);
       return result;
     },
     Promise.resolve([])
@@ -71,7 +67,6 @@ const NewsView = ({
 }) => {
   const { data: news }: { data: any } = useArticleById({ id, dehydratedState, editorInfoList });
   const md = new MarkdownIt();
-  const [editors, setEditors] = useState<IAuthorProps[]>([]);
 
   useEffect(() => {});
   const copyURL = () => {

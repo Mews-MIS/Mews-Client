@@ -9,7 +9,7 @@ export interface ContentRowProps {
 
 function ContentRow({ index, contentInfo }: ContentRowProps) {
   return (
-    <Link href={`article/${contentInfo.id}`}>
+    <Link href={`/article/${contentInfo.id}`}>
       <s.Wrapper>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label>{index}</label>

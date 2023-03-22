@@ -16,8 +16,8 @@ export async function getServerSideProps({ query }: { query: any }) {
   return {
     props: {
       keyword,
-      getArticleRes: response.getArticleRes,
-      getEditorRes: response.getEditorRes,
+      getArticleRes: response?.getArticleRes,
+      getEditorRes: response?.getEditorRes,
     },
   };
 }

@@ -3,7 +3,7 @@ import ArticleAPI from "@api/ArticleAPI";
 
 const usePostByPageNumber = (pageNumber: number) => {
   const { data, isLoading } = useQuery(["posts", pageNumber], async () => {
-    const posts = await ArticleAPI.getPageArticles({ page: pageNumber });
+    const posts = await ArticleAPI.getPageArticles(pageNumber, {});
     return posts;
   });
 

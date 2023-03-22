@@ -21,7 +21,6 @@ const searchPage = (props: any) => {
 
   useEffect(() => {
     const recentKeywords = localStorage.getItem("recentKeywords");
-    console.log(JSON.parse(recentKeywords as string));
     setRecentKeywordList(JSON.parse(recentKeywords as string));
   }, []);
 
@@ -30,7 +29,7 @@ const searchPage = (props: any) => {
       <SearchBar />
       <ContentWrapper contentName="최근 검색어">
         <SearchedContainer>
-          {recentKeywordList.map((recentKeyword) => {
+          {recentKeywordList?.map((recentKeyword) => {
             return <RecentSearched keyword={recentKeyword} />;
           })}
         </SearchedContainer>

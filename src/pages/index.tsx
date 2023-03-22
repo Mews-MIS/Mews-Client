@@ -3,7 +3,6 @@ import ContentCard from "@components/ContentCard";
 import ContentWrapper from "@components/ContentWrapper";
 import React from "react";
 import CardSlider from "@components/CardSlider";
-import mySubscribeArticle from "@pages/tmp/mySubscribeArticle";
 import PageTemplate from "@components/PageTemplate";
 
 import ArticleAPI from "@api/ArticleAPI";

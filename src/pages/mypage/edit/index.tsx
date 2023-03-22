@@ -53,7 +53,7 @@ const EditMypage = () => {
     setIsFirstState(false);
   };
 
-  const sendEditProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const sendEditProfile = () => {
     const formData = new FormData();
     if (imgURL) formData.append("file", imgURL);
 

@@ -44,12 +44,12 @@ const EditorAPI = {
     }
   },
 
-  postSubscribeEditor: async (editorId: number, session: any) => {
-    try {
-    } catch (e) {
-      console.error(e);
-    }
-  },
+  // postSubscribeEditor: async (editorId: number, session: any) => {
+  //   try {
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // },
 };
 
 export default EditorAPI;

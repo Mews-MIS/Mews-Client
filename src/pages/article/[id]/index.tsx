@@ -63,7 +63,7 @@ const NewsView = ({
   id: number;
   editorInfoList: IAuthorProps[];
 }) => {
-  const { data: news }: { data: any } = useArticleById({ id, dehydratedState, editorInfoList });
+  const { data: news }: { data: any } = useArticleById({ id, dehydratedState });
   const md = new MarkdownIt();
 
   useEffect(() => {});

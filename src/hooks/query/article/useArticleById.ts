@@ -14,7 +14,7 @@ export interface IUseArticleByIdParams {
   editorInfoList?: IEditorInfo;
 }
 
-const useArticleById = ({ id, dehydratedState, editorInfoList }: IUseArticleByIdParams) => {
+const useArticleById = ({ id, dehydratedState }: IUseArticleByIdParams) => {
   const { data } = useQuery(
     ["article", id],
     async () => {

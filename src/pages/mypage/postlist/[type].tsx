@@ -35,6 +35,7 @@ export default function PostList() {
   const [array, setArray] = useState<Article[]>([]);
   const [userId, setUserId] = useState<number>();
   const [type, setType] = useState<string>("");
+  //임시 count초깃값
   const [count, setCount] = useState<number>(13);
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
@@ -89,15 +90,7 @@ export default function PostList() {
           <s.CountPost>{count}개</s.CountPost>
         </s.AllPostContainer>
         <s.BottomContainer>
-          <ContentWrapper
-            contentName={
-              "ㅇㅇ"
-              //   (userId === authors[0].authorName
-              //     ? textSet.userName[0]
-              //     : authors[0].authorName + textSet.userName[1]) +
-              //   (isBookmark ? textSet.bookmarkPost : textSet.likePost)
-            }
-          >
+          <ContentWrapper contentName={type}>
             {myBookmarkArticle.length
               ? array.map((e: Article, index: number) => (
                   <ContentRow

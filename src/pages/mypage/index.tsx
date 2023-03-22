@@ -54,6 +54,7 @@ const Mypage = () => {
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
   const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
   const { data: session } = useSession();
+
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
     profile
@@ -68,7 +69,8 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [session]);
+  }, []);
+
 
   useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
@@ -80,7 +82,8 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [bookmarkList, session]);
+  }, [bookmarkList]);
+
 
   useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
@@ -92,7 +95,8 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [likeList, session]);
+  }, [likeList]);
+
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals
@@ -102,7 +106,6 @@ const Mypage = () => {
   return (
     <PageTemplate>
       <s.Wrapper>
-        <TobNavBar />
         <s.TopContainer>
           <s.ProfileContainer>
             <s.ImageBox>
@@ -116,14 +119,14 @@ const Mypage = () => {
           <s.EditProfileBtn onClick={onClickProfileEdit}>프로필 편집</s.EditProfileBtn>
 
           <s.ArticleNumberContainer>
-            <Link href="/mypage/postlist">
+            <Link href="/mypage/postlist/like">
               <s.ArticleNumberItem>
                 <s.Num>{likeNum}</s.Num>
                 <s.Type>좋아요</s.Type>
               </s.ArticleNumberItem>
             </Link>
 
-            <Link href="/mypage/postlist">
+            <Link href="/mypage/postlist/bookmark">
               <s.ArticleNumberItem>
                 <s.Num>{bookmarkNum}</s.Num>
                 <s.Type>북마크</s.Type>

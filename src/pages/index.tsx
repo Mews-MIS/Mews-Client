@@ -12,6 +12,8 @@ import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
 import { getSession } from "next-auth/react";
 import Link from "next/link";
+import { IAuthorProps } from "@components/AuthorIntro";
+import EditorAPI from "@api/EditorAPI";
 import { Article } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -68,13 +70,26 @@ export default function Home(props: any) {
           <ContentWrapper contentName="내가 구독하고 있는 게시글">
             {SubscribeArticleList?.length ? (
               <CardSlider>
-                {SubscribeArticleList.map((element: any) => {
+                {SubscribeArticleList.map(async (element: any) => {
+                  const editorInfoList = await element.editors.reduce(
+                    async (acc: Promise<IAuthorProps[]>, cur: number) => {
+                      const getUserInfo = async () => {
+                        const info = await EditorAPI.getEditorInfo(cur);
+                        return info;
+                      };
+                      const userInfo = await getUserInfo();
+                      const result = await acc;
+                      result.push(userInfo);
+                      return result;
+                    },
+                    Promise.resolve([])
+                  );
                   return (
                     <ContentCard
                       key={`Subscribe ${element.id}${element.title}`}
                       category={element.type}
                       title={element.title}
-                      authorNames={element.authorNames}
+                      authorNames={editorInfoList.join(" ")}
                       isActive={element.isActive}
                       isLike={element.isLike}
                       like_count={element.like_count}

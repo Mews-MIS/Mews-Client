@@ -1,4 +1,3 @@
-import TobNavBar from "@components/TopNavBar";
 import ContentWrapper from "@components/ContentWrapper";
 import CardsSlider from "@components/CardSlider";
 import myBookmarkArticle from "@pages/tmp/myBookmarkArticle";
@@ -71,7 +70,6 @@ const Mypage = () => {
       });
   }, []);
 
-
   useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
     bookmarks
@@ -82,8 +80,7 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [bookmarkList]);
-
+  }, []);
 
   useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
@@ -95,8 +92,7 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [likeList]);
-
+  }, []);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals
@@ -148,14 +144,16 @@ const Mypage = () => {
               {bookmarkList &&
                 bookmarkList.map((e: IBookmark) => {
                   return (
-                    <ContentCard
-                      category={e.category}
-                      title={e.title}
-                      authorNames={e.editors}
-                      isActive={e.bookmarked}
-                      isLike={e.liked}
-                      like_count={e.likeCount}
-                    />
+                    <Link href={`article/${e.id}`}>
+                      <ContentCard
+                        category={e.category}
+                        title={e.title}
+                        authorNames={e.editors}
+                        isActive={e.bookmarked}
+                        isLike={e.liked}
+                        like_count={e.likeCount}
+                      />
+                    </Link>
                   );
                 })}
             </CardsSlider>

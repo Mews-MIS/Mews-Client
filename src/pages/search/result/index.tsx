@@ -30,7 +30,6 @@ interface SearchedResultPageProps {
 
 const SearchedResultPage = (props: SearchedResultPageProps) => {
   const { keyword, getEditorRes, getArticleRes } = props;
-  console.log(getEditorRes);
   useEffect(() => {
     const searchKeyword = keyword;
     const localStorageData = localStorage.getItem("recentKeywords");

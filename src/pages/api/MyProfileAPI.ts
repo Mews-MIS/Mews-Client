@@ -7,9 +7,8 @@ const MyProfileAPI = {
       const response: [] | undefined = await HttpClient.get(
         path,
         {},
-        { Authorization: `Bearer ` + session?.accessToken }
+        { Authorization: `Bearer ${session?.accessToken}` }
       );
-      console.log(response);
       return response;
     } catch (e) {
       console.log(e);

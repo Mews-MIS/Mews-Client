@@ -22,6 +22,36 @@ const EditorAPI = {
       return null;
     }
   },
+
+  getEditorDetailInfo: async (editorId: number, session: any) => {
+    try {
+      const { userId } = session;
+      const { accessToken } = session;
+      const path = `mypage/${userId}/editor/${editorId}`;
+
+      console.log(userId, accessToken);
+
+      const response = await HttpClient.get(
+        path,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
+      console.log(response);
+      return session;
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  },
+
+  postSubscribeEditor: async (editorId: number, session: any) => {
+    try {
+    } catch (e) {
+      console.error(e);
+    }
+  },
 };
 
 export default EditorAPI;

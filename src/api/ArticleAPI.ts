@@ -12,11 +12,10 @@ const ArticleAPI = {
     }
   },
 
-  getPageArticles: async ({ page }: { page: number }) => {
+  getPageArticles: async (page: number, header: any) => {
     try {
       const path = "article/all";
-      const response = await HttpClient.get(path, { page: page });
-      console.log(response);
+      const response = await HttpClient.get(path, { page }, { header });
       return response;
     } catch (e) {
       console.log(e);
@@ -44,6 +43,18 @@ const ArticleAPI = {
       return response;
     } catch (e) {
       console.log(e);
+      return null;
+    }
+  },
+
+  getSubscribeArticles: async (userId: number, header: any) => {
+    try {
+      const path = `article/${userId}/subscribe`;
+      const response = await HttpClient.get(path, { userId }, { header });
+
+      return response;
+    } catch (e) {
+      // console.error(e);
       return null;
     }
   },

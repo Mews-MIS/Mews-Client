@@ -26,8 +26,10 @@ const NoneContentWrapper = styled.div`
 `;
 
 export const getServerSideProps = async (context: any) => {
-  const session = await getSession(context);
-  const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
+  const session: any = await getSession(context);
+  const newArticleList = await ArticleAPI.getPageArticles(1, {
+    Authorization: session?.accessToken,
+  });
   const popularArticleList = await ArticleAPI.getPopularArticles();
   const checkedCuration = await CurationAPI.getCheckedCuration();
   const firstCurationInfo =
@@ -45,9 +47,6 @@ export const getServerSideProps = async (context: any) => {
 
 export default function Home(props: any) {
   const { newArticleList, popularArticleList, firstCurationInfo } = props;
-  const { data } = useSession();
-  console.log(data);
-  console.log(popularArticleList);
 
   return (
     <>

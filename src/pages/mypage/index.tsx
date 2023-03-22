@@ -54,8 +54,6 @@ const Mypage = () => {
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
   const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
   const { data: session } = useSession();
-  console.log(session);
-
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
     profile

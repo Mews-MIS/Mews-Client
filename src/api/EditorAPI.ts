@@ -29,8 +29,6 @@ const EditorAPI = {
       const { accessToken } = session;
       const path = `mypage/${userId}/editor/${editorId}`;
 
-      console.log(userId, accessToken);
-
       const response = await HttpClient.get(
         path,
         {},

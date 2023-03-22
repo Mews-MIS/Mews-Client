@@ -11,7 +11,7 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import { Article } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -27,11 +27,16 @@ const NoneContentWrapper = styled.div`
 
 export const getServerSideProps = async (context: any) => {
   const session: any = await getSession(context);
+  const SubscribeArticleList = await ArticleAPI.getSubscribeArticles(session);
+  // 새로운 게시글
   const newArticleList = await ArticleAPI.getPageArticles(1, {
     Authorization: session?.accessToken,
   });
+  // 조회수 top5
   const popularArticleList = await ArticleAPI.getPopularArticles();
+  // 표시된 큐레이션
   const checkedCuration = await CurationAPI.getCheckedCuration();
+  // 첫 큐레이션이 있을 경우 표시
   const firstCurationInfo =
     checkedCuration?.length > 0 ? await CurationAPI.getCurationInfo(checkedCuration[0]) : [];
 
@@ -41,12 +46,13 @@ export const getServerSideProps = async (context: any) => {
       popularArticleList,
       checkedCuration,
       firstCurationInfo,
+      SubscribeArticleList,
     },
   };
 };
 
 export default function Home(props: any) {
-  const { newArticleList, popularArticleList, firstCurationInfo } = props;
+  const { newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } = props;
 
   return (
     <>
@@ -60,9 +66,9 @@ export default function Home(props: any) {
       <main>
         <PageTemplate>
           <ContentWrapper contentName="내가 구독하고 있는 게시글">
-            {mySubscribeArticle.length ? (
+            {SubscribeArticleList?.length ? (
               <CardSlider>
-                {mySubscribeArticle.map((element: any) => {
+                {SubscribeArticleList.map((element: any) => {
                   return (
                     <ContentCard
                       key={`Subscribe ${element.id}${element.title}`}

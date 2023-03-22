@@ -47,10 +47,18 @@ const ArticleAPI = {
     }
   },
 
-  getSubscribeArticles: async (userId: number, header: any) => {
+  getSubscribeArticles: async (session: any) => {
     try {
-      const path = `article/${userId}/subscribe`;
-      const response = await HttpClient.get(path, { userId }, { header });
+      const { id } = session;
+      const accessToken = session?.accessToken;
+      const path = `article/${id}/subscribe`;
+      const response = await HttpClient.get(
+        path,
+        { id },
+        {
+          Authorization: accessToken,
+        }
+      );
 
       return response;
     } catch (e) {

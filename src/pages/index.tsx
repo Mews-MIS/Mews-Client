@@ -12,6 +12,7 @@ import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
 import { getSession } from "next-auth/react";
+import Link from "next/link";
 import { Article } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -92,16 +93,18 @@ export default function Home(props: any) {
               <CardSlider>
                 {newArticleList.articles.map((element: Article) => {
                   return (
-                    <ContentCard
-                      key={`new Article${element.id}${element.title}`}
-                      category={element.type}
-                      title={element.title}
-                      authorNames={["이정우", "김현제"]}
-                      isActive={element.isActive}
-                      isLike={element.isLike}
-                      like_count={element.like_count}
-                      fileUrls={element.fileUrls}
-                    />
+                    <Link href={`article/${element.id}`}>
+                      <ContentCard
+                        key={`new Article${element.id}${element.title}`}
+                        category={element.type}
+                        title={element.title}
+                        authorNames={["이정우", "김현제"]}
+                        isActive={element.isActive}
+                        isLike={element.isLike}
+                        like_count={element.like_count}
+                        fileUrls={element.fileUrls}
+                      />
+                    </Link>
                   );
                 })}
               </CardSlider>

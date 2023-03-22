@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AuthorIntro from "@components/AuthorIntro";
 import ContentRow from "@components/ContentRow";
-import infiniteArticle from "@pages/tmp/infiniteArticle";
 import PageTemplate from "@components/PageTemplate";
 import ArticleAPI from "@api/ArticleAPI";
 import EditorAPI from "@api/EditorAPI";
@@ -50,7 +49,7 @@ export default function AuthorInfo(props: any) {
         </s.TopContainer>
         <s.AllPostContainer>
           <s.AllPost>작성한 글</s.AllPost>
-          <s.CountPost>{infiniteArticle.length}개</s.CountPost>
+          <s.CountPost>{articleList.articles.length}개</s.CountPost>
         </s.AllPostContainer>
         <s.BottomContainer>
           {articleList.articles.length > 0

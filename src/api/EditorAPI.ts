@@ -36,8 +36,7 @@ const EditorAPI = {
           Authorization: `Bearer ${accessToken}`,
         }
       );
-      console.log(response);
-      return session;
+      return response;
     } catch (e) {
       console.log(e);
       return null;

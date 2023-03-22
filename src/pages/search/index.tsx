@@ -17,8 +17,10 @@ export async function getServerSideProps() {
 }
 const searchPage = (props: any) => {
   const { popularKeywords } = props;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [recentKeywordList, setRecentKeywordList] = useState<string[]>([]);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const recentKeywords = localStorage.getItem("recentKeywords");
     setRecentKeywordList(JSON.parse(recentKeywords as string));

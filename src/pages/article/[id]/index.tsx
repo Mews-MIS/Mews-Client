@@ -1,4 +1,3 @@
-import Link from "next/link";
 import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Swal from "sweetalert2";
@@ -6,12 +5,11 @@ import ArticleAPI from "@api/ArticleAPI";
 import { dehydrate, QueryClient } from "react-query";
 import useArticleById from "@hooks/query/article/useArticleById";
 import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
-import TurndownService from "turndown";
 import MarkdownIt from "markdown-it";
 import EditorAPI from "@api/EditorAPI";
+import { useEffect } from "react";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
-import { useEffect, useState } from "react";
 
 export interface NewsViewProps {
   isLike: boolean;
@@ -29,7 +27,7 @@ export const getServerSideProps = async (context: any) => {
   });
 
   const articleInfo = queryClient.getQueryData(["article", id]);
-  console.log("dfgd", articleInfo);
+  // @ts-ignore
   const editorNumsList = articleInfo ? articleInfo.editorIdList : [];
 
   const editorInfoList = await editorNumsList.reduce(
@@ -65,7 +63,7 @@ const NewsView = ({
   id: number;
   editorInfoList: IAuthorProps[];
 }) => {
-  const { data: news }: { data: any } = useArticleById({ id, dehydratedState, editorInfoList });
+  const { data: news }: { data: any } = useArticleById({ id, dehydratedState });
   const md = new MarkdownIt();
 
   useEffect(() => {});

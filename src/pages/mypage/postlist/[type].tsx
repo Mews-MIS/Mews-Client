@@ -1,21 +1,19 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import AuthorIntro from "@components/AuthorIntro";
+import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
 import ContentWrapper from "@components/ContentWrapper";
 import ContentRow from "@components/ContentRow";
 import myBookmarkArticle from "@pages/tmp/myBookmarkArticle";
-import { Article } from "../../../types/article";
-import * as s from "./styles";
 import { tmpImageURL } from "@pages/tmp/tmpImageURL";
 import authors from "@pages/tmp/authors";
 import { useSession } from "next-auth/react";
 import MyPageAPI from "@api/MyPageAPI";
-import { IAuthorProps } from "../../../components/AuthorIntro/index";
 import PageTemplate from "@components/PageTemplate";
 import { ProfileContainer } from "@components/AuthorIntro/styles";
 import MyProfileAPI from "@pages/api/MyProfileAPI";
-import { IProfile } from "../../mypage/index";
+import * as s from "./styles";
+import { Article } from "../../../types/article";
+import { IProfile } from "../index";
 
 // 추후 userName은 props로 받아오는것으로 수정되어야 함
 interface textSetInterface {
@@ -35,7 +33,7 @@ export default function PostList() {
   const [array, setArray] = useState<Article[]>([]);
   const [userId, setUserId] = useState<number>();
   const [type, setType] = useState<string>("");
-  //임시 count초깃값
+  // 임시 count초깃값
   const [count, setCount] = useState<number>(13);
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
@@ -45,7 +43,6 @@ export default function PostList() {
 
   useEffect(() => {
     session && setUserId(session.userId);
-    console.log(session.userId);
     router.query.type === "bookmark" &&
       MyPageAPI.getMyBookmark(userId).then((data) => {
         setType("내가 북마크한 글");

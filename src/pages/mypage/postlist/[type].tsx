@@ -35,6 +35,7 @@ export default function PostList() {
   const [array, setArray] = useState<Article[]>([]);
   const [userId, setUserId] = useState<number>();
   const [type, setType] = useState<string>("");
+  //임시 count초깃값
   const [count, setCount] = useState<number>(13);
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
@@ -48,12 +49,12 @@ export default function PostList() {
     router.query.type === "bookmark" &&
       MyPageAPI.getMyBookmark(userId).then((data) => {
         setType("내가 북마크한 글");
-        // setCount(data.length);
+        setCount(data.length);
       });
     router.query.type === "like" &&
       MyPageAPI.getMyLikeArticle(userId).then((data) => {
         setType("내가 좋아요를 누른 글");
-        // setCount(data.length);
+        setCount(data.length);
       });
   }, []);
 
@@ -89,15 +90,7 @@ export default function PostList() {
           <s.CountPost>{count}개</s.CountPost>
         </s.AllPostContainer>
         <s.BottomContainer>
-          <ContentWrapper
-            contentName={
-              "ㅇㅇ"
-              //   (userId === authors[0].authorName
-              //     ? textSet.userName[0]
-              //     : authors[0].authorName + textSet.userName[1]) +
-              //   (isBookmark ? textSet.bookmarkPost : textSet.likePost)
-            }
-          >
+          <ContentWrapper contentName={type}>
             {myBookmarkArticle.length
               ? array.map((e: Article, index: number) => (
                   <ContentRow

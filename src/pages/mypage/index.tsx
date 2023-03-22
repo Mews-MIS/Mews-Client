@@ -55,40 +55,46 @@ const Mypage = () => {
   const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
   const { data: session } = useSession();
   console.log(session);
-  
+
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
-    profile.then((data: IProfile) => {
-      setName(data.userName);
-      setIntroduce(data.introduction);
-      setLikeNum(data.likeCount);
-      setBookmarkNum(data.bookmarkCount);
-      setSubscribeNum(data.subscribeCount);
-      setImgURL(data.imgUrl);
-    }).catch((e) => {
-      console.log(e);
-    });
-  }, [session]);
+    profile
+      .then((data: IProfile) => {
+        setName(data.userName);
+        setIntroduce(data.introduction);
+        setLikeNum(data.likeCount);
+        setBookmarkNum(data.bookmarkCount);
+        setSubscribeNum(data.subscribeCount);
+        setImgURL(data.imgUrl);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
-    bookmarks.then((data: IBookmark[]) => {
-      setBookmarkList([...data]);
-      setBookmarkNum(bookmarkList.length);
-    }).catch((e) => {
-      console.log(e);
-    });
-  }, [bookmarkList, session]);
+    bookmarks
+      .then((data: IBookmark[]) => {
+        setBookmarkList([...data]);
+        setBookmarkNum(bookmarkList.length);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [bookmarkList]);
 
   useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
-    likes.then((data: ILike[]) => {
-      setLikeList([...data]);
-      setLikeNum(likeList.length);
-    }).catch((e) => {
-      console.log(e);
-    });
-  }, [likeList, session]);
+    likes
+      .then((data: ILike[]) => {
+        setLikeList([...data]);
+        setLikeNum(likeList.length);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [likeList]);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals
@@ -98,7 +104,6 @@ const Mypage = () => {
   return (
     <PageTemplate>
       <s.Wrapper>
-        <TobNavBar />
         <s.TopContainer>
           <s.ProfileContainer>
             <s.ImageBox>
@@ -112,14 +117,14 @@ const Mypage = () => {
           <s.EditProfileBtn onClick={onClickProfileEdit}>프로필 편집</s.EditProfileBtn>
 
           <s.ArticleNumberContainer>
-            <Link href="/mypage/postlist">
+            <Link href="/mypage/postlist/like">
               <s.ArticleNumberItem>
                 <s.Num>{likeNum}</s.Num>
                 <s.Type>좋아요</s.Type>
               </s.ArticleNumberItem>
             </Link>
 
-            <Link href="/mypage/postlist">
+            <Link href="/mypage/postlist/bookmark">
               <s.ArticleNumberItem>
                 <s.Num>{bookmarkNum}</s.Num>
                 <s.Type>북마크</s.Type>

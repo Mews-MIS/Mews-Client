@@ -1,11 +1,13 @@
 import axios from "axios";
+// import { useSession } from "next-auth/react";
+// const { data: session } = useSession();
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL,
   withCredentials: true,
-  headers: {
-    Authorization: process.env.NEXT_TMP_ACCESS_TOKEN,
-  },
+  // headers: {
+  //   Authorization: session?.accessToken,
+  // },
 });
 
 const HttpClient = {

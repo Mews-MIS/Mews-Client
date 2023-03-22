@@ -3,7 +3,7 @@ import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
-import { dehydrate, QueryClient, useQuery } from "react-query";
+import { dehydrate, QueryClient } from "react-query";
 import useArticleById from "@hooks/query/article/useArticleById";
 import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
 import TurndownService from "turndown";

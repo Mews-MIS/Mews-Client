@@ -9,8 +9,8 @@ import PageTemplate from "@components/PageTemplate";
 import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
 import MyLikeAPI from "@pages/api/MyLikeAPI";
 import MyProfileAPI from "@pages/api/MyProfileAPI";
-import * as s from "./styles";
 import { useSession } from "next-auth/react";
+import * as s from "./styles";
 
 export interface IProfile {
   imgUrl: string;

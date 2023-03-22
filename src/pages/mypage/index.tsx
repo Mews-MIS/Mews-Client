@@ -9,8 +9,8 @@ import PageTemplate from "@components/PageTemplate";
 import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
 import MyLikeAPI from "@pages/api/MyLikeAPI";
 import MyProfileAPI from "@pages/api/MyProfileAPI";
-import * as s from "./styles";
 import { useSession } from "next-auth/react";
+import * as s from "./styles";
 
 export interface IProfile {
   imgUrl: string;
@@ -54,40 +54,44 @@ const Mypage = () => {
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
   const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
   const { data: session } = useSession();
-  console.log(session);
-  
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
-    profile.then((data: IProfile) => {
-      setName(data.userName);
-      setIntroduce(data.introduction);
-      setLikeNum(data.likeCount);
-      setBookmarkNum(data.bookmarkCount);
-      setSubscribeNum(data.subscribeCount);
-      setImgURL(data.imgUrl);
-    }).catch((e) => {
-      console.log(e);
-    });
+    profile
+      .then((data: IProfile) => {
+        setName(data.userName);
+        setIntroduce(data.introduction);
+        setLikeNum(data.likeCount);
+        setBookmarkNum(data.bookmarkCount);
+        setSubscribeNum(data.subscribeCount);
+        setImgURL(data.imgUrl);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [session]);
 
   useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
-    bookmarks.then((data: IBookmark[]) => {
-      setBookmarkList([...data]);
-      setBookmarkNum(bookmarkList.length);
-    }).catch((e) => {
-      console.log(e);
-    });
+    bookmarks
+      .then((data: IBookmark[]) => {
+        setBookmarkList([...data]);
+        setBookmarkNum(bookmarkList.length);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [bookmarkList, session]);
 
   useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
-    likes.then((data: ILike[]) => {
-      setLikeList([...data]);
-      setLikeNum(likeList.length);
-    }).catch((e) => {
-      console.log(e);
-    });
+    likes
+      .then((data: ILike[]) => {
+        setLikeList([...data]);
+        setLikeNum(likeList.length);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [likeList, session]);
 
   const onClickProfileEdit = () => {

@@ -3,10 +3,18 @@ import axios from "axios";
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_BASE_URL,
   withCredentials: true,
-  headers: {
-    Authorization: process.env.NEXT_TMP_ACCESS_TOKEN,
-  },
 });
+
+// axiosInstance.interceptors.request.use(async (config: any) => {
+//   const session = await getSession();
+//   if (session) {
+//     config.headers.Authorization = `${session.accessToken}`;
+//   }
+//
+//   console.log(session);
+//
+//   return config;
+// });
 
 const HttpClient = {
   get: async (path: string, params = {}, headers = {}) => {

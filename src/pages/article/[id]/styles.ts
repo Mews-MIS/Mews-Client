@@ -3,6 +3,7 @@ import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
   width: 100vw;
+  height: 100vmax;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   display: flex;
   flex-direction: column;

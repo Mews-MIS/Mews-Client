@@ -5,11 +5,13 @@ import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import useArticleById from "@hooks/query/article/useArticleById";
-import AuthorIntro from "@components/AuthorIntro";
+import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
 import TurndownService from "turndown";
 import MarkdownIt from "markdown-it";
+import EditorAPI from "@api/EditorAPI";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
+import { useEffect, useState } from "react";
 
 export interface NewsViewProps {
   isLike: boolean;
@@ -23,23 +25,50 @@ export const getServerSideProps = async (context: any) => {
   await queryClient.prefetchQuery(["article", id], async () => {
     const response = await ArticleAPI.getArticle(id);
     const data: Article = response;
-
     return data;
   });
 
+  const articleInfo = queryClient.getQueryData(["article", id]);
+  console.log("dfgd", articleInfo);
+  const editorNumsList = articleInfo ? articleInfo.editorIdList : [];
+
+  const editorInfoList = await editorNumsList.reduce(
+    async (acc: Promise<IAuthorProps[]>, cur: number) => {
+      const getUserInfo = async () => {
+        const info = await EditorAPI.getEditorInfo(cur);
+        return info;
+      };
+      const userInfo = await getUserInfo();
+      const result = await acc;
+      result.push(userInfo);
+      return result;
+    },
+    Promise.resolve([])
+  );
+
   return {
     props: {
-      dehydrateState: dehydrate(queryClient),
+      dehydratedState: dehydrate(queryClient),
       id,
+      editorInfoList,
+      // editorInfo,
     },
   };
 };
 
-const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) => {
-  const { data: news }: { data: any } = useArticleById(id, dehydrateState);
+const NewsView = ({
+  dehydratedState,
+  id,
+  editorInfoList,
+}: {
+  dehydratedState: any;
+  id: number;
+  editorInfoList: IAuthorProps[];
+}) => {
+  const { data: news }: { data: any } = useArticleById({ id, dehydratedState, editorInfoList });
   const md = new MarkdownIt();
-  console.log(news);
 
+  useEffect(() => {});
   const copyURL = () => {
     const currentUrl = window.document.location.href;
     const url = document.createElement("textarea");
@@ -79,15 +108,16 @@ const NewsView = ({ dehydrateState, id }: { dehydrateState: any; id: number }) =
         <s.ArticleBottomContainer>
           <s.ArticleBottomBox>
             <s.AuthorIntroContainer>
-              <Link href="/">
-                <AuthorIntro
-                  name="이정우"
-                  introduction="꿈은 없고 놀고만 싶습니다."
-                  imageURL="ht"
-                />
-              </Link>
+              {editorInfoList &&
+                editorInfoList.map((editorInfo) => (
+                  <AuthorIntro
+                    id={editorInfo.id}
+                    name={editorInfo.name}
+                    imgUrl={editorInfo.imgUrl}
+                    introduction={editorInfo.introduction}
+                  />
+                ))}
             </s.AuthorIntroContainer>
-
             <s.BottomContainer>
               <s.BtnContainer>
                 <s.LikeIconContainer />

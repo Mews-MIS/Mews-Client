@@ -1,4 +1,5 @@
 export interface Article {
+  editorIdList(editorIdList: any): unknown;
   id: number;
   fileUrls: string[];
   type: string;

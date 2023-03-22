@@ -10,6 +10,17 @@ const axiosInstance = axios.create({
   // },
 });
 
+// axiosInstance.interceptors.request.use(async (config: any) => {
+//   const session = await getSession();
+//   if (session) {
+//     config.headers.Authorization = `${session.accessToken}`;
+//   }
+//
+//   console.log(session);
+//
+//   return config;
+// });
+
 const HttpClient = {
   get: async (path: string, params = {}, headers = {}) => {
     const response = await axiosInstance.get(path, { params, headers });

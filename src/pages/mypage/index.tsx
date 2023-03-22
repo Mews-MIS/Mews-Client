@@ -9,8 +9,8 @@ import PageTemplate from "@components/PageTemplate";
 import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
 import MyLikeAPI from "@pages/api/MyLikeAPI";
 import MyProfileAPI from "@pages/api/MyProfileAPI";
-import * as s from "./styles";
 import { useSession } from "next-auth/react";
+import * as s from "./styles";
 
 export interface IProfile {
   imgUrl: string;
@@ -54,7 +54,6 @@ const Mypage = () => {
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
   const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
   const { data: session } = useSession();
-  console.log(session);
 
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
@@ -72,6 +71,7 @@ const Mypage = () => {
       });
   }, []);
 
+
   useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
     bookmarks
@@ -84,6 +84,7 @@ const Mypage = () => {
       });
   }, [bookmarkList]);
 
+
   useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
     likes
@@ -95,6 +96,7 @@ const Mypage = () => {
         console.log(e);
       });
   }, [likeList]);
+
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals

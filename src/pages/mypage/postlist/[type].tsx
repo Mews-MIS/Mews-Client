@@ -49,12 +49,12 @@ export default function PostList() {
     router.query.type === "bookmark" &&
       MyPageAPI.getMyBookmark(userId).then((data) => {
         setType("내가 북마크한 글");
-        setCount(data.length);
+        // setCount(data.length);
       });
     router.query.type === "like" &&
       MyPageAPI.getMyLikeArticle(userId).then((data) => {
         setType("내가 좋아요를 누른 글");
-        setCount(data.length);
+        // setCount(data.length);
       });
   }, []);
 

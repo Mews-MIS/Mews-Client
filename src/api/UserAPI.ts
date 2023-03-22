@@ -5,7 +5,6 @@ const UserAPI = {
     try {
       const path = `auth/login`;
       const response = await HttpClient.post(path, body);
-      console.log(response);
       return response;
     } catch (e) {
       console.log(e);

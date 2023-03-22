@@ -3,7 +3,6 @@ import ContentCard from "@components/ContentCard";
 import ContentWrapper from "@components/ContentWrapper";
 import React from "react";
 import CardSlider from "@components/CardSlider";
-import mySubscribeArticle from "@pages/tmp/mySubscribeArticle";
 import PageTemplate from "@components/PageTemplate";
 
 import ArticleAPI from "@api/ArticleAPI";
@@ -11,7 +10,8 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import Link from "next/link";
 import { Article } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -26,10 +26,17 @@ const NoneContentWrapper = styled.div`
 `;
 
 export const getServerSideProps = async (context: any) => {
-  const session = await getSession(context);
-  const newArticleList = await ArticleAPI.getPageArticles({ page: 1 });
+  const session: any = await getSession(context);
+  const SubscribeArticleList = await ArticleAPI.getSubscribeArticles(session);
+  // 새로운 게시글
+  const newArticleList = await ArticleAPI.getPageArticles(1, {
+    Authorization: session?.accessToken,
+  });
+  // 조회수 top5
   const popularArticleList = await ArticleAPI.getPopularArticles();
+  // 표시된 큐레이션
   const checkedCuration = await CurationAPI.getCheckedCuration();
+  // 첫 큐레이션이 있을 경우 표시
   const firstCurationInfo =
     checkedCuration?.length > 0 ? await CurationAPI.getCurationInfo(checkedCuration[0]) : [];
 
@@ -39,15 +46,13 @@ export const getServerSideProps = async (context: any) => {
       popularArticleList,
       checkedCuration,
       firstCurationInfo,
+      SubscribeArticleList,
     },
   };
 };
 
 export default function Home(props: any) {
-  const { newArticleList, popularArticleList, firstCurationInfo } = props;
-  const { data } = useSession();
-  console.log(data);
-  console.log(popularArticleList);
+  const { newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } = props;
 
   return (
     <>
@@ -61,9 +66,9 @@ export default function Home(props: any) {
       <main>
         <PageTemplate>
           <ContentWrapper contentName="내가 구독하고 있는 게시글">
-            {mySubscribeArticle.length ? (
+            {SubscribeArticleList?.length ? (
               <CardSlider>
-                {mySubscribeArticle.map((element: any) => {
+                {SubscribeArticleList.map((element: any) => {
                   return (
                     <ContentCard
                       key={`Subscribe ${element.id}${element.title}`}
@@ -87,16 +92,18 @@ export default function Home(props: any) {
               <CardSlider>
                 {newArticleList.articles.map((element: Article) => {
                   return (
-                    <ContentCard
-                      key={`new Article${element.id}${element.title}`}
-                      category={element.type}
-                      title={element.title}
-                      authorNames={["이정우", "김현제"]}
-                      isActive={element.isActive}
-                      isLike={element.isLike}
-                      like_count={element.like_count}
-                      fileUrls={element.fileUrls}
-                    />
+                    <Link href={`article/${element.id}`}>
+                      <ContentCard
+                        key={`new Article${element.id}${element.title}`}
+                        category={element.type}
+                        title={element.title}
+                        authorNames={["이정우", "김현제"]}
+                        isActive={element.isActive}
+                        isLike={element.isLike}
+                        like_count={element.like_count}
+                        fileUrls={element.fileUrls}
+                      />
+                    </Link>
                   );
                 })}
               </CardSlider>

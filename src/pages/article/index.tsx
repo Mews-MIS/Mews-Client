@@ -16,10 +16,11 @@ const NewsPage = () => {
   const { data, isLoading } = usePostByPageNumber(pageNumber);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
   const itemsCountPerPage = 10;
+
   useEffect(() => {
-    ArticleAPI.getPageArticles({ page: 1 }).then((data) => {
+    ArticleAPI.getPageArticles(1, {}).then((data: any) => {
       setArticle(data.articles);
-      setTotalItemsCount(Math.ceil(data.pageCount * itemsCountPerPage));
+
     });
   }, []);
 
@@ -43,14 +44,16 @@ const NewsPage = () => {
       </s.NewsTopContainer>
       <s.NewsbottomContainer>
         <s.NewsListBox>
-          {data.articles
+          {data?.articles
             ? data.articles.map((element: any, index: number) => {
                 return <NewsListItem key={element.id} index={index + 1} contentInfo={element} />;
               })
             : "등록된 게시물이 없습니다"}
         </s.NewsListBox>
 
-        <Paging page={pageNumber} count={totalItemsCount} setPage={setPage} />
+
+        <Paging page={pageNumber} count={data.pageCount} setPage={setPage} />
+
       </s.NewsbottomContainer>
     </s.Wrapper>
   );

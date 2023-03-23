@@ -6,10 +6,10 @@ const calendarInfoDetailsSelector = selector({
   key: "calendarInfoDetailsSelector",
   get: async ({ get }) => {
     const selectedDate = get(selectedDateAtom);
-    console.log(`00${selectedDate.getMonth() + 1}`.slice(-2));
-    console.log(`00${selectedDate.getDate()}`.slice(-2));
     const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}calendar/getday/${selectedDate.getFullYear()}-${`00${selectedDate.getMonth() + 1}`.slice(
+      `${
+        process.env.NEXT_PUBLIC_SERVER_BASE_URL
+      }calendar/getday/${selectedDate.getFullYear()}-${`00${selectedDate.getMonth() + 1}`.slice(
         -2
       )}-${`00${selectedDate.getDate()}`.slice(-2)}`,
       {
@@ -18,7 +18,6 @@ const calendarInfoDetailsSelector = selector({
         },
       }
     );
-    console.log(data);
     return data;
   },
 });

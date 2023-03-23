@@ -27,13 +27,15 @@ const EditMypage = () => {
 
   useEffect(() => {
     const profile: Promise<any> = EditProfileAPI.getProfile(session);
-    profile.then((data: IProfile) => {
-      setName(data.userName);
-      setIntroduce(data.introduction);
-      setImgURL(data.imgUrl);
-    }).catch((e) => {
-      console.log(e);
-    });
+    profile
+      .then((data: IProfile) => {
+        setName(data.userName);
+        setIntroduce(data.introduction);
+        setImgURL(data.imgUrl);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [session]);
 
   const toggleHandler = () => {
@@ -51,16 +53,16 @@ const EditMypage = () => {
     setIsFirstState(false);
   };
 
-  const sendEditProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const sendEditProfile = () => {
     const formData = new FormData();
-    if(imgURL) formData.append("file", imgURL);
+    if (imgURL) formData.append("file", imgURL);
 
     const data = {
       introduction: introduce,
       open: isOpen,
       userName: name,
     };
-    formData.append("data", new Blob([JSON.stringify(data)], {type: "application/json"}));
+    formData.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
     EditProfileAPI.patchProfile(formData, session);
   };
 
@@ -71,7 +73,7 @@ const EditMypage = () => {
           <TobNavBar />
           <s.EditContainer>
             <s.EditImageContainer>
-              <EditProfileImage serverImageURL={imgURL} setIsFirstState={setIsFirstState}/>
+              <EditProfileImage serverImageURL={imgURL} setIsFirstState={setIsFirstState} />
             </s.EditImageContainer>
 
             <s.EditInfoContainer>

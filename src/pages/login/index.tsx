@@ -13,7 +13,6 @@ const NotLoginPage = () => {
     signIn("google", { callbackUrl: "http://localhost:3000/" });
   };
 
-  console.log(session);
   return (
     <s.Wrapper>
       <s.NotLoginContainer>

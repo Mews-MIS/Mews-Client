@@ -1,16 +1,15 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import AuthorIntro from "@components/AuthorIntro";
 import ContentWrapper from "@components/ContentWrapper";
 import ContentRow from "@components/ContentRow";
 import myBookmarkArticle from "@pages/tmp/myBookmarkArticle";
-import { Article } from "../../../types/article";
-import * as s from "./styles";
 import { tmpImageURL } from "@pages/tmp/tmpImageURL";
 import authors from "@pages/tmp/authors";
+import { Article } from "../../../types/article";
+import * as s from "./styles";
 
 // 추후 userName은 props로 받아오는것으로 수정되어야 함
-interface textSetInterface {
+interface TestSetInterface {
   bookmarkPost: string;
   likePost: string;
   userName: Array<string>;
@@ -19,7 +18,7 @@ interface textSetInterface {
 export default function PostList() {
   const [array, setArray] = useState<Article[]>([]);
 
-  //api로 받아오는 로그인 유저 정보,페이지 정보(더미데이터)
+  // api로 받아오는 로그인 유저 정보,페이지 정보(더미데이터)
   const userId = "한수정";
   const isBookmark = false;
 
@@ -27,13 +26,13 @@ export default function PostList() {
     getArticleList();
   }, []);
 
-  const textSet: textSetInterface = {
+  const textSet: TestSetInterface = {
     bookmarkPost: " 북마크한 글",
     likePost: " 좋아요를 누른 글",
     userName: ["내가", "님이"],
   };
 
-  //임시 데이터 불러옴
+  // 임시 데이터 불러옴
   const getArticleList = () => {
     setArray([...array, ...myBookmarkArticle]);
   };

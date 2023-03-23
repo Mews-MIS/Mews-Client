@@ -16,8 +16,8 @@ export async function getServerSideProps({ query }: { query: any }) {
   return {
     props: {
       keyword,
-      getArticleRes: response.getArticleRes,
-      getEditorRes: response.getEditorRes,
+      getArticleRes: response?.getArticleRes,
+      getEditorRes: response?.getEditorRes,
     },
   };
 }
@@ -30,10 +30,10 @@ interface SearchedResultPageProps {
 
 const SearchedResultPage = (props: SearchedResultPageProps) => {
   const { keyword, getEditorRes, getArticleRes } = props;
-  console.log(getEditorRes);
   useEffect(() => {
     const searchKeyword = keyword;
-    let recentKeywords = JSON.parse(localStorage.getItem("recentKeywords")) || [];
+    const localStorageData = localStorage.getItem("recentKeywords");
+    let recentKeywords = JSON.parse(localStorageData as string) || [];
 
     // eslint-disable-next-line @typescript-eslint/no-shadow
     recentKeywords = recentKeywords.filter((keyword: any) => keyword !== searchKeyword);

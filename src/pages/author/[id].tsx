@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AuthorIntro from "@components/AuthorIntro";
-import ContentCard from "@components/ContentCard";
-import ContentWrapper from "@components/ContentWrapper";
-import CardSlider from "@components/CardSlider";
 import ContentRow from "@components/ContentRow";
-import infiniteArticle from "@pages/tmp/infiniteArticle";
 import PageTemplate from "@components/PageTemplate";
 import ArticleAPI from "@api/ArticleAPI";
 import EditorAPI from "@api/EditorAPI";
@@ -15,6 +11,8 @@ export const getServerSideProps = async (context: any) => {
   const editorId = context.params.id;
   const articleList = await ArticleAPI.getEditorArticles(editorId);
   const editorInfo = await EditorAPI.getEditorInfo(editorId);
+  // const session = await getSession(context);
+  // const editorInfo2 = await EditorAPI.getEditorDetailInfo(editorId, session);
 
   return {
     props: {
@@ -50,7 +48,7 @@ export default function AuthorInfo(props: any) {
         </s.TopContainer>
         <s.AllPostContainer>
           <s.AllPost>작성한 글</s.AllPost>
-          <s.CountPost>{infiniteArticle.length}개</s.CountPost>
+          <s.CountPost>{articleList.articles.length}개</s.CountPost>
         </s.AllPostContainer>
         <s.BottomContainer>
           {articleList.articles.length > 0

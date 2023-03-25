@@ -12,11 +12,7 @@ const calendarInfoDetailsSelector = selector({
       }calendar/getday/${selectedDate.getFullYear()}-${`00${selectedDate.getMonth() + 1}`.slice(
         -2
       )}-${`00${selectedDate.getDate()}`.slice(-2)}`,
-      {
-        headers: {
-          Authorization: process.env.NEXT_TMP_ACCESS_TOKEN,
-        },
-      }
+      {}
     );
     return data;
   },

@@ -1,6 +1,5 @@
 import ContentWrapper from "@components/ContentWrapper";
 import CardsSlider from "@components/CardSlider";
-import myBookmarkArticle from "@pages/tmp/myBookmarkArticle";
 import ContentCard from "@components/ContentCard";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -50,8 +49,8 @@ const Mypage = () => {
   const [introduce, setIntroduce] = useState("");
   const [imgURL, setImgURL] = useState("/");
 
-  const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
-  const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
+  const [bookmarkList, setBookmarkList] = useState<IBookmark[]>([]);
+  const [likeList, setLikeList] = useState<ILike[]>([]);
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -65,10 +64,8 @@ const Mypage = () => {
         setSubscribeNum(data.subscribeCount);
         setImgURL(data.imgUrl);
       })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+      .catch(() => {});
+  }, [session]);
 
   useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
@@ -77,10 +74,8 @@ const Mypage = () => {
         setBookmarkList([...data]);
         setBookmarkNum(bookmarkList.length);
       })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+      .catch(() => {});
+  }, [bookmarkList.length, session]);
 
   useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
@@ -89,10 +84,8 @@ const Mypage = () => {
         setLikeList([...data]);
         setLikeNum(likeList.length);
       })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+      .catch(() => {});
+  }, [likeList.length, session]);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals

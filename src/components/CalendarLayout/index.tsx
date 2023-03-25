@@ -1,29 +1,21 @@
-import CalendarDays from "@components/CalendarDays";
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable react/no-array-index-key */
 import DayItem from "@components/DayItem";
-import { addDays, endOfMonth, format, isWithinInterval, startOfDay, startOfMonth, startOfWeek } from "date-fns";
+import CalendarDays from "@components/CalendarDays";
+import {
+  addDays,
+  endOfMonth,
+  format,
+  isWithinInterval,
+  startOfDay,
+  startOfMonth,
+  startOfWeek,
+} from "date-fns";
 import { useEffect } from "react";
 import { useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from "recoil";
+import { IDayItem } from "src/interfaces/ICalendar";
 import calendarInfoAllSelector from "src/states/calendarInfoAll";
 import selectedDate from "src/states/selectedDate";
 import * as s from "./styles";
-
-export interface IPropsDayItem {
-  year: number;
-  month: number;
-  day: number;
-  isToday: boolean;
-  isSelected: boolean;
-  isCurrentMonth: boolean;
-  categories: string[];
-}
-
-export interface IDayItem {
-  title?: string;
-  startDate: number[];
-  endDate: number[];
-  category: string;
-}
 
 const CalendarLayout = () => {
   const selectedDateState = useRecoilValue(selectedDate);
@@ -77,24 +69,33 @@ const CalendarLayout = () => {
     switch (allCalendarDateLoadable.state) {
       case "hasValue":
         allCalendarDateLoadable.contents.map((item: IDayItem) =>
-          eachCategories.push({ category: item.category, startDate: item.startDate, endDate: item.endDate })
+          eachCategories.push({
+            category: item.category,
+            startDate: item.startDate,
+            endDate: item.endDate,
+          })
         );
         break;
       default:
-        console.log(allCalendarDateLoadable.state);
+        break;
     }
-  }, [allCalendarDateLoadable, eachCategories]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allCalendarDateLoadable]);
 
   switch (allCalendarDateLoadable.state) {
     case "hasValue":
       allCalendarDateLoadable.contents.map((item: IDayItem) =>
-        eachCategories.push({ category: item.category, startDate: item.startDate, endDate: item.endDate })
+        eachCategories.push({
+          category: item.category,
+          startDate: item.startDate,
+          endDate: item.endDate,
+        })
       );
       break;
     case "hasError":
       throw allCalendarDateLoadable.contents;
     default:
-      console.log(allCalendarDateLoadable.state);
+      break;
   }
 
   return (
@@ -127,14 +128,17 @@ const CalendarLayout = () => {
                       }
                       isCurrentMonth={day.getMonth() === selectedDateState.getMonth()}
                       categories={
-                        eachCategories && eachCategories.map((d) => {
-                          if(isWithinInterval(day, {
-                              start: new Date(d.startDate[0], d.startDate[1]-1, d.startDate[2]), 
-                              end: new Date(d.endDate[0], d.endDate[1]-1, d.endDate[2])
-                            })) {
+                        eachCategories &&
+                        eachCategories.map((d) => {
+                          if (
+                            isWithinInterval(day, {
+                              start: new Date(d.startDate[0], d.startDate[1] - 1, d.startDate[2]),
+                              end: new Date(d.endDate[0], d.endDate[1] - 1, d.endDate[2]),
+                            })
+                          ) {
                             return d.category;
                           }
-                          else return "";
+                          return "";
                         })
                       }
                     />

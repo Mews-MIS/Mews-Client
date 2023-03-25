@@ -7,9 +7,8 @@ const EditProfileAPI = {
       const response: [] | undefined = await HttpClient.get(
         path,
         {},
-        { Authorization: `Bearer ` + session?.accessToken }
+        { Authorization: `Bearer ${session?.accessToken}` }
       );
-      console.log(response);
       return response;
     } catch (e) {
       console.log(e);
@@ -20,10 +19,9 @@ const EditProfileAPI = {
     try {
       const path = `mypage/profile/${session?.userId}`;
       const response: [] | undefined = await HttpClient.patch(path, data, {
-        Authorization: `Bearer ` + session?.accessToken,
-        "content-type": "multipart/form-data"
+        Authorization: `Bearer ${session?.accessToken}`,
+        "content-type": "multipart/form-data",
       });
-      console.log(response);
       return response;
     } catch (e) {
       console.log(e);

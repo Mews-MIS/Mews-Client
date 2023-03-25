@@ -15,7 +15,6 @@ const MyPageAPI = {
     try {
       const path = `/mypage/${userId}/myBookmark`;
       const response = await HttpClient.get(path);
-      console.log(response);
       return response;
     } catch (e) {
       console.log(e);

@@ -1,7 +1,5 @@
-import TobNavBar from "@components/TopNavBar";
 import ContentWrapper from "@components/ContentWrapper";
 import CardsSlider from "@components/CardSlider";
-import myBookmarkArticle from "@pages/tmp/myBookmarkArticle";
 import ContentCard from "@components/ContentCard";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -51,8 +49,8 @@ const Mypage = () => {
   const [introduce, setIntroduce] = useState("");
   const [imgURL, setImgURL] = useState("/");
 
-  const [bookmarkList, setBookmarkList] = useState<IBookmark[]>(myBookmarkArticle);
-  const [likeList, setLikeList] = useState<ILike[]>(myBookmarkArticle);
+  const [bookmarkList, setBookmarkList] = useState<IBookmark[]>([]);
+  const [likeList, setLikeList] = useState<ILike[]>([]);
   const { data: session } = useSession();
   console.log(session);
 
@@ -146,14 +144,16 @@ const Mypage = () => {
               {bookmarkList &&
                 bookmarkList.map((e: IBookmark) => {
                   return (
-                    <ContentCard
-                      category={e.category}
-                      title={e.title}
-                      authorNames={e.editors}
-                      isActive={e.bookmarked}
-                      isLike={e.liked}
-                      like_count={e.likeCount}
-                    />
+                    <Link href={`article/${e.id}`}>
+                      <ContentCard
+                        category={e.category}
+                        title={e.title}
+                        authorNames={e.editors}
+                        isActive={e.bookmarked}
+                        isLike={e.liked}
+                        like_count={e.likeCount}
+                      />
+                    </Link>
                   );
                 })}
             </CardsSlider>

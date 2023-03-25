@@ -2,13 +2,13 @@ export interface Article {
   editorIdList(editorIdList: any): unknown;
   id: number;
   fileUrls: string[];
-  type: string;
+  type?: string;
   title: string;
-  isActive: boolean;
-  isLike: boolean;
-  authorNames: string[];
-  like_count: number;
-  modifiedAt: number[];
+  isActive?: boolean;
+  isLike?: boolean;
+  authorNames?: string[];
+  like_count?: number;
+  modifiedAt?: number[];
 
   content?: string;
 }

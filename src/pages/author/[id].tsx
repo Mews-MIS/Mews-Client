@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AuthorIntro from "@components/AuthorIntro";
 import ContentRow from "@components/ContentRow";
 import PageTemplate from "@components/PageTemplate";
 import ArticleAPI from "@api/ArticleAPI";
 import EditorAPI from "@api/EditorAPI";
-import { getSession } from "next-auth/react";
 import { Article } from "../../types/article";
 import * as s from "./styles";
 
 export const getServerSideProps = async (context: any) => {
   const editorId = context.params.id;
-  const session = await getSession(context);
   const articleList = await ArticleAPI.getEditorArticles(editorId);
   const editorInfo = await EditorAPI.getEditorInfo(editorId);
-  const editorInfo2 = await EditorAPI.getEditorDetailInfo(editorId, session);
+  // const session = await getSession(context);
+  // const editorInfo2 = await EditorAPI.getEditorDetailInfo(editorId, session);
 
   return {
     props: {

@@ -1,24 +1,25 @@
-import ScheduleItem from '@components/ScheduleItem';
-import { IScheduleCategory } from '@components/ScheduleLayout';
-import theme from '@styles/Theme';
-import React, { useCallback, useRef, useState } from 'react';
-import FoldBtn from '@public/button/FoldBtn.svg';
-import CollapseBtn from '@public/button/CollapseBtn.svg';
+import ScheduleItem from "@components/ScheduleItem";
+import { IScheduleCategory } from "src/interfaces/ISchedules";
+import theme from "@styles/Theme";
+import React, { useCallback, useRef, useState } from "react";
+import FoldBtn from "@public/button/FoldBtn.svg";
+import CollapseBtn from "@public/button/CollapseBtn.svg";
 import * as s from "./styles";
 
-export interface IScheduleItem {
-  title: string,
-  Color: string
-}
+const ScheduleCategory = ({ category, titles }: IScheduleCategory) => {
+  let Color: string = "";
+  if (category === "동국대학교") {
+    Color = theme.COLORS.WARNING_RED;
+  }
 
-const ScheduleCategory = ({category, titles}: IScheduleCategory) => {
-  const Color = 
-    category === "동국대학교" 
-      ? `${theme.COLORS.WARNING_RED}` 
-      : category === "경영정보학과"
-      ? `${theme.COLORS.HIGHLIGHT_ORANGE}`
-      : `${theme.COLORS.BRIGHT_ORANGE}`;
-  
+  if (category === "경영정보학과") {
+    Color = theme.COLORS.HIGHLIGHT_ORANGE;
+  }
+
+  if (category === "Mews") {
+    Color = theme.COLORS.BRIGHT_ORANGE;
+  }
+
   const parentRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
 
@@ -28,44 +29,42 @@ const ScheduleCategory = ({category, titles}: IScheduleCategory) => {
   const handleBtnClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
-      if(parentRef.current === null && childRef.current === null) return;
+      if (parentRef.current === null && childRef.current === null) return;
 
-      if(childRef.current!.clientHeight > 0) {
+      if (childRef.current!.clientHeight > 0) {
         setChildRefHeight(+childRef.current!.clientHeight);
         childRef.current!.style.height = "0";
-      }
-      else {
+      } else {
         childRef.current!.style.height = `${childRefHeight}px`;
       }
       setIsCollpase(!isCollapse);
-    }, [isCollapse]
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isCollapse]
   );
-  
+
   return (
     <s.Wrapper>
       <s.Container ref={parentRef}>
-        <s.Title >
+        <s.Title>
           <s.Circle color={Color} />
           <s.TitleText>{category}</s.TitleText>
           <s.BtnWrapper onClick={handleBtnClick}>
-            {
-              isCollapse ? <CollapseBtn /> : <FoldBtn/>
-            }
+            {isCollapse ? <CollapseBtn /> : <FoldBtn />}
           </s.BtnWrapper>
         </s.Title>
-        
+
         <s.ScheduleItems ref={childRef}>
-          {
-            titles.map((title, idx) => 
-              <s.ItemWrapper key={idx}>
-                <ScheduleItem title={title} Color={Color}/>
-              </s.ItemWrapper>
-            )
-          }
+          {titles.map((title, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <s.ItemWrapper key={idx}>
+              <ScheduleItem title={title} Color={Color} />
+            </s.ItemWrapper>
+          ))}
         </s.ScheduleItems>
       </s.Container>
     </s.Wrapper>
-  )
+  );
 };
 
 export default ScheduleCategory;

@@ -52,6 +52,7 @@ const Mypage = () => {
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>([]);
   const [likeList, setLikeList] = useState<ILike[]>([]);
   const { data: session } = useSession();
+  console.log(session);
 
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
@@ -64,8 +65,10 @@ const Mypage = () => {
         setSubscribeNum(data.subscribeCount);
         setImgURL(data.imgUrl);
       })
-      .catch(() => {});
-  }, [session]);
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
@@ -74,8 +77,10 @@ const Mypage = () => {
         setBookmarkList([...data]);
         setBookmarkNum(bookmarkList.length);
       })
-      .catch(() => {});
-  }, [bookmarkList.length, session]);
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [bookmarkList]);
 
   useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
@@ -84,8 +89,10 @@ const Mypage = () => {
         setLikeList([...data]);
         setLikeNum(likeList.length);
       })
-      .catch(() => {});
-  }, [likeList.length, session]);
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [likeList]);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals

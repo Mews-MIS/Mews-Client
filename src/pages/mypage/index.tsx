@@ -68,9 +68,6 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
-
-  useEffect(() => {
     const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
     bookmarks
       .then((data: IBookmark[]) => {
@@ -80,9 +77,7 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [bookmarkList]);
 
-  useEffect(() => {
     const likes: Promise<any> = MyLikeAPI.getLikes(session);
     likes
       .then((data: ILike[]) => {
@@ -92,7 +87,7 @@ const Mypage = () => {
       .catch((e) => {
         console.log(e);
       });
-  }, [likeList]);
+  }, []);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals

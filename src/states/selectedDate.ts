@@ -2,15 +2,15 @@ import { atom, selector } from "recoil";
 
 export const selectedDateAtom = atom({
   key: "selectedDate",
-  default: new Date()
+  default: new Date(),
 });
 
-const selectedDateSelector = selector({
+export const selectedDateSelector = selector({
   key: "selectedDateState",
-  get: ({get}) => {
+  get: ({ get }) => {
     return get(selectedDateAtom);
   },
-  set: ({set}, newSelectedDate) => {
+  set: ({ set }, newSelectedDate) => {
     set(selectedDateAtom, newSelectedDate);
   },
 });

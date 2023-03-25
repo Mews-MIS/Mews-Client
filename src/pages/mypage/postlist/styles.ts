@@ -6,23 +6,25 @@ export const Wrapper = styled.div`
 `;
 
 export const TopContainer = styled.div`
+  width: 85%
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
   background: ${theme.COLORS.CONTAINER_WHITE};
 `;
 
 export const ProfileContainer = styled.div`
-  flex-direction: row;
-  margin: 2%;
+  display: flex;
+  width: 80%;
 `;
 
 export const ImageBox = styled.div`
   margin-left: 10%;
   width: 80px;
-  height: 80px;
-  border-radius: 70%;
+  height: 80px%;
+  border-radius: 50%;
   overflow: hidden;
 `;
 
@@ -66,9 +68,23 @@ export const AllPostContainer = styled.div`
 export const AllPost = styled.div`
   padding-right: 8px;
 `;
+
 export const CountPost = styled.div`
   color: ${theme.COLORS.BRIGHT_ORANGE};
 `;
+
 export const BottomContainer = styled.div`
   min-height: 90vh;
+  @media (min-width: 860px) {
+    width: 90%;
+  }
+  margin: 0 auto;
+`;
+
+export const Text = styled.div`
+  margin-top: 10%;
+  height: 200px;
+  font-size: large;
+  color: ${theme.COLORS.LINE_GRAY};
+  text-align: center;
 `;

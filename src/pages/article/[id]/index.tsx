@@ -1,4 +1,3 @@
-import NewsViewBookmarkBtn from "@public/button/NewsViewBookmarkBtn.svg";
 import LinkBtn from "@public/button/LinkBtn.svg";
 import Swal from "sweetalert2";
 import ArticleAPI from "@api/ArticleAPI";
@@ -10,6 +9,7 @@ import EditorAPI from "@api/EditorAPI";
 import { useEffect } from "react";
 import { getSession } from "next-auth/react";
 import BookmarkButton from "@components/BookmarkButton";
+import LikeButton from "@components/LikeButton";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
 
@@ -71,6 +71,7 @@ const NewsView = ({
 }) => {
   const { data: news }: { data: any } = useArticleById({ id, dehydratedState });
   const md = new MarkdownIt();
+  console.log(news);
 
   useEffect(() => {});
   const copyURL = () => {
@@ -124,13 +125,13 @@ const NewsView = ({
             </s.AuthorIntroContainer>
             <s.BottomContainer>
               <s.BtnContainer>
-                <s.LikeIconContainer />
+                <s.LinkIconContainer>
+                  <LikeButton articleId={id} session={session} isActive={news.liked} />
+                </s.LinkIconContainer>
                 <s.BookmarkIconContainer>
                   <BookmarkButton articleId={id} session={session} isActive={news.bookmarked} />
                 </s.BookmarkIconContainer>
-                <s.LinkIconContainer>
-                  <LinkBtn onClick={copyURL} />
-                </s.LinkIconContainer>
+                <LinkBtn onClick={copyURL} />
               </s.BtnContainer>
             </s.BottomContainer>
           </s.ArticleBottomBox>

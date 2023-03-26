@@ -25,8 +25,8 @@ const LikeButton = ({ articleId, session, isActive }: LikeButtonProps) => {
   };
 
   return (
-    <IconContainer>
-      <LikeBtn onClick={handleClick} />
+    <IconContainer className={active ? "active" : "inactive"}>
+      <LikeBtn onClick={handleClick} layout="fill" alt="좋아요 버튼" />
     </IconContainer>
   );
 };

@@ -98,7 +98,7 @@ const ArticleAPI = {
     try {
       const { userId } = session;
       const accessToken = session?.accessToken;
-      const path = `article/${articleId}/user/${id}/like`;
+      const path = `article/${articleId}/user/${userId}/like`;
       const response = await HttpClient.post(
         path,
         {},
@@ -106,6 +106,7 @@ const ArticleAPI = {
           Authorization: `Bearer ${accessToken}`,
         }
       );
+      console.log(response);
 
       return response;
     } catch (e) {

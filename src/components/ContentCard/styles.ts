@@ -102,4 +102,7 @@ export const LikeIconContainer = styled.div`
   &.active {
     filter: ${theme.COLORS.FILTER_RED};
   }
+
+  height: 20px;
+  width: 20px;
 `;

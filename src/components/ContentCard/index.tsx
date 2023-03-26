@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import BookmarkBtn from "@public/button/BookmarkBtn.svg";
 import LikeBtn from "@public/button/LikeBtn.svg";
+import { useSession } from "next-auth/react";
+import BookmarkButton from "@components/BookmarkButton";
 import * as s from "./styles";
 
 export interface ContentCardProps {
+  id: number;
   category: string;
   title: string;
   isActive: boolean;
@@ -14,6 +17,7 @@ export interface ContentCardProps {
   fileUrls?: string[];
 }
 const ContentCard = ({
+  id,
   category,
   title,
   isActive,
@@ -24,6 +28,7 @@ const ContentCard = ({
 }: ContentCardProps) => {
   const [active, setActive] = useState<Boolean>(isActive);
   const [like, setLike] = useState<Boolean>(isLike);
+  const { data: session } = useSession();
 
   const onClickBookmark = () => {
     setActive(!active);
@@ -46,7 +51,7 @@ const ContentCard = ({
           </s.ContentInfoSummary>
           <s.BookmarkButtonContainer onClick={onClickBookmark}>
             <s.BookmarkButton className={active ? "active" : "inactive"}>
-              <BookmarkBtn />
+              <BookmarkButton articleId={id} session={session} isActive={isActive} />
             </s.BookmarkButton>
           </s.BookmarkButtonContainer>
         </s.ContentTopArea>

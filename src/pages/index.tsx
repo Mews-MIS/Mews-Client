@@ -88,6 +88,7 @@ export default function Home(props: any) {
                   );
                   return (
                     <ContentCard
+                      id={element.id}
                       key={`Subscribe ${element.id}${element.title}`}
                       category={element.type}
                       title={element.title}
@@ -109,12 +110,14 @@ export default function Home(props: any) {
               <CardSlider>
                 {newArticleList.articles.map((element: { article: any; editorList: any[] }) => {
                   const { article, editorList } = element;
+                  console.log(article);
                   const editorNameList = editorList.map((editor) => {
                     return editor.name;
                   });
                   return (
                     <Link href={`article/${article.id}`}>
                       <ContentCard
+                        id={article.id}
                         key={`new Article${article.id}${article.title}`}
                         category={article.type}
                         title={article.title}
@@ -151,13 +154,14 @@ export default function Home(props: any) {
                 {firstCurationInfo.list.map((article: Article) => {
                   return (
                     <ContentCard
+                      id={article.id}
                       key={`curation ${article.id}${article.title}`}
-                      category={article.type}
+                      category={article.type as string}
                       title={article.title}
-                      authorNames={article.authorNames}
-                      isActive={article.isActive}
-                      isLike={article.isLike}
-                      like_count={article.like_count}
+                      authorNames={article.authorNames as string[]}
+                      isActive={article.isActive as boolean}
+                      isLike={article.isLike as boolean}
+                      like_count={article.like_count as number}
                     />
                   );
                 })}

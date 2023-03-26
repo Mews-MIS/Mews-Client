@@ -9,6 +9,7 @@ import MarkdownIt from "markdown-it";
 import EditorAPI from "@api/EditorAPI";
 import { useEffect } from "react";
 import { getSession } from "next-auth/react";
+import BookmarkButton from "@components/BookmarkButton";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
 
@@ -49,6 +50,7 @@ export const getServerSideProps = async (context: any) => {
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      session,
       id,
       editorInfoList,
       // editorInfo,
@@ -58,10 +60,12 @@ export const getServerSideProps = async (context: any) => {
 
 const NewsView = ({
   dehydratedState,
+  session,
   id,
   editorInfoList,
 }: {
   dehydratedState: any;
+  session: any;
   id: number;
   editorInfoList: IAuthorProps[];
 }) => {
@@ -121,10 +125,8 @@ const NewsView = ({
             <s.BottomContainer>
               <s.BtnContainer>
                 <s.LikeIconContainer />
-                <s.BookmarkIconContainer
-                // className={active ? "active" : "inactive"}
-                >
-                  <NewsViewBookmarkBtn />
+                <s.BookmarkIconContainer>
+                  <BookmarkButton articleId={id} session={session} isActive={news.bookmarked} />
                 </s.BookmarkIconContainer>
                 <s.LinkIconContainer>
                   <LinkBtn onClick={copyURL} />

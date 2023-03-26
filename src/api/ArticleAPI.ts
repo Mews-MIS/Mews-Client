@@ -69,17 +69,16 @@ const ArticleAPI = {
 
   postBookmark: async (articleId: number, session: any) => {
     try {
-      const { id } = session;
+      const { userId } = session;
       const accessToken = session?.accessToken;
-      const path = `article/${articleId}/user/${id}/bookmark`;
+      const path = `article/${articleId}/user/${userId}/bookmark`;
       const response = await HttpClient.post(
         path,
         {},
         {
-          Authorization: accessToken,
+          Authorization: `Bearer ${accessToken}`,
         }
       );
-
       return response;
     } catch (e) {
       console.error(e);
@@ -90,14 +89,14 @@ const ArticleAPI = {
 
   postLike: async (articleId: number, session: any) => {
     try {
-      const { id } = session;
+      const { userId } = session;
       const accessToken = session?.accessToken;
       const path = `article/${articleId}/user/${id}/like`;
       const response = await HttpClient.post(
         path,
         {},
         {
-          Authorization: accessToken,
+          Authorization: `Bearer ${accessToken}`,
         }
       );
 

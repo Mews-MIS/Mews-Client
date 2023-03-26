@@ -54,7 +54,7 @@ const ArticleAPI = {
       const path = `article/${id}/subscribe`;
       const response = await HttpClient.get(
         path,
-        { id },
+        {},
         {
           Authorization: accessToken,
         }
@@ -63,6 +63,47 @@ const ArticleAPI = {
       return response;
     } catch (e) {
       // console.error(e);
+      return null;
+    }
+  },
+
+  postBookmark: async (articleId: number, session: any) => {
+    try {
+      const { userId } = session;
+      const accessToken = session?.accessToken;
+      const path = `article/${articleId}/user/${userId}/bookmark`;
+      const response = await HttpClient.post(
+        path,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
+      return response;
+    } catch (e) {
+      console.error(e);
+
+      return null;
+    }
+  },
+
+  postLike: async (articleId: number, session: any) => {
+    try {
+      const { userId } = session;
+      const accessToken = session?.accessToken;
+      const path = `article/${articleId}/user/${id}/like`;
+      const response = await HttpClient.post(
+        path,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
+
+      return response;
+    } catch (e) {
+      console.error(e);
+
       return null;
     }
   },

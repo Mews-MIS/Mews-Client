@@ -4,14 +4,16 @@ import ContentRow from "@components/ContentRow";
 import PageTemplate from "@components/PageTemplate";
 import ArticleAPI from "@api/ArticleAPI";
 import EditorAPI from "@api/EditorAPI";
+import { getSession } from "next-auth/react";
 import { Article } from "../../types/article";
 import * as s from "./styles";
 
 export const getServerSideProps = async (context: any) => {
+  const session = await getSession(context);
   const editorId = context.params.id;
   const articleList = await ArticleAPI.getEditorArticles(editorId);
-  const editorInfo = await EditorAPI.getEditorInfo(editorId);
-  // const session = await getSession(context);
+  const editorInfo = await EditorAPI.getEditorInfo(editorId, session);
+
   // const editorInfo2 = await EditorAPI.getEditorDetailInfo(editorId, session);
 
   return {
@@ -25,6 +27,8 @@ export const getServerSideProps = async (context: any) => {
 export default function AuthorInfo(props: any) {
   const [subscribe, setSubscribe] = useState<Boolean>(false);
   const { articleList, editorInfo } = props;
+
+  console.log(editorInfo);
 
   const onClickSubscribe = () => {
     setSubscribe(!subscribe);

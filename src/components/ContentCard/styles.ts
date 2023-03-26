@@ -70,6 +70,11 @@ export const BookmarkButton = styled.div`
   &.active {
     filter: ${theme.COLORS.FILTER_ORANGE};
   }
+
+  button {
+    background: transparent;
+    border: none;
+  }
 `;
 
 export const ContentBottomArea = styled.div`

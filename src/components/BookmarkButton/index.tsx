@@ -10,22 +10,19 @@ interface BookmarkButtonProps {
   isActive: boolean;
 }
 const BookmarkButton = ({ articleId, session, isActive }: BookmarkButtonProps) => {
-  const firstValue = isActive;
+  const [firstValue, setFirstValue] = useState(isActive);
   const [active, setActive] = useState(isActive);
-
-  const handleClick = () => {
-    setActive(!active);
-
+  const handleClick = async () => {
     const debouncedFunction = debounce(async () => {
-      console.log(active);
-      if (firstValue !== active) {
-        console.log("send");
+      if (firstValue === active) {
         const response = await ArticleAPI.postBookmark(articleId, session);
-        console.log("response", response);
+        setFirstValue(!active);
+        await console.log("response", response);
       }
-    }, 500);
-
-    debouncedFunction();
+    }, 1000);
+    await setActive(!active);
+    console.log(active);
+    await debouncedFunction();
   };
 
   return (

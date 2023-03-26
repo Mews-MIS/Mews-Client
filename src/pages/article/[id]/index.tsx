@@ -24,7 +24,7 @@ export const getServerSideProps = async (context: any) => {
   const session = await getSession(context);
 
   await queryClient.prefetchQuery(["article", id], async () => {
-    const response = await ArticleAPI.getArticle(id);
+    const response = await ArticleAPI.getArticle(id, session);
     const data: Article = response;
     return data;
   });

@@ -1,10 +1,17 @@
 import HttpClient from "../services/HttpClient";
 
 const ArticleAPI = {
-  getArticle: async (id: number) => {
+  getArticle: async (id: number, session: any) => {
+    const { accessToken } = session;
     try {
       const path = `article/${id}`;
-      const response = await HttpClient.get(path);
+      const response = await HttpClient.get(
+        path,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
       return response;
     } catch (e) {
       console.log(e);

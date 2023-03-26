@@ -66,10 +66,6 @@ export const BookmarkButtonContainer = styled.div`
 
 export const BookmarkButton = styled.div`
   width: 100%;
-  filter: ${theme.COLORS.FILTER_GRAY};
-  &.active {
-    filter: ${theme.COLORS.FILTER_ORANGE};
-  }
 
   button {
     background: transparent;

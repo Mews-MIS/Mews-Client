@@ -35,7 +35,6 @@ const NewsPage = () => {
         <NewsPostSlider>
           {article &&
             article.slice(0, 5).map((e: NewsPostCardProps) => {
-              console.log("te", e.article);
               return <NewsPostCard {...e.article} />;
             })}
         </NewsPostSlider>

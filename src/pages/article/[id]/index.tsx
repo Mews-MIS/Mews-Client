@@ -8,6 +8,7 @@ import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
 import MarkdownIt from "markdown-it";
 import EditorAPI from "@api/EditorAPI";
 import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 import { Article } from "../../../types/article";
 import * as s from "./styles";
 
@@ -19,6 +20,7 @@ export interface NewsViewProps {
 export const getServerSideProps = async (context: any) => {
   const { id } = context.query;
   const queryClient = new QueryClient();
+  const session = await getSession(context);
 
   await queryClient.prefetchQuery(["article", id], async () => {
     const response = await ArticleAPI.getArticle(id);
@@ -33,7 +35,7 @@ export const getServerSideProps = async (context: any) => {
   const editorInfoList = await editorNumsList.reduce(
     async (acc: Promise<IAuthorProps[]>, cur: number) => {
       const getUserInfo = async () => {
-        const info = await EditorAPI.getEditorInfo(cur);
+        const info = await EditorAPI.getEditorInfo(cur, session);
         return info;
       };
       const userInfo = await getUserInfo();

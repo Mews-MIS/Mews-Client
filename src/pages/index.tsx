@@ -44,6 +44,7 @@ export const getServerSideProps = async (context: any) => {
 
   return {
     props: {
+      session,
       newArticleList,
       popularArticleList,
       checkedCuration,
@@ -54,7 +55,8 @@ export const getServerSideProps = async (context: any) => {
 };
 
 export default function Home(props: any) {
-  const { newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } = props;
+  const { session, newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } =
+    props;
 
   return (
     <>
@@ -74,7 +76,7 @@ export default function Home(props: any) {
                   const editorInfoList = await element.editors.reduce(
                     async (acc: Promise<IAuthorProps[]>, cur: number) => {
                       const getUserInfo = async () => {
-                        const info = await EditorAPI.getEditorInfo(cur);
+                        const info = await EditorAPI.getEditorInfo(cur, session);
                         return info;
                       };
                       const userInfo = await getUserInfo();
@@ -105,18 +107,22 @@ export default function Home(props: any) {
           <ContentWrapper contentName="새로운 게시글" viewMoreLink="/article">
             {newArticleList ? (
               <CardSlider>
-                {newArticleList.articles.map((element: Article) => {
+                {newArticleList.articles.map((element: { article: any; editorList: any[] }) => {
+                  const { article, editorList } = element;
+                  const editorNameList = editorList.map((editor) => {
+                    return editor.name;
+                  });
                   return (
-                    <Link href={`article/${element.id}`}>
+                    <Link href={`article/${article.id}`}>
                       <ContentCard
-                        key={`new Article${element.id}${element.title}`}
-                        category={element.type}
-                        title={element.title}
-                        authorNames={["이정우", "김현제"]}
-                        isActive={element.isActive}
-                        isLike={element.isLike}
-                        like_count={element.like_count}
-                        fileUrls={element.fileUrls}
+                        key={`new Article${article.id}${article.title}`}
+                        category={article.type}
+                        title={article.title}
+                        authorNames={editorNameList}
+                        isActive={article.isActive}
+                        isLike={article.isLike}
+                        like_count={article.like_count}
+                        fileUrls={article.fileUrls}
                       />
                     </Link>
                   );

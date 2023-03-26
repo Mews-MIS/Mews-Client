@@ -12,10 +12,18 @@ const EditorAPI = {
     }
   },
 
-  getEditorInfo: async (editorId: number) => {
+  getEditorInfo: async (editorId: number, session: any) => {
     try {
+      const { accessToken } = session;
       const path = `editor/getone/${editorId}`;
-      const response = await HttpClient.get(path);
+      console.log(accessToken);
+      const response = await HttpClient.get(
+        path,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
       return response;
     } catch (e) {
       console.log(e);

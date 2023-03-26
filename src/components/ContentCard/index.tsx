@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import BookmarkBtn from "@public/button/BookmarkBtn.svg";
 import LikeBtn from "@public/button/LikeBtn.svg";
 import { useSession } from "next-auth/react";
 import BookmarkButton from "@components/BookmarkButton";

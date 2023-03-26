@@ -4,11 +4,9 @@ import ContentCard from "@components/ContentCard";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import PageTemplate from "@components/PageTemplate";
-import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
-import MyLikeAPI from "@pages/api/MyLikeAPI";
-import MyProfileAPI from "@pages/api/MyProfileAPI";
 import { useSession } from "next-auth/react";
 import * as s from "./styles";
+import useMyProfile from "@hooks/query/mypage/useMyProfile";
 
 export interface IProfile {
   imgUrl: string;
@@ -50,49 +48,61 @@ const Mypage = () => {
   const [imgURL, setImgURL] = useState("/");
 
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>([]);
-  const [likeList, setLikeList] = useState<ILike[]>([]);
+
   const { data: session } = useSession();
-  console.log(session);
-
+  const result: any = useMyProfile(session);
+  const loading = result.some((res: any) => res.isLoading);
+  
+  
   useEffect(() => {
-    const profile: Promise<any> = MyProfileAPI.getProfiles(session);
-    profile
-      .then((data: IProfile) => {
-        setName(data.userName);
-        setIntroduce(data.introduction);
-        setLikeNum(data.likeCount);
-        setBookmarkNum(data.bookmarkCount);
-        setSubscribeNum(data.subscribeCount);
-        setImgURL(data.imgUrl);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
-    bookmarks
-      .then((data: IBookmark[]) => {
-        setBookmarkList([...data]);
-        setBookmarkNum(bookmarkList.length);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    console.log({session}, {result});
+    // if(session !== undefined && result !== undefined){
+    setName(result[0]?.data?.userName);
+    setIntroduce(result[0]?.data?.introduction); 
+    setLikeNum(result[0]?.data?.likeCount);
+    setBookmarkNum(result[0]?.data?.bookmarkCount);
+    setSubscribeNum(result[0]?.data?.subscribeCount);
+    setImgURL(result[0]?.data?.imgUrl);
 
-    const likes: Promise<any> = MyLikeAPI.getLikes(session);
-    likes
-      .then((data: ILike[]) => {
-        setLikeList([...data]);
-        setLikeNum(likeList.length);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+    // setBookmarkList([...result[1]?.data]);
+    // setBookmarkNum(result[1]?.data.length);
+    // }
+      // const profile: Promise<any> = MyProfileAPI.getProfiles(session);
+      // profile
+      //   .then((d: IProfile) => {
+
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
+      // const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
+      // bookmarks
+      //   .then((data: IBookmark[]) => {
+
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
+  
+      // const likes: Promise<any> = MyLikeAPI.getLikes(session);
+      // likes
+      //   .then((data: ILike[]) => {
+      // setLikeList([...like]);
+      // setLikeNum(like.length);
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
+  }, [result]);
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals
     location.href = "/mypage/edit";
   };
+
+  // if(loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <PageTemplate>

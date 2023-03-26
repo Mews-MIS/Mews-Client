@@ -15,13 +15,11 @@ const BookmarkButton = ({ articleId, session, isActive }: BookmarkButtonProps) =
   const handleClick = async () => {
     const debouncedFunction = debounce(async () => {
       if (firstValue === active) {
-        const response = await ArticleAPI.postBookmark(articleId, session);
+        await ArticleAPI.postBookmark(articleId, session);
         setFirstValue(!active);
-        await console.log("response", response);
       }
     }, 1000);
     await setActive(!active);
-    console.log(active);
     await debouncedFunction();
   };
 

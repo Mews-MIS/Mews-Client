@@ -2,6 +2,7 @@ import LikeBtn from "@public/button/LikeBtn.svg";
 import { useState } from "react";
 import { debounce } from "lodash";
 import { IconContainer } from "@components/LikeButton/style";
+import ArticleAPI from "@api/ArticleAPI";
 
 interface LikeButtonProps {
   articleId: number;
@@ -9,25 +10,23 @@ interface LikeButtonProps {
   isActive: boolean;
 }
 const LikeButton = ({ articleId, session, isActive }: LikeButtonProps) => {
-  const firstValue = isActive;
+  const [firstValue, setFirstValue] = useState(isActive);
   const [active, setActive] = useState(isActive);
 
-  const handleClick = () => {
-    setActive(!active);
-    debounce(async () => {
-      if (firstValue !== active && active) {
-        // await ArticleAPI.postLike(articleId, session);
-        console.log("likeSend");
+  const handleClick = async () => {
+    const debouncedFunction = debounce(async () => {
+      if (firstValue === active) {
+        await ArticleAPI.postLike(articleId, session);
+        setFirstValue(!active);
       }
-    }, 500);
+    }, 1000);
+    await setActive(!active);
+    await debouncedFunction();
   };
 
   return (
     <IconContainer>
-      {/* eslint-disable-next-line react/button-has-type */}
-      <button onClick={handleClick}>
-        <LikeBtn />
-      </button>
+      <LikeBtn onClick={handleClick} />
     </IconContainer>
   );
 };

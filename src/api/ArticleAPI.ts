@@ -19,10 +19,17 @@ const ArticleAPI = {
     }
   },
 
-  getPageArticles: async (page: number, header: any) => {
+  getPageArticles: async (page: number, session: any) => {
     try {
       const path = "article/all";
-      const response = await HttpClient.get(path, { page }, { header });
+      const accessToken = session?.accessToken;
+      const response = await HttpClient.get(
+        path,
+        { page },
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
       return response;
     } catch (e) {
       console.log(e);

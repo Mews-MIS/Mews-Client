@@ -51,48 +51,19 @@ const Mypage = () => {
 
   const { data: session } = useSession();
   const result: any = useMyProfile(session);
-  const loading = result.some((res: any) => res.isLoading);
-  
   
   useEffect(() => {
     console.log({session}, {result});
-    // if(session !== undefined && result !== undefined){
+      
     setName(result[0]?.data?.userName);
     setIntroduce(result[0]?.data?.introduction); 
     setLikeNum(result[0]?.data?.likeCount);
     setBookmarkNum(result[0]?.data?.bookmarkCount);
     setSubscribeNum(result[0]?.data?.subscribeCount);
     setImgURL(result[0]?.data?.imgUrl);
-
     // setBookmarkList([...result[1]?.data]);
     // setBookmarkNum(result[1]?.data.length);
-    // }
-      // const profile: Promise<any> = MyProfileAPI.getProfiles(session);
-      // profile
-      //   .then((d: IProfile) => {
 
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
-      // const bookmarks: Promise<any> = MyBookmarkAPI.getBookmarks(session);
-      // bookmarks
-      //   .then((data: IBookmark[]) => {
-
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
-  
-      // const likes: Promise<any> = MyLikeAPI.getLikes(session);
-      // likes
-      //   .then((data: ILike[]) => {
-      // setLikeList([...like]);
-      // setLikeNum(like.length);
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
   }, [result]);
 
   const onClickProfileEdit = () => {
@@ -155,7 +126,7 @@ const Mypage = () => {
                         category={e.category}
                         title={e.title}
                         authorNames={e.editors}
-                        isActive={e.bookmarked}
+                        isBookmark={e.bookmarked}
                         isLike={e.liked}
                         like_count={e.likeCount}
                       />

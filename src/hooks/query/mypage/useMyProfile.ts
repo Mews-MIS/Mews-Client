@@ -7,19 +7,17 @@ const useMyProfile = (session: any) => {
     {
       queryKey: ["myprofile"], queryFn: async () => {
         const myprofile = MyProfileAPI.getProfiles(session);
-        console.log({ myprofile });
         return myprofile;
       }
     },
     {
       queryKey: ["mylike"], queryFn: async () => {
         const mylike = MyLikeAPI.getLikes(session);
-        console.log({mylike});
         return mylike;
       }
     }
   ]);
-  console.log({res})
+  console.log({res});
   return res;
 };
 

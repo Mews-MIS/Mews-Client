@@ -58,6 +58,7 @@ export default function Home(props: any) {
   const { session, newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } =
     props;
 
+  console.log(newArticleList);
   return (
     <>
       <Head>

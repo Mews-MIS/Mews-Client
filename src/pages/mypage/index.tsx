@@ -58,6 +58,7 @@ const Mypage = () => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
     profile
       .then((data: IProfile) => {
+        console.log("s", data);
         setName(data.userName);
         setIntroduce(data.introduction);
         setLikeNum(data.likeCount);

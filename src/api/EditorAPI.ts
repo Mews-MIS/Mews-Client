@@ -51,12 +51,25 @@ const EditorAPI = {
     }
   },
 
-  // postSubscribeEditor: async (editorId: number, session: any) => {
-  //   try {
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // },
+  postSubscribeEditor: async (editorId: number, session: any) => {
+    try {
+      const { userId } = session;
+      const { accessToken } = session;
+      const path = `mypage/${userId}/editor/${editorId}`;
+
+      const response = await HttpClient.post(
+        path,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
+      return response;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  },
 };
 
 export default EditorAPI;

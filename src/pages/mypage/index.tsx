@@ -58,6 +58,7 @@ const Mypage = () => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
     profile
       .then((data: IProfile) => {
+        console.log("s", data);
         setName(data.userName);
         setIntroduce(data.introduction);
         setLikeNum(data.likeCount);
@@ -146,6 +147,7 @@ const Mypage = () => {
                   return (
                     <Link href={`article/${e.id}`}>
                       <ContentCard
+                        id={e.id}
                         category={e.category}
                         title={e.title}
                         authorNames={e.editors}

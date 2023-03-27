@@ -50,6 +50,13 @@ export const newsImageContainer = styled.img`
 
 export const contentBox = styled.section`
   justify-content: center;
+
+  img {
+    width: 100%;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 `;
 export const content = styled.article`
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
@@ -78,10 +85,8 @@ filter: ${theme.COLORS.FILTER_GRAY};
     filter: ${theme.COLORS.FILTER_RED};`;
 
 export const BookmarkIconContainer = styled.div`
-margin-right:7px;
-filter: ${theme.COLORS.FILTER_GRAY};
-  &.active {
-    filter: ${theme.COLORS.FILTER_ORANGE};`;
+  margin-right: 7px;
+`;
 
 export const LinkIconContainer = styled.div`
   filter: #737373;

@@ -66,10 +66,6 @@ export const BookmarkButtonContainer = styled.div`
 
 export const BookmarkButton = styled.div`
   width: 100%;
-  filter: ${theme.COLORS.FILTER_GRAY};
-  &.active {
-    filter: ${theme.COLORS.FILTER_ORANGE};
-  }
 
   button {
     background: transparent;
@@ -106,4 +102,7 @@ export const LikeIconContainer = styled.div`
   &.active {
     filter: ${theme.COLORS.FILTER_RED};
   }
+
+  height: 20px;
+  width: 20px;
 `;

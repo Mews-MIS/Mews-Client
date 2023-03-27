@@ -8,7 +8,7 @@ export interface ContentCardProps {
   id: number;
   category: string;
   title: string;
-  isActive: boolean;
+  isBookmark: boolean;
   isLike: boolean;
   authorNames: string[];
   like_count: number;
@@ -19,13 +19,13 @@ const ContentCard = ({
   id,
   category,
   title,
-  isActive,
+  isBookmark,
   isLike,
   authorNames,
   like_count,
   fileUrls,
 }: ContentCardProps) => {
-  const [active, setActive] = useState<Boolean>(isActive);
+  const [active, setActive] = useState<Boolean>(isBookmark);
   const [like, setLike] = useState<Boolean>(isLike);
   const { data: session } = useSession();
 
@@ -50,7 +50,7 @@ const ContentCard = ({
           </s.ContentInfoSummary>
           <s.BookmarkButtonContainer onClick={onClickBookmark}>
             <s.BookmarkButton className={active ? "active" : "inactive"}>
-              <BookmarkButton articleId={id} session={session} isActive={isActive} />
+              <BookmarkButton articleId={id} session={session} isActive={isBookmark} />
             </s.BookmarkButton>
           </s.BookmarkButtonContainer>
         </s.ContentTopArea>

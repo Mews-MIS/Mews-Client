@@ -5,6 +5,7 @@ import PageTemplate from "@components/PageTemplate";
 import ArticleAPI from "@api/ArticleAPI";
 import EditorAPI from "@api/EditorAPI";
 import { getSession } from "next-auth/react";
+import { debounce } from "lodash";
 import { Article } from "../../types/article";
 import * as s from "./styles";
 
@@ -18,6 +19,8 @@ export const getServerSideProps = async (context: any) => {
 
   return {
     props: {
+      editorId,
+      session,
       articleList,
       editorInfo,
     },
@@ -25,25 +28,31 @@ export const getServerSideProps = async (context: any) => {
 };
 
 export default function AuthorInfo(props: any) {
-  const [subscribe, setSubscribe] = useState<Boolean>(false);
-  const { articleList, editorInfo } = props;
-
+  const { editorId, articleList, editorInfo, session } = props;
+  const { id, imgUrl, introduction, isSubscribed, name } = editorInfo;
+  const [firstState, setFirstState] = useState<Boolean>(isSubscribed);
+  const [subscribe, setSubscribe] = useState<Boolean>(isSubscribed);
+  console.log(session);
   console.log(editorInfo);
 
-  const onClickSubscribe = () => {
+  const onClickSubscribe = async () => {
     setSubscribe(!subscribe);
+    const debouncedFunction = debounce(async () => {
+      if (firstState === subscribe) {
+        const response = await EditorAPI.postSubscribeEditor(editorId, session);
+        console.log(response);
+        setFirstState(!subscribe);
+      }
+    }, 1000);
+    await setSubscribe(!subscribe);
+    await debouncedFunction();
   };
 
   return (
     <PageTemplate>
       <s.Wrapper>
         <s.TopContainer>
-          <AuthorIntro
-            id={editorInfo.id}
-            name={editorInfo.name}
-            imgUrl={editorInfo.imgUrl}
-            introduction={editorInfo.introduction}
-          />
+          <AuthorIntro id={id} name={name} imgUrl={imgUrl} introduction={introduction} />
           <s.SubscribeBtnContainer onClick={onClickSubscribe}>
             <s.SubscribeBtn className={subscribe ? "active" : ""}>
               {subscribe ? "구독 취소" : "구독"}

@@ -31,9 +31,7 @@ export const getServerSideProps = async (context: any) => {
   const session: any = await getSession(context);
   const SubscribeArticleList = await ArticleAPI.getSubscribeArticles(session);
   // 새로운 게시글
-  const newArticleList = await ArticleAPI.getPageArticles(1, {
-    Authorization: session?.accessToken,
-  });
+  const newArticleList = await ArticleAPI.getPageArticles(1, session);
   // 조회수 top5
   const popularArticleList = await ArticleAPI.getPopularArticles();
   // 표시된 큐레이션
@@ -58,6 +56,7 @@ export default function Home(props: any) {
   const { session, newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } =
     props;
 
+  console.log(newArticleList);
   return (
     <>
       <Head>
@@ -93,7 +92,7 @@ export default function Home(props: any) {
                       category={element.type}
                       title={element.title}
                       authorNames={editorInfoList.join(" ")}
-                      isActive={element.isActive}
+                      isBookmark={element.isActive}
                       isLike={element.isLike}
                       like_count={element.like_count}
                       fileUrls={element?.fileUrls}
@@ -108,28 +107,35 @@ export default function Home(props: any) {
           <ContentWrapper contentName="새로운 게시글" viewMoreLink="/article">
             {newArticleList ? (
               <CardSlider>
-                {newArticleList.articles.map((element: { article: any; editorList: any[] }) => {
-                  const { article, editorList } = element;
-                  console.log(article);
-                  const editorNameList = editorList.map((editor) => {
-                    return editor.name;
-                  });
-                  return (
-                    <Link href={`article/${article.id}`}>
-                      <ContentCard
-                        id={article.id}
-                        key={`new Article${article.id}${article.title}`}
-                        category={article.type}
-                        title={article.title}
-                        authorNames={editorNameList}
-                        isActive={article.isActive}
-                        isLike={article.isLike}
-                        like_count={article.like_count}
-                        fileUrls={article.fileUrls}
-                      />
-                    </Link>
-                  );
-                })}
+                {newArticleList.articles.map(
+                  (element: {
+                    article: any;
+                    editorList: any[];
+                    bookmarked: boolean;
+                    liked: boolean;
+                  }) => {
+                    const { article, editorList, bookmarked, liked } = element;
+                    const editorNameList = editorList.map((editor) => {
+                      return editor.name;
+                    });
+                    console.log(bookmarked, liked);
+                    return (
+                      <Link href={`article/${article.id}`}>
+                        <ContentCard
+                          id={article.id}
+                          key={`new Article${article.id}${article.title}`}
+                          category={article.type}
+                          title={article.title}
+                          authorNames={editorNameList}
+                          isBookmark={bookmarked}
+                          isLike={liked}
+                          like_count={article.like_count}
+                          fileUrls={article.fileUrls}
+                        />
+                      </Link>
+                    );
+                  }
+                )}
               </CardSlider>
             ) : (
               <NoneContentWrapper>새로운 게시글이 없습니다.</NoneContentWrapper>
@@ -159,7 +165,7 @@ export default function Home(props: any) {
                       category={article.type as string}
                       title={article.title}
                       authorNames={article.authorNames as string[]}
-                      isActive={article.isActive as boolean}
+                      isBookmark={article.isActive as boolean}
                       isLike={article.isLike as boolean}
                       like_count={article.like_count as number}
                     />

@@ -1,10 +1,17 @@
 import HttpClient from "../services/HttpClient";
 
 const ArticleAPI = {
-  getArticle: async (id: number) => {
+  getArticle: async (id: number, session: any) => {
+    const { accessToken } = session;
     try {
       const path = `article/${id}`;
-      const response = await HttpClient.get(path);
+      const response = await HttpClient.get(
+        path,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
       return response;
     } catch (e) {
       console.log(e);
@@ -12,10 +19,17 @@ const ArticleAPI = {
     }
   },
 
-  getPageArticles: async (page: number, header: any) => {
+  getPageArticles: async (page: number, session: any) => {
     try {
       const path = "article/all";
-      const response = await HttpClient.get(path, { page }, { header });
+      const accessToken = session?.accessToken;
+      const response = await HttpClient.get(
+        path,
+        { page },
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
       return response;
     } catch (e) {
       console.log(e);
@@ -91,7 +105,7 @@ const ArticleAPI = {
     try {
       const { userId } = session;
       const accessToken = session?.accessToken;
-      const path = `article/${articleId}/user/${id}/like`;
+      const path = `article/${articleId}/user/${userId}/like`;
       const response = await HttpClient.post(
         path,
         {},
@@ -99,6 +113,7 @@ const ArticleAPI = {
           Authorization: `Bearer ${accessToken}`,
         }
       );
+      console.log(response);
 
       return response;
     } catch (e) {

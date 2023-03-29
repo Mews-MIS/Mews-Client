@@ -116,10 +116,10 @@ const NewsView = ({
               {editorInfoList &&
                 editorInfoList.map((editorInfo) => (
                   <AuthorIntro
-                    id={editorInfo.id}
-                    name={editorInfo.name}
-                    imgUrl={editorInfo.imgUrl}
-                    introduction={editorInfo.introduction}
+                    id={editorInfo?.id}
+                    name={editorInfo?.name}
+                    imgUrl={editorInfo?.imgUrl}
+                    introduction={editorInfo?.introduction}
                   />
                 ))}
             </s.AuthorIntroContainer>

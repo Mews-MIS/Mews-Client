@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LikeBtn from "@public/button/LikeBtn.svg";
 import { useSession } from "next-auth/react";
 import BookmarkButton from "@components/BookmarkButton";
+import { useRouter } from "next/navigation";
 import * as s from "./styles";
 
 export interface ContentCardProps {
@@ -28,6 +29,7 @@ const ContentCard = ({
   const [active, setActive] = useState<Boolean>(isBookmark);
   const [like, setLike] = useState<Boolean>(isLike);
   const { data: session } = useSession();
+  const router = useRouter();
 
   const onClickBookmark = () => {
     setActive(!active);
@@ -36,8 +38,13 @@ const ContentCard = ({
     setLike(!like);
   };
 
+  const handleCardClick = (event: any) => {
+    event.stopPropagation();
+    router.push(`article/${id}`);
+  };
+
   return (
-    <s.Wrapper>
+    <s.Wrapper onClick={handleCardClick}>
       {/** 해당 부분 이미지 추가 필요 * */}
       <s.ImageContainer>
         {fileUrls && <img src={fileUrls["0"]} alt="메인 이미지" />}

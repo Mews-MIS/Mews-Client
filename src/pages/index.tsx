@@ -120,7 +120,6 @@ export default function Home(props: any) {
                     });
                     console.log(bookmarked, liked);
                     return (
-                      <Link href={`article/${article.id}`}>
                         <ContentCard
                           id={article.id}
                           key={`new Article${article.id}${article.title}`}
@@ -132,7 +131,6 @@ export default function Home(props: any) {
                           like_count={article.like_count}
                           fileUrls={article.fileUrls}
                         />
-                      </Link>
                     );
                   }
                 )}

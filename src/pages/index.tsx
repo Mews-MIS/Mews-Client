@@ -154,7 +154,7 @@ export default function Home(props: any) {
                 })
               : "새로운 게시글이 없습니다."}
           </ContentWrapper>
-          {firstCurationInfo.length > 0 ? (
+          {firstCurationInfo?.length > 0 ? (
             <ContentWrapper contentName={firstCurationInfo.title}>
               <CardSlider>
                 {firstCurationInfo.list.map((article: Article) => {

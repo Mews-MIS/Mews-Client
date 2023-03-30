@@ -7,6 +7,13 @@ import PageTemplate from "@components/PageTemplate";
 import { useSession } from "next-auth/react";
 import * as s from "./styles";
 import useMyProfile from "@hooks/query/mypage/useMyProfile";
+import useMyProfileBookmark from "@hooks/query/mypage/useMyProfileBookmark";
+
+export async function getServerSideProps({}: any) {
+  return {
+    props: {},
+  };
+}
 
 export interface IProfile {
   imgUrl: string;
@@ -50,30 +57,51 @@ const Mypage = () => {
   const [bookmarkList, setBookmarkList] = useState<IBookmark[]>([]);
 
   const { data: session } = useSession();
-  const result: any = useMyProfile(session);
-  
+
+  let myProfile: any = useMyProfile(session);
+  let myBookmark: any = useMyProfileBookmark(session);
+
+
   useEffect(() => {
-    console.log({session}, {result});
-      
-    setName(result[0]?.data?.userName);
-    setIntroduce(result[0]?.data?.introduction); 
-    setLikeNum(result[0]?.data?.likeCount);
-    setBookmarkNum(result[0]?.data?.bookmarkCount);
-    setSubscribeNum(result[0]?.data?.subscribeCount);
-    setImgURL(result[0]?.data?.imgUrl);
-    // setBookmarkList([...result[1]?.data]);
-    // setBookmarkNum(result[1]?.data.length);
+    /* 세션 정보 있는 경우(초기상태)*/
+    if(session !== undefined){
+      /* 세션으로 요청한 데이터 응답 받은 경우 -> 로컬스토리지에 저장*/
+      if (myProfile[0].isSuccess && myProfile[0].data !== undefined && myProfile[0].data !== null && myBookmark.isSuccess && myBookmark.data !== undefined && myBookmark.data !== null) {
+        localStorage.setItem("profileData", JSON.stringify(myProfile));
+        localStorage.setItem("bookmarkData", JSON.stringify(myBookmark));
+      }
+    } 
+    /* 세션 정보 없는 경우(새로고침) -> 로컬스토리지에서 세션정보 가져옴 */
+    else {
+      const localStorageProfile = localStorage.getItem("profileData");
+      const localStorageBookmark = localStorage.getItem("bookmarkData");
+      myProfile = JSON.parse(localStorageProfile as string) || [];
+      myBookmark = JSON.parse(localStorageBookmark as string) || [];
+      console.log({myProfile}, {myBookmark});
+    }
+  }, [session, myProfile[0].isSuccess, myProfile[0].data, myBookmark.isSuccess, myBookmark.data]);
 
-  }, [result]);
+  useEffect(() => {
+    if(myProfile[0].data !== undefined && myProfile[0].data !== null){
+      setName(myProfile[0].data?.userName);
+      setIntroduce(myProfile[0].data?.introduction); 
+      setLikeNum(myProfile[0].data?.likeCount);
+      setBookmarkNum(myProfile[0].data?.bookmarkCount);
+      setSubscribeNum(myProfile[0].data?.subscribeCount);
+      setImgURL(myProfile[0].data?.imgUrl);
+    }
+  }, [myProfile[0].isSuccess, myProfile[0].data]);
 
+  useEffect(() => {
+    if (myBookmark.data !== undefined && myBookmark.data !== null) {
+      setBookmarkList([...myBookmark.data]);
+    }
+  }, [myBookmark.isSuccess, myBookmark.data]);
+  
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals
     location.href = "/mypage/edit";
   };
-
-  // if(loading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <PageTemplate>

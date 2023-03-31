@@ -64,6 +64,9 @@ const EditMypage = () => {
     };
     formData.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
     EditProfileAPI.patchProfile(formData, session);
+    // eslint-disable-next-line no-alert
+    window.alert("프로필이 수정되었습니다.");
+    window.location.href = "/mypage";
   };
 
   return (

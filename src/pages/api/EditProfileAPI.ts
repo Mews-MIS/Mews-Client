@@ -22,6 +22,7 @@ const EditProfileAPI = {
         Authorization: `Bearer ${session?.accessToken}`,
         "content-type": "multipart/form-data",
       });
+      console.log({ response });
       return response;
     } catch (e) {
       console.log(e);

@@ -7,9 +7,8 @@ const useMyProfileBookmark = (session: any) => {
     queryFn: async () => {
       const mybookmark = MyBookmarkAPI.getBookmarks(session);
       return mybookmark;
-    }
+    },
   });
-  console.log({bookmarkRes});
   return bookmarkRes;
 };
 

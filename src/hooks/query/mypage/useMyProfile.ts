@@ -5,19 +5,20 @@ import { useQueries } from "react-query";
 const useMyProfile = (session: any) => {
   const res = useQueries([
     {
-      queryKey: ["myprofile"], queryFn: async () => {
+      queryKey: ["myprofile"],
+      queryFn: async () => {
         const myprofile = MyProfileAPI.getProfiles(session);
         return myprofile;
-      }
+      },
     },
     {
-      queryKey: ["mylike"], queryFn: async () => {
+      queryKey: ["mylike"],
+      queryFn: async () => {
         const mylike = MyLikeAPI.getLikes(session);
         return mylike;
-      }
-    }
+      },
+    },
   ]);
-  console.log({res});
   return res;
 };
 

@@ -81,6 +81,11 @@ export const BottomContainer = styled.div`
   margin: 0 auto;
 `;
 
+export const AuthorListContainer = styled.div`
+  width: 90%;
+  margin: 10px auto;
+`;
+
 export const Text = styled.div`
   margin-top: 10%;
   height: 200px;

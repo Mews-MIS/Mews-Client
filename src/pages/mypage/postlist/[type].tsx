@@ -121,7 +121,11 @@ export default function PostList() {
         <s.BottomContainer>
           {router.query.type === "subscribe" ? (
             subscribeEditors.length ? (
-              subscribeEditors.map((e: IAuthorProps) => <AuthorIntro {...e} />)
+              subscribeEditors.map((e: IAuthorProps) => (
+                <s.AuthorListContainer>
+                  <AuthorIntro {...e} />
+                </s.AuthorListContainer>
+              ))
             ) : (
               <s.Text>구독한 필진이 없습니다.</s.Text>
             )

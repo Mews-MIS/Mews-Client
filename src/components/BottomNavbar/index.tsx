@@ -5,10 +5,12 @@ import MainIcon from "@public/icon/MainIcon.svg";
 import NewsIcon from "@public/icon/NewsIcon.svg";
 import CalendarIcon from "@public/icon/CalendarIcon.svg";
 import MyPageIcon from "@public/icon/MyPageIcon.svg";
+import { useSession } from "next-auth/react";
 import * as s from "./styles";
 
 const BottomNavBar = () => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   return (
     <s.BtmNavContainer>
@@ -27,17 +29,26 @@ const BottomNavBar = () => {
           <CalendarIcon />
         </s.BtmNavItem>
       </Link>
-      <Link href="/mypage">
-        <s.BtmNavItem
-          className={
-            router.pathname === "/mypage" || router.pathname === "/mypage/postlist/[type]"
-              ? "active"
-              : ""
-          }
-        >
-          <MyPageIcon />
-        </s.BtmNavItem>
-      </Link>
+      {session && (
+        <Link href="/mypage">
+          <s.BtmNavItem
+            className={
+              router.pathname === "/mypage" || router.pathname === "/mypage/postlist/[type]"
+                ? "active"
+                : ""
+            }
+          >
+            <MyPageIcon />
+          </s.BtmNavItem>
+        </Link>
+      )}
+      {!session && (
+        <Link href="/login">
+          <s.BtmNavItem className={router.pathname === "/login" ? "active" : ""}>
+            <MyPageIcon />
+          </s.BtmNavItem>
+        </Link>
+      )}
     </s.BtmNavContainer>
   );
 };

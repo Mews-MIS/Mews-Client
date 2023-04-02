@@ -9,7 +9,7 @@ const ArticleAPI = {
         path,
         {},
         {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: accessToken,
         }
       );
       return response;
@@ -70,7 +70,7 @@ const ArticleAPI = {
         path,
         {},
         {
-          Authorization: accessToken,
+          Authorization: `Bearer ${accessToken}`,
         }
       );
 

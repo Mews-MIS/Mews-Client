@@ -10,25 +10,6 @@ const MyPageAPI = {
       console.log(e);
     }
   },
-
-  getMyBookmark: async (userId: number) => {
-    try {
-      const path = `/mypage/${userId}/myBookmark`;
-      const response = await HttpClient.get(path);
-      return response;
-    } catch (e) {
-      console.log(e);
-    }
-  },
-  getMyLikeArticle: async (userId: number) => {
-    try {
-      const path = `/mypage/${userId}/myBookmark`;
-      const response = await HttpClient.get(path);
-      return response;
-    } catch (e) {
-      console.log(e);
-    }
-  },
 };
 
 export default MyPageAPI;

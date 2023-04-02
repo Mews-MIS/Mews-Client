@@ -23,7 +23,7 @@ export const ProfileContainer = styled.div`
 export const ImageBox = styled.div`
   margin-left: 10%;
   width: 80px;
-  height: 80px%;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
 `;

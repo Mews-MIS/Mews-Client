@@ -5,10 +5,12 @@ import MainIcon from "@public/icon/MainIcon.svg";
 import NewsIcon from "@public/icon/NewsIcon.svg";
 import CalendarIcon from "@public/icon/CalendarIcon.svg";
 import MyPageIcon from "@public/icon/MyPageIcon.svg";
+import { useSession } from "next-auth/react";
 import * as s from "./styles";
 
 const BottomNavBar = () => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   return (
     <s.BtmNavContainer>
@@ -38,6 +40,7 @@ const BottomNavBar = () => {
           <MyPageIcon />
         </s.BtmNavItem>
       </Link>
+      }
     </s.BtmNavContainer>
   );
 };

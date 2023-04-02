@@ -10,15 +10,16 @@ export interface IEditorInfo {
 
 export interface IUseArticleByIdParams {
   id: number;
+  session: boolean;
   dehydratedState?: any;
   editorInfoList?: IEditorInfo;
 }
 
-const useArticleById = ({ id, dehydratedState }: IUseArticleByIdParams) => {
+const useArticleById = ({ id, session, dehydratedState }: IUseArticleByIdParams) => {
   const { data } = useQuery(
-    ["article", id],
+    ["article", id, session],
     async () => {
-      const posts = await ArticleAPI.getArticle(id);
+      const posts = await ArticleAPI.getArticle(id, session);
       return posts;
     },
     {

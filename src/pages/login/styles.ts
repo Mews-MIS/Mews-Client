@@ -30,12 +30,17 @@ export const MewsIntro = styled.div`
 `;
 
 export const MewsAd = styled.div`
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  align-items: center;
+  justify-content: center;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};
   color: ${theme.COLORS.LINE_GRAY};
   font-weight: ${theme.FONT_WEIGHT.DEFAULT};
 `;
 
-export const Button = styled.button`
+export const loginbtn = styled.button`
   width: 100%;
   border: none;
   display: flex;
@@ -46,7 +51,7 @@ export const Button = styled.button`
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   color: ${theme.COLORS.LINE_GRAY};
   cursor: pointer;
-  padding: 4.5%;
+  padding: 10px;
   -webkit-box-shadow: 1px 4px 3px 0px rgba(193, 193, 193, 1);
   -moz-box-shadow: 1px 4px 3px 0px rgba(193, 193, 193, 1);
   box-shadow: 1px 4px 3px 0px rgba(193, 193, 193, 1);

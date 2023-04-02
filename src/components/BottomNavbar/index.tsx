@@ -28,7 +28,13 @@ const BottomNavBar = () => {
         </s.BtmNavItem>
       </Link>
       <Link href="/mypage">
-        <s.BtmNavItem className={router.pathname === "/mypage" ? "active" : ""}>
+        <s.BtmNavItem
+          className={
+            router.pathname === "/mypage" || router.pathname === "/mypage/postlist/[type]"
+              ? "active"
+              : ""
+          }
+        >
           <MyPageIcon />
         </s.BtmNavItem>
       </Link>

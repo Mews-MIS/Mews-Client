@@ -130,7 +130,7 @@ const Mypage = () => {
               </s.ArticleNumberItem>
             </Link>
 
-            <Link href="/">
+            <Link href="/mypage/postlist/subscribe">
               <s.ArticleNumberItem>
                 <s.Num>{subscribeNum}</s.Num>
                 <s.Type>구독</s.Type>

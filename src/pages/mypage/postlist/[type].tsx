@@ -10,7 +10,10 @@ import { ProfileContainer } from "@components/AuthorIntro/styles";
 import MyProfileAPI from "@pages/api/MyProfileAPI";
 import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
 import MyLikeAPI from "@pages/api/MyLikeAPI";
+import MysubscribeAPI from "@pages/api/MysubscribeAPI";
 import { IProfile } from "../../mypage/index";
+import { IAuthorProps } from "@components/AuthorIntro";
+import AuthorIntro from "@components/AuthorIntro";
 
 export default function PostList() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -19,14 +22,15 @@ export default function PostList() {
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
   const [imgURL, setImgURL] = useState("/");
+  const [subscribeEditors, setSubscribeEditors] = useState<IAuthorProps[]>([]);
   const { data: session } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    router.query.type === "bookmark" &&
+    if (router.query.type === "bookmark") {
+      setType("내가 북마크한 글");
       MyBookmarkAPI.getBookmarks(session).then((data) => {
         console.log(data);
-        setType("내가 북마크한 글");
         data && setPostCount(data.length);
         let newArticles: Article[] = [];
         data?.forEach((item) => {
@@ -34,14 +38,19 @@ export default function PostList() {
             editorIdList(editorIdList) {},
             id: item.id,
             fileUrls: item.img,
+            type: item.type,
             title: item.title,
+            isActive: true,
+            isLike: item.liked,
+            authorNames: item.editors,
+            like_count: item.likeCount,
           });
         });
         setArticles(newArticles);
       });
-    router.query.type === "like" &&
+    } else if (router.query.type === "like") {
+      setType("내가 좋아요를 누른 글");
       MyLikeAPI.getLikes(session).then((data) => {
-        setType("내가 좋아요를 누른 글");
         data && setPostCount(data.length);
         let newArticles: Article[] = [];
         data?.forEach((item) => {
@@ -49,11 +58,33 @@ export default function PostList() {
             editorIdList(editorIdList) {},
             id: item.id,
             fileUrls: item.img,
+            type: item.type,
             title: item.title,
+            isActive: true,
+            isLike: item.liked,
+            authorNames: item.editors,
+            like_count: item.likeCount,
           });
         });
         setArticles(newArticles);
       });
+    } else if (router.query.type === "subscribe") {
+      setType("내가 구독한 필진 목록");
+      MysubscribeAPI.getMySubEditor(session).then((data) => {
+        data && setPostCount(data.length);
+        let newSubscribeEditors: IAuthorProps[] = [];
+        data &&
+          data.forEach((item) => {
+            newSubscribeEditors.push({
+              id: item.id,
+              name: item.name,
+              imgUrl: item.imgUrl,
+              introduction: item.introduction,
+            });
+            setSubscribeEditors(newSubscribeEditors);
+          });
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -88,21 +119,29 @@ export default function PostList() {
           <s.CountPost>{postCount}개</s.CountPost>
         </s.AllPostContainer>
         <s.BottomContainer>
-          <ContentWrapper contentName={type}>
-            {articles.length ? (
-              articles.map((e: Article, index: number) => (
-                <ContentRow
-                  index={index + 1}
-                  key={index + 1}
-                  contentInfo={{
-                    ...e,
-                  }}
-                />
-              ))
+          {router.query.type === "subscribe" ? (
+            subscribeEditors.length ? (
+              subscribeEditors.map((e: IAuthorProps) => <AuthorIntro {...e} />)
             ) : (
-              <s.Text>게시글이 없습니다.</s.Text>
-            )}
-          </ContentWrapper>
+              <s.Text>구독한 필진이 없습니다.</s.Text>
+            )
+          ) : (
+            <ContentWrapper contentName={type}>
+              {articles.length ? (
+                articles.map((e: Article, index: number) => (
+                  <ContentRow
+                    index={index + 1}
+                    key={index + 1}
+                    contentInfo={{
+                      ...e,
+                    }}
+                  />
+                ))
+              ) : (
+                <s.Text>게시글이 없습니다.</s.Text>
+              )}
+            </ContentWrapper>
+          )}
         </s.BottomContainer>
       </s.Wrapper>
     </PageTemplate>

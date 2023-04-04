@@ -22,6 +22,7 @@ export interface IProfile {
   likeCount: number;
   bookmarkCount: number;
   subscribeCount: number;
+  open: boolean;
 }
 
 export interface IBookmark {

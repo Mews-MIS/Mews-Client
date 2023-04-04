@@ -32,6 +32,7 @@ const EditMypage = () => {
         setName(data.userName);
         setIntroduce(data.introduction);
         setImgURL(data.imgUrl);
+        setIsOpen(data.open);
       })
       .catch((e) => {
         console.log(e);
@@ -55,7 +56,10 @@ const EditMypage = () => {
 
   const sendEditProfile = () => {
     const formData = new FormData();
-    if (imgURL) formData.append("file", imgURL);
+    if (imgURL) {
+      formData.append("file", imgURL);
+      console.log(imgURL);
+    }
 
     const data = {
       introduction: introduce,
@@ -63,7 +67,10 @@ const EditMypage = () => {
       userName: name,
     };
     formData.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
+    console.log({formData});
     EditProfileAPI.patchProfile(formData, session);
+    alert("프로필이 편집되었습니다.");
+    window.location.href = "/mypage";
   };
 
   return (
@@ -73,7 +80,7 @@ const EditMypage = () => {
           <TobNavBar />
           <s.EditContainer>
             <s.EditImageContainer>
-              <EditProfileImage serverImageURL={imgURL} setIsFirstState={setIsFirstState} />
+              <EditProfileImage serverImageURL={imgURL} setIsFirstState={setIsFirstState} setImgURL={setImgURL}/>
             </s.EditImageContainer>
 
             <s.EditInfoContainer>

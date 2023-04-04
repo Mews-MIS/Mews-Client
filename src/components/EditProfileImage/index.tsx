@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as s from "./styles";
 
-const EditProfileImage = ({ serverImageURL, setIsFirstState }: any) => {
+const EditProfileImage = ({ serverImageURL, setIsFirstState, setImgURL }: any) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imageURL, setImageURL] = useState<string | ArrayBuffer | undefined | null>("");
 
@@ -12,12 +12,14 @@ const EditProfileImage = ({ serverImageURL, setIsFirstState }: any) => {
     }
     reader.onloadend = () => {
       const resultImage = reader.result;
+      setImgURL(resultImage);
       setImageURL(resultImage);
       setIsFirstState(false);
     };
   };
 
   useEffect(() => {
+    setImgURL(serverImageURL);
     setImageURL(serverImageURL);
   }, [serverImageURL]);
 

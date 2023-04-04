@@ -20,7 +20,7 @@ const EditProfileAPI = {
       const path = `mypage/profile/${session?.userId}`;
       const response: [] | undefined = await HttpClient.patch(path, data, {
         Authorization: `Bearer ${session?.accessToken}`,
-        "content-type": "multipart/form-data",
+        "Content-type": "multipart/form-data",
       });
       return response;
     } catch (e) {

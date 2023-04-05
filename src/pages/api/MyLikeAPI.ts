@@ -2,6 +2,7 @@ import HttpClient from "src/services/HttpClient";
 
 const MyLikeAPI = {
   getLikes: async (session: any) => {
+    if (session === undefined) return null;
     try {
       const path = `mypage/${session?.userId}/myLikeArticle`;
       const response: [] | undefined = await HttpClient.get(
@@ -11,7 +12,6 @@ const MyLikeAPI = {
       );
       return response;
     } catch (e) {
-      console.log(e);
       return null;
     }
   },

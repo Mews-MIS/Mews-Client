@@ -1,9 +1,8 @@
-import EditProfileImage from "@components/EditProfileImage";
 import PageTemplate from "@components/PageTemplate";
 import TobNavBar from "@components/TopNavBar";
 import EditProfileAPI from "@pages/api/EditProfileAPI";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IProfile } from "..";
 import * as s from "./styles";
 
@@ -16,13 +15,15 @@ export interface IEditProfile {
 }
 
 const EditMypage = () => {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
   const [isFirstState, setIsFirstState] = useState(true); // 수정 사항 없다면 버튼 비활성화
 
   const [name, setName] = useState("");
   const [introduce, setIntroduce] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [imgURL, setImgURL] = useState("");
-
+  const [imgURL, setImgURL] = useState<string | ArrayBuffer | undefined | null>("");
+  const [uploadFile, setUploadFile] = useState<File | null | undefined>();
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const EditMypage = () => {
         setName(data.userName);
         setIntroduce(data.introduction);
         setImgURL(data.imgUrl);
+        setIsOpen(data.open);
       })
       .catch((e) => {
         console.log(e);
@@ -53,9 +55,22 @@ const EditMypage = () => {
     setIsFirstState(false);
   };
 
+  const handleChangedFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+    if (e.target.files) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onloadend = () => {
+      setUploadFile(e.target.files![0]);
+      const resultImage = reader.result;
+      setImgURL(resultImage);
+      setIsFirstState(false);
+    };
+  };
+
   const sendEditProfile = () => {
     const formData = new FormData();
-    if (imgURL) formData.append("file", imgURL);
+    formData.append("file", uploadFile!);
 
     const data = {
       introduction: introduce,
@@ -64,6 +79,9 @@ const EditMypage = () => {
     };
     formData.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
     EditProfileAPI.patchProfile(formData, session);
+    // eslint-disable-next-line no-alert
+    alert("프로필이 편집되었습니다.");
+    window.location.href = "/mypage";
   };
 
   return (
@@ -73,7 +91,21 @@ const EditMypage = () => {
           <TobNavBar />
           <s.EditContainer>
             <s.EditImageContainer>
-              <EditProfileImage serverImageURL={imgURL} setIsFirstState={setIsFirstState} />
+              <s.CircleImageWrapper>
+                <s.CircleContainer>
+                  <s.CircleImageBox>
+                    <s.CircleImage src={imgURL?.toString()} />
+                  </s.CircleImageBox>
+                  <s.CircleEditImageLabel htmlFor="file">프로필 사진 편집</s.CircleEditImageLabel>
+                  <s.CircleEditImage
+                    type="file"
+                    id="file"
+                    accept="image/*"
+                    onChange={handleChangedFile}
+                    ref={fileInputRef}
+                  />
+                </s.CircleContainer>
+              </s.CircleImageWrapper>
             </s.EditImageContainer>
 
             <s.EditInfoContainer>

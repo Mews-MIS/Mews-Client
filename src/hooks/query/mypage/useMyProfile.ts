@@ -1,23 +1,26 @@
-import MyLikeAPI from "@pages/api/MyLikeAPI";
+import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
 import MyProfileAPI from "@pages/api/MyProfileAPI";
 import { useQueries } from "react-query";
 
 const useMyProfile = (session: any) => {
   const res = useQueries([
     {
-      queryKey: ["myprofile"], queryFn: async () => {
+      queryKey: ["myprofile"],
+      queryFn: async () => {
+        if (session === null || session === undefined) return null;
         const myprofile = MyProfileAPI.getProfiles(session);
         return myprofile;
-      }
+      },
     },
     {
-      queryKey: ["mylike"], queryFn: async () => {
-        const mylike = MyLikeAPI.getLikes(session);
-        return mylike;
-      }
-    }
+      queryKey: ["mybookmark"],
+      queryFn: async () => {
+        if (session === null || session === undefined) return null;
+        const mybookmark = MyBookmarkAPI.getBookmarks(session);
+        return mybookmark;
+      },
+    },
   ]);
-  console.log({res});
   return res;
 };
 

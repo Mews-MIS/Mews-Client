@@ -2,6 +2,7 @@ import HttpClient from "src/services/HttpClient";
 
 const MyProfileAPI = {
   getProfiles: async (session: any) => {
+    if (session === undefined) return null;
     try {
       const path = `mypage/profile/${session?.userId}`;
       const response: [] | undefined = await HttpClient.get(
@@ -11,7 +12,6 @@ const MyProfileAPI = {
       );
       return response;
     } catch (e) {
-      console.log(e);
       return null;
     }
   },

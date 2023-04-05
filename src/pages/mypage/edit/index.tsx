@@ -67,7 +67,7 @@ const EditMypage = () => {
       userName: name,
     };
     formData.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
-    console.log({formData});
+    console.log({ formData });
     EditProfileAPI.patchProfile(formData, session);
     alert("프로필이 편집되었습니다.");
     window.location.href = "/mypage";
@@ -80,7 +80,11 @@ const EditMypage = () => {
           <TobNavBar />
           <s.EditContainer>
             <s.EditImageContainer>
-              <EditProfileImage serverImageURL={imgURL} setIsFirstState={setIsFirstState} setImgURL={setImgURL}/>
+              <EditProfileImage
+                serverImageURL={imgURL}
+                setIsFirstState={setIsFirstState}
+                setImgURL={setImgURL}
+              />
             </s.EditImageContainer>
 
             <s.EditInfoContainer>

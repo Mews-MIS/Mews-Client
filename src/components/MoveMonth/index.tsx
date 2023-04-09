@@ -1,18 +1,20 @@
-import * as s from "./styles";
 import PreviousMonthBtn from "@public/button/PreviousMonthBtn.svg";
 import NextMonthBtn from "@public/button/NextMonthBtn.svg";
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import selectedDate from "src/states/selectedDate";
-import { addMonths, format, subMonths } from 'date-fns';
+import { addMonths, format, subMonths } from "date-fns";
+import * as s from "./styles";
 
 const MoveMonth = () => {
-  let selectedDateState = useRecoilValue(selectedDate);
+  const selectedDateState = useRecoilValue(selectedDate);
   const setSelectedDate = useSetRecoilState(selectedDate);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onClickPreviousBtn = (e: React.MouseEvent<HTMLDivElement>) => {
     setSelectedDate(subMonths(selectedDateState, 1));
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onClickNextBtn = (e: React.MouseEvent<HTMLDivElement>) => {
     setSelectedDate(addMonths(selectedDateState, 1));
   };
@@ -20,22 +22,20 @@ const MoveMonth = () => {
   return (
     <s.Wrapper>
       <s.Container>
-
         <s.BtnWrapper onClick={onClickPreviousBtn}>
           <PreviousMonthBtn />
         </s.BtnWrapper>
 
         <s.CurrentMonthText>
-          {`${format(selectedDateState, 'yyyy')}년 ${format(selectedDateState, 'M')}월`}
+          {`${format(selectedDateState, "yyyy")}년 ${format(selectedDateState, "M")}월`}
         </s.CurrentMonthText>
 
         <s.BtnWrapper onClick={onClickNextBtn}>
           <NextMonthBtn />
         </s.BtnWrapper>
-
       </s.Container>
     </s.Wrapper>
-  )
+  );
 };
 
 export default MoveMonth;

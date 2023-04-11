@@ -32,15 +32,11 @@ export default function AuthorInfo(props: any) {
   const { id, imgUrl, introduction, isSubscribed, name } = editorInfo;
   const [firstState, setFirstState] = useState<Boolean>(isSubscribed);
   const [subscribe, setSubscribe] = useState<Boolean>(isSubscribed);
-  console.log(session);
-  console.log(editorInfo);
-
   const onClickSubscribe = async () => {
     setSubscribe(!subscribe);
     const debouncedFunction = debounce(async () => {
       if (firstState === subscribe) {
-        const response = await EditorAPI.postSubscribeEditor(editorId, session);
-        console.log(response);
+        await EditorAPI.postSubscribeEditor(editorId, session);
         setFirstState(!subscribe);
       }
     }, 1000);

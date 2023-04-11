@@ -69,7 +69,7 @@ const NewsView = ({
   id: number;
   editorInfoList: IAuthorProps[];
 }) => {
-  const { data: news }: { data: any } = useArticleById({ id, dehydratedState });
+  const { data: news }: { data: any } = useArticleById({ id, session, dehydratedState });
   const md = new MarkdownIt();
   console.log(news);
 

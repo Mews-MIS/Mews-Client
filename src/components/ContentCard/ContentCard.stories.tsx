@@ -18,12 +18,13 @@ export default {
 
 export const contentCard = () => (
   <ContentCard
+    id={data.id}
     key={data.id}
     category={data.category}
     title={data.title}
     authorNames={data.authorNames}
-    isActive
     isLike
-    likeNum={data.likeNum}
+    like_count={data.likeNum}
+    isBookmark
   />
 );

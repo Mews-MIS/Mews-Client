@@ -1,7 +1,7 @@
 import LikeBtn from "@public/button/LikeBtn.svg";
 import { useState } from "react";
 import { debounce } from "lodash";
-import { IconContainer } from "@components/LikeButton/style";
+import IconContainer from "@components/LikeButton/style";
 import ArticleAPI from "@api/ArticleAPI";
 
 interface LikeButtonProps {

@@ -4,6 +4,9 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+  eslint: {
+    tsconfigRootDir: __dirname,
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,

@@ -10,8 +10,8 @@ export const MenuItem = styled.div`
   font-weight: ${theme.FONT_WEIGHT.BOLD};
   color: ${theme.COLORS.BLACK};
   cursor: pointer;
-  &:hover{
+  &:hover {
     color: ${theme.COLORS.HIGHLIGHT_ORANGE};
     font-weight: ${theme.FONT_WEIGHT.BOLD};
-  };
+  }
 `;

@@ -10,12 +10,12 @@ const MoveMonth = () => {
   const setSelectedDate = useSetRecoilState(selectedDate);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClickPreviousBtn = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onClickPreviousBtn = () => {
     setSelectedDate(subMonths(selectedDateState, 1));
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onClickNextBtn = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onClickNextBtn = () => {
     setSelectedDate(addMonths(selectedDateState, 1));
   };
 

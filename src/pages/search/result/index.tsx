@@ -40,7 +40,7 @@ const SearchedResultPage = (props: SearchedResultPageProps) => {
     recentKeywords.unshift(searchKeyword);
     recentKeywords = recentKeywords.slice(0, 5);
     localStorage.setItem("recentKeywords", JSON.stringify(recentKeywords));
-  }, []);
+  }, [keyword]);
 
   return (
     <PageTemplate>

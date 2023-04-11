@@ -5,4 +5,5 @@ export default {
   component: AuthorIntro,
 };
 
+// @ts-ignore
 export const authorIntro = () => <AuthorIntro />;

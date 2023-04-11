@@ -15,14 +15,17 @@ const MenuList = ({
   const outSide = useRef<any>();
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     document.addEventListener("mousedown", outSideHandler);
     return () => {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       document.removeEventListener("mousedown", outSideHandler);
     };
   });
 
   const outSideHandler = (e: React.MouseEvent<HTMLElement> | MouseEvent) => {
     if (!outSide.current?.contains(e.target)) {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       toggleSide();
     }
   };

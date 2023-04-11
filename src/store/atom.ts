@@ -1,4 +1,4 @@
-import { atom, AtomEffect, useSetRecoilState } from "recoil";
+import { atom } from "recoil";
 
 // const localStorageEffect =
 //   (key: string): AtomEffect<any> =>
@@ -13,8 +13,10 @@ import { atom, AtomEffect, useSetRecoilState } from "recoil";
 //     });
 //   };
 
-export const userIdAtom = atom({
+const userIdAtom = atom({
   key: "userId",
   default: null,
   // effects: [localStorageEffect("userId")],
 });
+
+export default userIdAtom;

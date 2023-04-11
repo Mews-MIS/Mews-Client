@@ -11,18 +11,17 @@ export default {
 };
 
 export const data = Template.bind({});
-data.args = {
-  contentInfo: {
-    id: 1,
-    title: "뮤즈의 제작기 들어보실래요?",
-    authorNames: ["이정우", "김현제"],
-    views: 45,
-    likeNum: 12,
-    bookmarkNum: 5,
-    thumbnailURL: "https://ifh.cc/g/b0RAyp.jpg",
-    commentNum: 3,
-  },
-};
+// data.args = {
+//   contentInfo: {
+//     id: 1,
+//     title: "뮤즈의 제작기 들어보실래요?",
+//     authorNames: ["이정우", "김현제"],
+//     likeNum: 12,
+//     bookmarkNum: 5,
+//     thumbnailURL: "https://ifh.cc/g/b0RAyp.jpg",
+//     commentNum: 3,
+//   },
+// };
 
 /*
 export const newsListItem = () => (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { tmpImageURL } from "@pages/tmp/tmpImageURL";
+import tmpImageURL from "@pages/tmp/tmpImageURL";
 import TopNavBar from "@components/TopNavBar";
 import ContentWrapper from "@components/ContentWrapper";
 import CardsSlider from "@components/CardSlider";
@@ -71,6 +71,7 @@ const ProfilePage = () => {
                     isActive={e.isActive}
                     isLike={e.isLike}
                     likeNum={e.likeNum}
+                    id={e.id}
                   />
                 );
               })}

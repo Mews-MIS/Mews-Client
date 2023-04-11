@@ -5,7 +5,7 @@ interface IProps {
   name: string;
 }
 
-const MenuItem: NextPage<IProps> = ({name}) => {
+const MenuItem: NextPage<IProps> = ({ name }: { name: string }) => {
   return (
     <s.Wrapper>
       <s.MenuItem>{name}</s.MenuItem>

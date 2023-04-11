@@ -16,7 +16,6 @@ const axiosInstance = axios.create({
 //     config.headers.Authorization = `${session.accessToken}`;
 //   }
 //
-//   console.log(session);
 //
 //   return config;
 // });

@@ -21,6 +21,7 @@ const AuthorIntroduce = (props: any) => {
       <BackBtn />
       <s.AuthorList>
         {editorList.map((data: IAuthorProps) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
           <AuthorIntro key={data.id} {...data} />
         ))}
       </s.AuthorList>

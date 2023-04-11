@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <ThemeProvider theme={theme}>
               <GlobalStyles />
               <Layout>
+                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                 <Component {...pageProps} />
               </Layout>
             </ThemeProvider>

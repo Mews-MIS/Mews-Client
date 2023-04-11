@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const TopContainer = styled.div`
   border-radius: 20px;
-  background-color: ${theme.COLORS.CONTAINER_WHITE} ;
+  background-color: ${theme.COLORS.CONTAINER_WHITE};
   margin-left: 2%;
   padding: 10px;
 `;

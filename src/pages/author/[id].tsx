@@ -64,17 +64,19 @@ export default function AuthorInfo(props: any) {
           <s.CountPost>{articleList.articles.length}개</s.CountPost>
         </s.AllPostContainer>
         <s.BottomContainer>
-          {articleList.articles.length > 0
-            ? articleList.articles.map((article: Article, index: number) => (
-                <ContentRow
-                  index={index + 1}
-                  key={article.id}
-                  contentInfo={{
-                    ...article,
-                  }}
-                />
-              ))
-            : "게시글이 없습니다."}
+          {articleList.articles.length > 0 ? (
+            articleList.articles.map((article: Article, index: number) => (
+              <ContentRow
+                index={index + 1}
+                key={article.id}
+                contentInfo={{
+                  ...article,
+                }}
+              />
+            ))
+          ) : (
+            <s.Text>게시글이 없습니다.</s.Text>
+          )}
         </s.BottomContainer>
       </s.Wrapper>
     </PageTemplate>

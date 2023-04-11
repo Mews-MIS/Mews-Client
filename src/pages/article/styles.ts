@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
 export const Wrapper = styled.div`
+  overflow: hidden;
   padding-top: 70px;
   padding-bottom: 60px;
   background-color: ${theme.COLORS.CONTAINER_WHITE};

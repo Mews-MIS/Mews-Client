@@ -1,16 +1,16 @@
-// import ContentRow, { ContentRowProps } from "@components/ContentRow";
-// // eslint-disable-next-line import/no-extraneous-dependencies
-// import { Story } from "@storybook/react";
-//
-// // eslint-disable-next-line react/function-component-definition
-// const Template: Story<ContentRowProps> = (args: ContentRowProps) => <ContentRow {...args} />;
-//
-// export default {
-//   title: "component/contentRow",
-//   component: ContentRow,
-// };
-//
-// export const ContentCardWithNoProfile = Template.bind({});
+import ContentRow, { ContentRowProps } from "@components/ContentRow";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Story } from "@storybook/react";
+
+// eslint-disable-next-line react/function-component-definition
+const Template: Story<ContentRowProps> = (args: ContentRowProps) => <ContentRow {...args} />;
+
+export default {
+  title: "component/contentRow",
+  component: ContentRow,
+};
+
+export const ContentCardWithNoProfile = Template.bind({});
 // ContentCardWithNoProfile.args = {
 //   index: 1,
 //   contentInfo: {

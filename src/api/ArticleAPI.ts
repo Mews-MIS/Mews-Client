@@ -14,7 +14,7 @@ const ArticleAPI = {
       );
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },
@@ -32,7 +32,7 @@ const ArticleAPI = {
       );
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },
@@ -44,7 +44,7 @@ const ArticleAPI = {
 
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },
@@ -56,7 +56,7 @@ const ArticleAPI = {
 
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },
@@ -106,7 +106,6 @@ const ArticleAPI = {
           Authorization: `Bearer ${accessToken}`,
         }
       );
-      console.log(response);
 
       return response;
     } catch (e) {

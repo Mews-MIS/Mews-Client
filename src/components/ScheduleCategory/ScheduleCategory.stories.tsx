@@ -5,4 +5,4 @@ export default {
   component: ScheduleCategory,
 };
 
-export const scheduleCategory = () => <ScheduleCategory />;
+export const scheduleCategory = () => <ScheduleCategory category="tmp" titles={["test"]} />;

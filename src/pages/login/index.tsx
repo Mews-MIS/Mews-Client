@@ -37,7 +37,7 @@ const NotLoginPage = () => {
         )}
         {session && (
           <div>
-            <p>Signed in as {session.user.email}</p>
+            <p>Signed in as {session.user!.email}</p>
             <s.loginbtn onClick={() => signOut()}>
               {" "}
               <GLogo style={{ marginRight: "4%" }} />

@@ -7,7 +7,7 @@ const EditorAPI = {
       const response = await HttpClient.get(path);
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },
@@ -16,7 +16,6 @@ const EditorAPI = {
     try {
       const { accessToken } = session;
       const path = `editor/getone/${editorId}`;
-      console.log(accessToken);
       const response = await HttpClient.get(
         path,
         {},
@@ -26,7 +25,7 @@ const EditorAPI = {
       );
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },
@@ -46,7 +45,7 @@ const EditorAPI = {
       );
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },

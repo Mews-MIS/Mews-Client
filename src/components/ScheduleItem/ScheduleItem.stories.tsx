@@ -5,4 +5,4 @@ export default {
   component: ScheduleItem,
 };
 
-export const scheduleItem = () => <ScheduleItem />;
+export const scheduleItem = () => <ScheduleItem Color="red" title="test" />;

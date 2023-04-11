@@ -7,7 +7,7 @@ const CurationAPI = {
       const response = await HttpClient.get(path);
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },
@@ -18,7 +18,7 @@ const CurationAPI = {
       const response = await HttpClient.get(path);
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },

@@ -11,8 +11,6 @@ import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
 import { getSession } from "next-auth/react";
-import { IAuthorProps } from "@components/AuthorIntro";
-import EditorAPI from "@api/EditorAPI";
 import { Article } from "../types/article";
 
 const NoneContentWrapper = styled.div`
@@ -52,10 +50,7 @@ export const getServerSideProps = async (context: any) => {
 };
 
 export default function Home(props: any) {
-  const { session, newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } =
-    props;
-
-  console.log(SubscribeArticleList);
+  const { newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } = props;
 
   return (
     <>
@@ -82,7 +77,6 @@ export default function Home(props: any) {
                     const editorNameList = editors.map((editor) => {
                       return editor.name;
                     });
-                    console.log(editorNameList);
                     return (
                       <ContentCard
                         id={article.id}

@@ -36,8 +36,7 @@ const EditMypage = () => {
         setIsOpen(data.open);
       })
       .catch((e) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
+        console.error(e);
       });
   }, [session]);
 

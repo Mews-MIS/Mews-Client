@@ -7,7 +7,7 @@ const UserAPI = {
       const response = await HttpClient.post(path, body);
       return response;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return null;
     }
   },

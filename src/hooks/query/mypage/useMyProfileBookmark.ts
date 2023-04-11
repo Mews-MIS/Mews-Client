@@ -9,7 +9,6 @@ const useMyProfileBookmark = (session: any) => {
       return mybookmark;
     },
   });
-  console.log({ bookmarkRes });
   return bookmarkRes;
 };
 

@@ -11,7 +11,6 @@ import theme from "@styles/Theme";
 import ContentRow from "@components/ContentRow";
 import CurationAPI from "@api/CurationAPI";
 import { getSession } from "next-auth/react";
-import Link from "next/link";
 import { IAuthorProps } from "@components/AuthorIntro";
 import EditorAPI from "@api/EditorAPI";
 import { Article } from "../types/article";
@@ -120,17 +119,17 @@ export default function Home(props: any) {
                     });
                     console.log(bookmarked, liked);
                     return (
-                        <ContentCard
-                          id={article.id}
-                          key={`new Article${article.id}${article.title}`}
-                          category={article.type}
-                          title={article.title}
-                          authorNames={editorNameList}
-                          isBookmark={bookmarked}
-                          isLike={liked}
-                          like_count={article.like_count}
-                          fileUrls={article.fileUrls}
-                        />
+                      <ContentCard
+                        id={article.id}
+                        key={`new Article${article.id}${article.title}`}
+                        category={article.type}
+                        title={article.title}
+                        authorNames={editorNameList}
+                        isBookmark={bookmarked}
+                        isLike={liked}
+                        like_count={article.like_count}
+                        fileUrls={article.fileUrls}
+                      />
                     );
                   }
                 )}

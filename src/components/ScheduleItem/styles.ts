@@ -15,11 +15,10 @@ export const Container = styled.div`
   background-color: ${theme.COLORS.BACKGROUND_WHITE};
   margin-top: 10px;
   margin-bottom: 10px;
-
 `;
 
 export const Label = styled.div`
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   width: 3px;
   height: 17px;
   border-radius: 50px;

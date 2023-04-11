@@ -12,7 +12,7 @@ interface BookmarkButtonProps {
 const BookmarkButton = ({ articleId, session, isActive }: BookmarkButtonProps) => {
   const [firstValue, setFirstValue] = useState(isActive);
   const [active, setActive] = useState(isActive);
-  const handleClick = async (event:any) => {
+  const handleClick = async (event: any) => {
     event.stopPropagation();
     const debouncedFunction = debounce(async () => {
       if (firstValue === active) {

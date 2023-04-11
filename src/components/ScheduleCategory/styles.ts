@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
-export const Wrapper = styled.div`
-`;
+export const Wrapper = styled.div``;
 
 export const Container = styled.div`
   display: flex;
@@ -23,7 +22,7 @@ export const Title = styled.div`
 
 export const Circle = styled.div`
   display: flex;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   width: 13px;
   height: 13px;
   border-radius: 50px;
@@ -37,14 +36,12 @@ export const TitleText = styled.div`
 
 export const BtnWrapper = styled.div`
   display: flex;
-  margin-left: 10px; 
+  margin-left: 10px;
 
   cursor: pointer;
 `;
 
-export const ItemWrapper = styled.div`
-
-`;
+export const ItemWrapper = styled.div``;
 
 export const ScheduleItems = styled.div`
   display: flex;

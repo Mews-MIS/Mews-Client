@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ContentWrapper from "@components/ContentWrapper";
 import ContentRow from "@components/ContentRow";
-import { Article } from "../../../types/article";
-import * as s from "./styles";
 import { useSession } from "next-auth/react";
 import PageTemplate from "@components/PageTemplate";
 import { ProfileContainer } from "@components/AuthorIntro/styles";
@@ -11,9 +9,10 @@ import MyProfileAPI from "@pages/api/MyProfileAPI";
 import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
 import MyLikeAPI from "@pages/api/MyLikeAPI";
 import MysubscribeAPI from "@pages/api/MysubscribeAPI";
-import { IProfile } from "../../mypage/index";
-import { IAuthorProps } from "@components/AuthorIntro";
-import AuthorIntro from "@components/AuthorIntro";
+import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
+import { IProfile } from "../index";
+import * as s from "./styles";
+import { Article } from "../../../types/article";
 
 export default function PostList() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -30,12 +29,11 @@ export default function PostList() {
     if (router.query.type === "bookmark") {
       setType("내가 북마크한 글");
       MyBookmarkAPI.getBookmarks(session).then((data) => {
-        console.log(data);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         data && setPostCount(data.length);
-        let newArticles: Article[] = [];
-        data?.forEach((item) => {
+        const newArticles: Article[] = [];
+        data?.forEach((item: any) => {
           newArticles.push({
-            editorIdList(editorIdList) {},
             id: item.id,
             fileUrls: item.img,
             type: item.type,
@@ -50,12 +48,12 @@ export default function PostList() {
       });
     } else if (router.query.type === "like") {
       setType("내가 좋아요를 누른 글");
-      MyLikeAPI.getLikes(session).then((data) => {
+      MyLikeAPI.getLikes(session).then((data: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         data && setPostCount(data.length);
-        let newArticles: Article[] = [];
-        data?.forEach((item) => {
+        const newArticles: Article[] = [];
+        data?.forEach((item: any) => {
           newArticles.push({
-            editorIdList(editorIdList) {},
             id: item.id,
             fileUrls: item.img,
             type: item.type,
@@ -71,10 +69,12 @@ export default function PostList() {
     } else if (router.query.type === "subscribe") {
       setType("내가 구독한 필진 목록");
       MysubscribeAPI.getMySubEditor(session).then((data) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         data && setPostCount(data.length);
-        let newSubscribeEditors: IAuthorProps[] = [];
+        const newSubscribeEditors: IAuthorProps[] = [];
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         data &&
-          data.forEach((item) => {
+          data.forEach((item: any) => {
             newSubscribeEditors.push({
               id: item.id,
               name: item.name,
@@ -85,7 +85,7 @@ export default function PostList() {
           });
       });
     }
-  }, []);
+  }, [router.query.type, session]);
 
   useEffect(() => {
     const profile: Promise<any> = MyProfileAPI.getProfiles(session);
@@ -96,9 +96,9 @@ export default function PostList() {
         setImgURL(data.imgUrl);
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
       });
-  }, []);
+  }, [session]);
 
   return (
     <PageTemplate>
@@ -119,10 +119,12 @@ export default function PostList() {
           <s.CountPost>{postCount}개</s.CountPost>
         </s.AllPostContainer>
         <s.BottomContainer>
+          {/* eslint-disable-next-line no-nested-ternary */}
           {router.query.type === "subscribe" ? (
             subscribeEditors.length ? (
               subscribeEditors.map((e: IAuthorProps) => (
                 <s.AuthorListContainer>
+                  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                   <AuthorIntro {...e} />
                 </s.AuthorListContainer>
               ))
@@ -135,7 +137,7 @@ export default function PostList() {
                 articles.map((e: Article, index: number) => (
                   <ContentRow
                     index={index + 1}
-                    key={index + 1}
+                    key={`subEditor ${e.id}`}
                     contentInfo={{
                       ...e,
                     }}

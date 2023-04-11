@@ -1,10 +1,13 @@
-import * as s from "./styles";
 import Link from "next/link";
+import * as s from "./styles";
+
 export interface NewsPostCardProps {
   id?: number;
   type: string;
   title: string;
   fileUrls: string[];
+  // eslint-disable-next-line react/no-unused-prop-types
+  article?: any;
 }
 
 const NewsPostCard = ({ id, type, title, fileUrls }: NewsPostCardProps) => {

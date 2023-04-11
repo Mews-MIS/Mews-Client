@@ -1,7 +1,6 @@
-import React from 'react';
-import * as s from "./styles";
 import CloseMenu from "@public/icon/CloseMenu.svg";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import * as s from "./styles";
 
 const BackBtn = () => {
   const router = useRouter();
@@ -12,7 +11,7 @@ const BackBtn = () => {
         <CloseMenu />
       </s.CloseIcon>
     </s.Wrapper>
-  )
+  );
 };
 
 export default BackBtn;

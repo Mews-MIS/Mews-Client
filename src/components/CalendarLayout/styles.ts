@@ -29,6 +29,4 @@ export const WeekWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
-export const DayWrapper = styled.div`
-    
-`;
+export const DayWrapper = styled.div``;

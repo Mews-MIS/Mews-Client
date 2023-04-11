@@ -1,11 +1,11 @@
 export interface Article {
-  editorIdList(editorIdList: any): unknown;
   id: number;
   fileUrls: string[];
   type?: string;
   title: string;
   isActive?: boolean;
   isLike?: boolean;
+  authorIdList?: number[];
   authorNames?: string[];
   like_count?: number;
   modifiedAt?: number[];

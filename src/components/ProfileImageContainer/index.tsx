@@ -10,6 +10,7 @@ const ProfileImageContainer = ({ imageUrl }: { imageUrl?: string }) => {
         </s.Wrapper>
       </div>
 
+      {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx>
         {`
           div {

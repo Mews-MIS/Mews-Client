@@ -1,7 +1,6 @@
-import { useState } from "react";
-import * as s from "./styles";
 import LargeLogo from "@public/icon/LargeLogo.svg";
 import BackBtn from "@components/BackBtn";
+import * as s from "./styles";
 
 const MewsIntroduce = () => {
   return (

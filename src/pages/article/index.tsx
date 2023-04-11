@@ -18,11 +18,11 @@ const NewsPage = () => {
   const itemsCountPerPage = 10;
 
   useEffect(() => {
-    ArticleAPI.getPageArticles(1, {}).then((data: any) => {
-      setArticle(data.articles);
+    ArticleAPI.getPageArticles(1, {}).then((articleData: any) => {
+      setArticle(articleData.articles);
       setTotalItemsCount(Math.ceil(data.pageCount * itemsCountPerPage));
     });
-  }, []);
+  }, [data.pageCount]);
 
   if (isLoading) {
     return <h1>로딩중</h1>;
@@ -38,6 +38,7 @@ const NewsPage = () => {
         <NewsPostSlider>
           {article &&
             article.slice(0, 5).map((e: NewsPostCardProps) => {
+              // eslint-disable-next-line react/jsx-props-no-spreading
               return <NewsPostCard {...e.article} />;
             })}
         </NewsPostSlider>

@@ -1,10 +1,10 @@
-import NextAuth, { SignInCallback, JWTCallback, SessionCallback } from "next-auth";
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import UserAPI from "@api/UserAPI";
 import { setCookie } from "nookies";
 
 const callbacks = {
-  signIn: async (params: any): Promise<SignInCallback> => {
+  signIn: async (params: any): Promise<any> => {
     const { email, name, image } = params.user;
     try {
       const response = await UserAPI.googleLogin({
@@ -25,7 +25,7 @@ const callbacks = {
       throw new Error("Unable to sign in");
     }
   },
-  async session({ session }) {
+  async session({ session }: { session: any }) {
     // Send properties to the client, like an access_token from a provider.
     const { user } = session;
     const response = await UserAPI.googleLogin({

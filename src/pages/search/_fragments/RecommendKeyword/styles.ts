@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   width: 100%;
 
@@ -17,3 +17,5 @@ export const Wrapper = styled.div`
     filter: ${theme.COLORS.FILTER_GRAY};
   }
 `;
+
+export default Wrapper;

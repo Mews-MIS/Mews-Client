@@ -71,6 +71,7 @@ const ProfilePage = () => {
                     isActive={e.isActive}
                     isLike={e.isLike}
                     likeNum={e.likeNum}
+                    id={e.id}
                   />
                 );
               })}

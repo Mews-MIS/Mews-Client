@@ -4,8 +4,8 @@ import Hamberger from "@public/icon/Hamberger.svg";
 import { useEffect, useState } from "react";
 import MenuList from "@components/MenuList";
 import Link from "next/link";
-import * as s from "./styles";
 import { useSession } from "next-auth/react";
+import * as s from "./styles";
 
 const TobNavBar = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -16,10 +16,10 @@ const TobNavBar = () => {
     setIsOpen(!isOpen);
   };
 
-  const {data: session} = useSession();
+  const { data: session } = useSession();
 
   useEffect(() => {
-    if(session) setIsLogin(true);
+    if (session) setIsLogin(true);
     else setIsLogin(false);
   }, [session]);
 

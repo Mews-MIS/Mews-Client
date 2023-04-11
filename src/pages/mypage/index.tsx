@@ -6,10 +6,6 @@ import Link from "next/link";
 import PageTemplate from "@components/PageTemplate";
 import { useSession } from "next-auth/react";
 import useMyProfile from "@hooks/query/mypage/useMyProfile";
-<<<<<<< HEAD
-import useMyProfileBookmark from "@hooks/query/mypage/useMyProfileBookmark";
-=======
->>>>>>> b7e1d72f615ef00b00b2064c1a6200aaecdd3ff2
 import * as s from "./styles";
 
 // eslint-disable-next-line no-empty-pattern
@@ -65,7 +61,6 @@ const Mypage = () => {
 
   let myProfile: any = useMyProfile(session);
 
-
   const isProfile = (): boolean => {
     if (
       myProfile[0].isSuccess &&
@@ -81,11 +76,9 @@ const Mypage = () => {
     if (session !== undefined) {
       if (isProfile()) localStorage.setItem("profileData", JSON.stringify(myProfile));
     } else {
-
       const localStorageProfile = localStorage.getItem("profileData");
       // eslint-disable-next-line react-hooks/exhaustive-deps
       myProfile = JSON.parse(localStorageProfile as string) || [];
-
     }
   }, []);
 
@@ -101,7 +94,6 @@ const Mypage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [myProfile[0].data, myProfile[1].data]);
-
 
   const onClickProfileEdit = () => {
     // eslint-disable-next-line no-restricted-globals

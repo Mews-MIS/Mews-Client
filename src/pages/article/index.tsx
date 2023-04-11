@@ -20,9 +20,10 @@ const NewsPage = () => {
   useEffect(() => {
     ArticleAPI.getPageArticles(1, {}).then((articleData: any) => {
       setArticle(articleData.articles);
-      setTotalItemsCount(Math.ceil(data.pageCount * itemsCountPerPage));
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      data && setTotalItemsCount(Math.ceil(data.pageCount * itemsCountPerPage));
     });
-  }, [data.pageCount]);
+  }, [data]);
 
   if (isLoading) {
     return <h1>로딩중</h1>;

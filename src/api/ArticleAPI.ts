@@ -63,16 +63,9 @@ const ArticleAPI = {
 
   getSubscribeArticles: async (session: any) => {
     try {
-      const { id } = session;
-      const accessToken = session?.accessToken;
-      const path = `article/${id}/subscribe`;
-      const response = await HttpClient.get(
-        path,
-        {},
-        {
-          Authorization: `Bearer ${accessToken}`,
-        }
-      );
+      const { userId } = session;
+      const path = `article/${userId}/subscribe`;
+      const response = await HttpClient.get(path);
 
       return response;
     } catch (e) {

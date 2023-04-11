@@ -9,11 +9,21 @@ const MoveMonth = () => {
   const selectedDateState = useRecoilValue(selectedDate);
   const setSelectedDate = useSetRecoilState(selectedDate);
 
+<<<<<<< HEAD
   const onClickPreviousBtn = () => {
     setSelectedDate(subMonths(selectedDateState, 1));
   };
 
   const onClickNextBtn = () => {
+=======
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onClickPreviousBtn = (e: React.MouseEvent<HTMLDivElement>) => {
+    setSelectedDate(subMonths(selectedDateState, 1));
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onClickNextBtn = (e: React.MouseEvent<HTMLDivElement>) => {
+>>>>>>> b7e1d72f615ef00b00b2064c1a6200aaecdd3ff2
     setSelectedDate(addMonths(selectedDateState, 1));
   };
 

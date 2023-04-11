@@ -55,7 +55,8 @@ export default function Home(props: any) {
   const { session, newArticleList, popularArticleList, firstCurationInfo, SubscribeArticleList } =
     props;
 
-  console.log(newArticleList);
+  console.log(SubscribeArticleList);
+
   return (
     <>
       <Head>
@@ -70,34 +71,33 @@ export default function Home(props: any) {
           <ContentWrapper contentName="내가 구독하고 있는 게시글">
             {SubscribeArticleList?.length ? (
               <CardSlider>
-                {SubscribeArticleList.map(async (element: any) => {
-                  const editorInfoList = await element.editors.reduce(
-                    async (acc: Promise<IAuthorProps[]>, cur: number) => {
-                      const getUserInfo = async () => {
-                        const info = await EditorAPI.getEditorInfo(cur, session);
-                        return info;
-                      };
-                      const userInfo = await getUserInfo();
-                      const result = await acc;
-                      result.push(userInfo);
-                      return result;
-                    },
-                    Promise.resolve([])
-                  );
-                  return (
-                    <ContentCard
-                      id={element.id}
-                      key={`Subscribe ${element.id}${element.title}`}
-                      category={element.type}
-                      title={element.title}
-                      authorNames={editorInfoList.join(" ")}
-                      isBookmark={element.isActive}
-                      isLike={element.isLike}
-                      like_count={element.like_count}
-                      fileUrls={element?.fileUrls}
-                    />
-                  );
-                })}
+                {SubscribeArticleList.map(
+                  (element: {
+                    article: any;
+                    editors: any[];
+                    bookmarked: boolean;
+                    liked: boolean;
+                  }) => {
+                    const { article, editors } = element;
+                    const editorNameList = editors.map((editor) => {
+                      return editor.name;
+                    });
+                    console.log(editorNameList);
+                    return (
+                      <ContentCard
+                        id={article.id}
+                        key={`Subscribe ${article.id}${article.title}`}
+                        category={article.type}
+                        title={article.title}
+                        authorNames={editorNameList}
+                        isBookmark={article.isActive}
+                        isLike={article.isLike}
+                        like_count={article.like_count}
+                        fileUrls={article?.fileUrls}
+                      />
+                    );
+                  }
+                )}
               </CardSlider>
             ) : (
               <NoneContentWrapper>구독하고 있는 필진이 없습니다.</NoneContentWrapper>
@@ -117,7 +117,6 @@ export default function Home(props: any) {
                     const editorNameList = editorList.map((editor) => {
                       return editor.name;
                     });
-                    console.log(bookmarked, liked);
                     return (
                       <ContentCard
                         id={article.id}

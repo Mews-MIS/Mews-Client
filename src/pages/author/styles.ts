@@ -6,6 +6,7 @@ const defaultVal = {
 };
 
 export const Wrapper = styled.div`
+  height: 100vh;
   background-color: ${theme.COLORS.CONTAINER_WHITE};
   padding: ${defaultVal.defaultPadding};
 `;
@@ -25,10 +26,11 @@ export const SubscribeBtnContainer = styled.div`
 `;
 
 export const SubscribeBtn = styled.button`
-  width: 85vw;
+  width: 100%;
+  height: 4vh;
   display: flex;
   justify-content: center;
-
+  align-items: center;
   color: ${theme.COLORS.CONTAINER_WHITE};
   background: ${theme.COLORS.BRIGHT_ORANGE};
   border-radius: 3em;
@@ -53,4 +55,13 @@ export const AllPost = styled.div`
 export const CountPost = styled.div`
   color: ${theme.COLORS.BRIGHT_ORANGE};
 `;
+
+export const Text = styled.div`
+  margin-top: 10%;
+  height: 200px;
+  font-size: large;
+  color: ${theme.COLORS.LINE_GRAY};
+  text-align: center;
+`;
+
 export const BottomContainer = styled.div``;

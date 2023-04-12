@@ -30,7 +30,7 @@ export const BackBtnBox = styled.div`
 export const MewsAd = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: 1.5;
+  line-height: 1.7;
   align-items: center;
   justify-content: center;
   font-size: ${theme.FONT_SIZE.MAIN_SIZE};

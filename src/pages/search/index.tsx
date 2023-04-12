@@ -5,7 +5,7 @@ import PopularKeyword from "@pages/search/_fragments/PopularKeyword";
 import PageTemplate from "@components/PageTemplate";
 import SearchAPI from "@api/SearchAPI";
 import { useEffect, useState } from "react";
-import { SearchedContainer } from "./styles";
+import SearchedContainer from "./styles";
 
 export async function getServerSideProps() {
   const response = await SearchAPI.getPopularResult();
@@ -32,14 +32,20 @@ const searchPage = (props: any) => {
       <ContentWrapper contentName="최근 검색어">
         <SearchedContainer>
           {recentKeywordList?.map((recentKeyword) => {
-            return <RecentSearched keyword={recentKeyword} />;
+            return <RecentSearched key={`recent ${recentKeyword}`} keyword={recentKeyword} />;
           })}
         </SearchedContainer>
       </ContentWrapper>
       <ContentWrapper contentName="인기 검색어">
         <SearchedContainer>
           {popularKeywords.map((popularKeyword: string, index: number) => {
-            return <PopularKeyword rank={index + 1} keyword={popularKeyword} />;
+            return (
+              <PopularKeyword
+                key={`popular ${popularKeyword}`}
+                rank={index + 1}
+                keyword={popularKeyword}
+              />
+            );
           })}
         </SearchedContainer>
       </ContentWrapper>

@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
-const Wrapper = styled.div`
+// eslint-disable-next-line import/prefer-default-export
+export const Wrapper = styled.div`
   display: flex;
   width: 100%;
 
@@ -17,5 +18,3 @@ const Wrapper = styled.div`
     filter: ${theme.COLORS.FILTER_GRAY};
   }
 `;
-
-export default Wrapper;

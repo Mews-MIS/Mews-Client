@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
+/** @type {{eslint: {tsconfigRootDir: string}, images: {domains: string[]}, webpack: (function(*): *), reactStrictMode: boolean, serverless: boolean, compiler: {emotion: boolean}}} */
 const nextConfig = {
+  serverless: true,
   reactStrictMode: true,
   compiler: {
     emotion: true,

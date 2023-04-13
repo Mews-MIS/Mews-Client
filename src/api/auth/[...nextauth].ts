@@ -58,6 +58,7 @@ const options = {
     }),
   ],
   callbacks,
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 // @ts-ignore

@@ -6,8 +6,8 @@ import ArticleAPI from "@api/ArticleAPI";
 import EditorAPI from "@api/EditorAPI";
 import { getSession } from "next-auth/react";
 import { debounce } from "lodash";
+import * as s from "@styles/PageStyles/author/styles";
 import { Article } from "../../types/article";
-import * as s from "./styles";
 
 export const getServerSideProps = async (context: any) => {
   const session = await getSession(context);

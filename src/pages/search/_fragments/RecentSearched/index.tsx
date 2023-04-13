@@ -1,4 +1,4 @@
-import Wrapper from "@pages/search/_fragments/RecentSearched/styles";
+import Wrapper from "@styles/PageStyles/search/_fragments/RecentSearched/styles";
 import ClockIcon from "public/icon/ClockIcon.svg";
 import Link from "next/link";
 

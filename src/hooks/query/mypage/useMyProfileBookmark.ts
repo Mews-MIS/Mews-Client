@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
+import MyBookmarkAPI from "@api/MyBookmarkAPI";
 
 const useMyProfileBookmark = (session: any) => {
   const bookmarkRes = useQuery({

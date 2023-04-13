@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const TopContainer = styled.div`
-  width: 85%
+  width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;

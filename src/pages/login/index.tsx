@@ -5,7 +5,7 @@ import TopNavBar from "@components/TopNavBar";
 import BottomNavBar from "@components/BottomNavbar";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/login/styles";
 
 const NotLoginPage = () => {
   const { data: session } = useSession();

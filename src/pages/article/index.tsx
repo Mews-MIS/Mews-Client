@@ -8,7 +8,7 @@ import usePostByPageNumber from "@hooks/query/article/useNewArticle";
 import NewsListItem from "@components/NewsListItem";
 import ArticleAPI from "@api/ArticleAPI";
 
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/article/styles";
 
 const NewsPage = () => {
   const [pageNumber, setPageNumber] = useState(1); // 현재페이지

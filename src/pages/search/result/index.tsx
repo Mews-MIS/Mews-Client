@@ -5,8 +5,8 @@ import SearchBar from "@pages/search/_fragments/SearchBar";
 import EditorProfile from "@pages/search/result/_fragments/EditorProfile";
 import Link from "next/link";
 import CardSlider from "@components/CardSlider";
+import * as s from "@styles/PageStyles/search/result/styles";
 import { ArticleSearchedResult } from "../../../types/article";
-import * as s from "./styles";
 import { Editor } from "../../../types/editor";
 
 export async function getServerSideProps({ query }: { query: any }) {

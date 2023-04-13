@@ -1,5 +1,5 @@
 import Link from "next/link";
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/search/result/_fragments/styles";
 
 interface EditorProfileProps {
   id: number;

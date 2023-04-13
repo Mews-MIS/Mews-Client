@@ -1,4 +1,4 @@
-import Wrapper from "@pages/search/_fragments/PopularKeyword/styles";
+import { Wrapper } from "@styles/PageStyles/search/_fragments/PopularKeyword/styles";
 import Link from "next/link";
 
 const PopularKeyword = ({ rank, keyword }: { rank: number; keyword: string }) => {

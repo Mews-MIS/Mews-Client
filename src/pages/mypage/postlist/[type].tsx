@@ -5,13 +5,13 @@ import ContentRow from "@components/ContentRow";
 import { useSession } from "next-auth/react";
 import PageTemplate from "@components/PageTemplate";
 import { ProfileContainer } from "@components/AuthorIntro/styles";
-import MyProfileAPI from "@pages/api/MyProfileAPI";
-import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
-import MyLikeAPI from "@pages/api/MyLikeAPI";
-import MysubscribeAPI from "@pages/api/MysubscribeAPI";
+import MyProfileAPI from "@api/MyProfileAPI";
+import MyBookmarkAPI from "@api/MyBookmarkAPI";
+import MyLikeAPI from "@api/MyLikeAPI";
+import MysubscribeAPI from "@api/MysubscribeAPI";
 import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
+import * as s from "@styles/PageStyles/mypage/postlist/styles";
 import { IProfile } from "../index";
-import * as s from "./styles";
 import { Article } from "../../../types/article";
 
 export default function PostList() {

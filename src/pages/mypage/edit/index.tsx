@@ -1,10 +1,10 @@
 import PageTemplate from "@components/PageTemplate";
 import TobNavBar from "@components/TopNavBar";
-import EditProfileAPI from "@pages/api/EditProfileAPI";
+import EditProfileAPI from "@api/EditProfileAPI";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useRef, useState } from "react";
+import * as s from "@styles/PageStyles/mypage/edit/styles";
 import { IProfile } from "..";
-import * as s from "./styles";
 
 export interface IEditProfile {
   userName: string;
@@ -24,8 +24,13 @@ const EditMypage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [imgURL, setImgURL] = useState<string | ArrayBuffer | undefined | null>("");
   const [uploadFile, setUploadFile] = useState<File | null | undefined>();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
+  if (status === "loading") {
+    return <div> loading... </div>;
+  }
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const profile: Promise<any> = EditProfileAPI.getProfile(session);
     profile

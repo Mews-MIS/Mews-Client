@@ -5,7 +5,7 @@ import PopularKeyword from "@pages/search/_fragments/PopularKeyword";
 import PageTemplate from "@components/PageTemplate";
 import SearchAPI from "@api/SearchAPI";
 import { useEffect, useState } from "react";
-import SearchedContainer from "./styles";
+import { SearchedContainer } from "@styles/PageStyles/search/styles";
 
 export async function getServerSideProps() {
   const response = await SearchAPI.getPopularResult();

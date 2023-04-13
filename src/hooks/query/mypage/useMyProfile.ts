@@ -1,5 +1,5 @@
-import MyBookmarkAPI from "@pages/api/MyBookmarkAPI";
-import MyProfileAPI from "@pages/api/MyProfileAPI";
+import MyBookmarkAPI from "@api/MyBookmarkAPI";
+import MyProfileAPI from "@api/MyProfileAPI";
 import { useQueries } from "react-query";
 
 const useMyProfile = (session: any) => {

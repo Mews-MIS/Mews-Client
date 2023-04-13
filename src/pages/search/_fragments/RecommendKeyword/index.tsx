@@ -1,5 +1,5 @@
 import SearchIcon from "@public/icon/SearchIcon.svg";
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/search/_fragments/RecommendKeyword/styles";
 
 const RecommendKeyword = ({ keyword }: { keyword: string }) => {
   return (

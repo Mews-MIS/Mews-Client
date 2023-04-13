@@ -2,7 +2,7 @@ import AuthorIntro, { IAuthorProps } from "@components/AuthorIntro";
 import BackBtn from "@components/BackBtn";
 import React from "react";
 import EditorAPI from "@api/EditorAPI";
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/introduce/author/styles";
 
 export const getServerSideProps = async () => {
   const editorList = await EditorAPI.getAllEditors();

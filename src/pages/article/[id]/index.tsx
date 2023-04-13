@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import { getSession } from "next-auth/react";
 import BookmarkButton from "@components/BookmarkButton";
 import LikeButton from "@components/LikeButton";
+import * as s from "@styles/PageStyles/article/[id]/styles";
 import { Article } from "../../../types/article";
-import * as s from "./styles";
 
 export interface NewsViewProps {
   isLike: boolean;

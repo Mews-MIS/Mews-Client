@@ -1,6 +1,6 @@
 import LargeLogo from "@public/icon/LargeLogo.svg";
 import BackBtn from "@components/BackBtn";
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/introduce/mews/styles";
 
 const MewsIntroduce = () => {
   return (

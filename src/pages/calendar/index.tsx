@@ -3,7 +3,7 @@ import MoveMonth from "@components/MoveMonth";
 import CalendarLayout from "@components/CalendarLayout";
 import PageTemplate from "@components/PageTemplate";
 import ScheduleLayout from "@components/ScheduleLayout";
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/calender/styles";
 
 const Calendar = () => {
   return (

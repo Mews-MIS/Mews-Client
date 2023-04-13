@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import theme from "@styles/Theme";
 
-const Wrapper = styled.div`
+// eslint-disable-next-line import/prefer-default-export
+export const Wrapper = styled.div`
   display: flex;
   text-align: left;
   align-items: center;
@@ -19,5 +20,3 @@ const Wrapper = styled.div`
     width: 20px;
   }
 `;
-
-export default Wrapper;

@@ -6,7 +6,7 @@ import Link from "next/link";
 import PageTemplate from "@components/PageTemplate";
 import { useSession } from "next-auth/react";
 import useMyProfile from "@hooks/query/mypage/useMyProfile";
-import * as s from "./styles";
+import * as s from "@styles/PageStyles/mypage/styles";
 
 // eslint-disable-next-line no-empty-pattern
 export async function getServerSideProps({}: any) {

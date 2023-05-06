@@ -40,7 +40,7 @@ const NewsPage = () => {
           {article &&
             article.slice(0, 5).map((e: NewsPostCardProps) => {
               // eslint-disable-next-line react/jsx-props-no-spreading
-              return <NewsPostCard {...e.article} />;
+              return <NewsPostCard key={`article${e?.article.id}`} {...e.article} />;
             })}
         </NewsPostSlider>
       </s.NewsTopContainer>
@@ -50,7 +50,11 @@ const NewsPage = () => {
             ? data.articles.map((element: any, index: number) => {
                 const articleInfo = element.article;
                 return (
-                  <NewsListItem key={articleInfo.id} index={index + 1} contentInfo={articleInfo} />
+                  <NewsListItem
+                    key={`newItem${articleInfo.id}`}
+                    index={index + 1}
+                    contentInfo={articleInfo}
+                  />
                 );
               })
             : "등록된 게시물이 없습니다"}
@@ -62,5 +66,4 @@ const NewsPage = () => {
   );
 };
 
-// 100 pageCount = Math.ceil(articleSum/10)
 export default NewsPage;

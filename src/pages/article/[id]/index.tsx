@@ -71,7 +71,6 @@ const NewsView = ({
 }) => {
   const { data: news }: { data: any } = useArticleById({ id, session, dehydratedState });
   const md = new MarkdownIt();
-  console.log(news);
 
   useEffect(() => {});
   const copyURL = () => {
@@ -116,6 +115,7 @@ const NewsView = ({
               {editorInfoList &&
                 editorInfoList.map((editorInfo) => (
                   <AuthorIntro
+                    key={`author${editorInfo?.id}`}
                     id={editorInfo?.id}
                     name={editorInfo?.name}
                     imgUrl={editorInfo?.imgUrl}

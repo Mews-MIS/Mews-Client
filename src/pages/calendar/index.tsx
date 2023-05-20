@@ -8,15 +8,17 @@ import * as s from "@styles/PageStyles/calender/styles";
 const Calendar = () => {
   return (
     <PageTemplate>
-      <s.Wrapper>
-        <s.TopContainer>
-          <MoveMonth />
-          <CalendarLayout />
-        </s.TopContainer>
-        <Suspense fallback={<div>Loading...</div>}>
-          <ScheduleLayout />
-        </Suspense>
-      </s.Wrapper>
+      <Suspense fallback={<div>Loading....</div>}>
+        <s.Wrapper>
+          <s.TopContainer>
+            <MoveMonth />
+            <CalendarLayout />
+          </s.TopContainer>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ScheduleLayout />
+          </Suspense>
+        </s.Wrapper>
+      </Suspense>
     </PageTemplate>
   );
 };

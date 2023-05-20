@@ -3,7 +3,7 @@ import HttpClient from "../services/HttpClient";
 const CalendarAPI = {
   getArticle: async () => {
     try {
-      const path = `calendar/getall`;
+      const path = `/calendar/getall`;
       const response = await HttpClient.get(path);
       return response.response;
     } catch (e) {
